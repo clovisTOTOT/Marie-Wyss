@@ -6,7 +6,7 @@ from apps import views, admin
 from .views import privacy_policy_view  # Assurez-vous d'importer la bonne vue
 
 urlpatterns = [
-    path('', views.home, name='accueil'),
+    path('', views.home, name='index'),
     path('services/', views.services, name='services'),
     path('apropos/', views.apropos, name='apropos'),
     path('galerie-image/', views.galerie_image, name='galerie_image'),

@@ -6,7 +6,7 @@ from django.http import HttpResponse
 
 def home(request):
 
-        return  render(request, 'accueille.html')
+        return  render(request, 'index.html')
 
 
 def services(request):
