@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hôpital Marie Wyss</title>
+    <link rel="icon" href="{% static 'images/switch.png' %}" type="image/png">
+    <link rel="stylesheet" href="{% static 'css/accueille.css' %}">
+    <script src="{% static 'js/accueille.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'css/footer.css' %}">
+    <link rel="stylesheet" href="{% static 'css/galerie-image.css' %}">
+    <link rel="stylesheet" href="{% static 'css/services.css' %}">
+    <script src="{% static 'js/header.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'css/header.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+<div>{% include 'header.html' %} </div>
+
+
+
+
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            color: #333;
+            line-height: 1.6;
+            background-color: #fff;
+        }
+
+        .top-header {
+            background-color: #e8e8e8;
+            padding: 12px 15px;
+            text-align: center;
+        }
+
+        .top-header h1 {
+            font-size: clamp(16px, 4vw, 20px);
+            font-weight: 600;
+            color: #333;
+        }
+
+        .breadcrumb-section {
+            background-color: #fff;
+            padding: 15px 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #e0e0e0;
+            gap: 10px;
+        }
+
+        .breadcrumb-title {
+            font-size: clamp(12px, 3vw, 14px);
+            color: #666;
+            font-weight: 500;
+        }
+
+        .breadcrumb {
+            font-size: clamp(11px, 2.5vw, 13px);
+            color: #666;
+        }
+
+        .breadcrumb a {
+            color: #0066cc;
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            max-width: 1400px;
+            margin: 0 auto;
+            background-color: #fff;
+        }
+
+        .sidebar {
+            width: 100%;
+            background-color: #f9f9f9;
+            padding: 15px 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            padding: 0 10px;
+        }
+
+        .sidebar li {
+            flex: 1 1 auto;
+            min-width: 150px;
+        }
+
+        .sidebar a {
+            display: block;
+            padding: 10px 15px;
+            color: #555;
+            text-decoration: none;
+            font-size: clamp(12px, 2.5vw, 14px);
+            transition: background-color 0.2s;
+            position: relative;
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+            background-color: #fff;
+            text-align: center;
+        }
+
+        .sidebar a:hover {
+            background-color: #f0f0f0;
+        }
+
+        .sidebar a.active {
+            background-color: #0066cc;
+            color: #fff;
+            font-weight: 500;
+            border-color: #0066cc;
+        }
+
+        .main-content {
+            flex: 1;
+            padding: 20px 15px;
+            background-color: #fff;
+        }
+
+        .hero-section {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .hero-image {
+            width: 100%;
+            overflow: hidden;
+            border-radius: 4px;
+            position: relative;
+            height: 250px;
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+        }
+
+        .hero-image img.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .hero-image img.slide-out {
+            transform: translateX(-100%);
+            opacity: 0;
+        }
+
+        .info-box {
+            width: 100%;
+            background-color: #f5f5f5;
+            padding: 20px;
+            border-left: 3px solid #0066cc;
+            position: relative;
+            overflow: hidden;
+            min-height: 200px;
+        }
+
+        .info-content {
+            position: absolute;
+            width: calc(100% - 40px);
+            transition: transform 0.6s ease-in-out, opacity 0.6s ease-in-out;
+            opacity: 0;
+        }
+
+        .info-content.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .info-content.slide-out-left {
+            transform: translateX(-100%);
+            opacity: 0;
+        }
+
+        .info-content.slide-in-right {
+            transform: translateX(100%);
+            opacity: 0;
+        }
+
+        .info-content h3 {
+            font-size: clamp(16px, 3.5vw, 18px);
+            margin-bottom: 15px;
+            color: #0066cc;
+            font-weight: 600;
+        }
+
+        .info-content .section-title {
+            color: #0066cc;
+            font-size: clamp(12px, 2.5vw, 14px);
+            font-weight: 600;
+            margin-bottom: 10px;
+            margin-top: 15px;
+        }
+
+        .info-content p {
+            font-size: clamp(12px, 2.5vw, 13px);
+            color: #555;
+            line-height: 1.8;
+        }
+
+        .service-title {
+            font-size: clamp(18px, 4vw, 24px);
+            color: #000;
+            margin-bottom: 20px;
+            font-weight: 700;
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        .service-description {
+            font-size: clamp(13px, 3vw, 15px);
+            color: #333;
+            line-height: 1.8;
+            margin-bottom: 30px;
+            text-align: justify;
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        .service-description p {
+            color: #333;
+            font-size: clamp(13px, 3vw, 15px);
+            margin-bottom: 15px;
+        }
+
+        .appointment-section {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin-top: 40px;
+            border-radius: 4px;
+        }
+
+        .appointment-section h2 {
+            font-size: clamp(16px, 3.5vw, 20px);
+            color: #333;
+            margin-bottom: 25px;
+            font-weight: 600;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: clamp(12px, 2.5vw, 14px);
+            color: #555;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            max-width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+            font-size: clamp(12px, 2.5vw, 14px);
+            font-family: inherit;
+            background-color: #fff;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #0066cc;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .submit-btn {
+            background-color: #0088cc;
+            color: #fff;
+            padding: 12px 35px;
+            border: none;
+            border-radius: 3px;
+            font-size: clamp(12px, 2.5vw, 14px);
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            margin-top: 10px;
+            width: 100%;
+            max-width: 300px;
+        }
+
+        .submit-btn:hover {
+            background-color: #0077bb;
+        }
+
+        /* Tablettes (768px et plus) */
+        @media screen and (min-width: 768px) {
+            .breadcrumb-section {
+                padding: 15px 30px;
+            }
+
+            .sidebar ul {
+                gap: 8px;
+                padding: 0 15px;
+            }
+
+            .sidebar li {
+                min-width: 180px;
+            }
+
+            .main-content {
+                padding: 30px 25px;
+            }
+
+            .hero-section {
+                margin-bottom: 50px;
+            }
+
+            .hero-image {
+                height: 300px;
+            }
+
+            .info-box {
+                min-height: 250px;
+            }
+
+            .appointment-section {
+                padding: 25px;
+            }
+
+            .form-group input,
+            .form-group select,
+            .form-group textarea {
+                max-width: 500px;
+            }
+
+            .submit-btn {
+                width: auto;
+            }
+        }
+
+        /* Desktop (992px et plus) */
+        @media screen and (min-width: 992px) {
+            .breadcrumb-section {
+                padding: 15px 40px;
+            }
+
+            .container {
+                flex-direction: row;
+            }
+
+            .sidebar {
+                width: 280px;
+                min-width: 280px;
+                border-right: 1px solid #e0e0e0;
+                border-bottom: none;
+                padding: 20px 0;
+            }
+
+            .sidebar ul {
+                flex-direction: column;
+                gap: 0;
+                padding: 0;
+            }
+
+            .sidebar li {
+                flex: none;
+                min-width: auto;
+                border-bottom: 1px solid #e0e0e0;
+            }
+
+            .sidebar a {
+                padding: 12px 25px;
+                border: none;
+                border-radius: 0;
+                background-color: transparent;
+                text-align: left;
+            }
+
+            .sidebar a::after {
+                content: '›';
+                position: absolute;
+                right: 20px;
+                color: #999;
+                font-size: 18px;
+            }
+
+            .sidebar a.active {
+                background-color: #fff;
+                color: #0066cc;
+                border-left: 3px solid #0066cc;
+            }
+
+            .main-content {
+                padding: 50px 25px;
+            }
+
+            .hero-section {
+                flex-direction: row;
+                margin-bottom: -140px;
+            }
+
+            .hero-image {
+                width: 60%;
+                height: 400px;
+            }
+
+            .info-box {
+                width: 40%;
+                min-height: 400px;
+                height: 400px;
+            }
+
+            .appointment-section {
+                padding: 30px;
+            }
+        }
+
+        /* Large desktop (1200px et plus) */
+        @media screen and (min-width: 1200px) {
+            .main-content {
+                padding: 50px 40px;
+            }
+        }
+
+        /* Très petits écrans (moins de 400px) */
+        @media screen and (max-width: 399px) {
+            .sidebar ul {
+                flex-direction: column;
+            }
+
+            .sidebar li {
+                min-width: 100%;
+            }
+
+            .hero-image {
+                height: 200px;
+            }
+
+            .info-box {
+                min-height: 180px;
+            }
+        }
+    </style>
+
+    <div class="top-header">
+        <h1 id="page-title">Médecine Générale</h1>
+    </div>
+
+    <div class="breadcrumb-section">
+        <div class="breadcrumb-title" id="breadcrumb-title">Médecine Générale</div>
+        <div class="breadcrumb">
+            <a href="#">Cité Médicale</a> /
+            <a href="#">Accueil</a> /
+            <a href="#">Spécialités</a> /
+            <span id="breadcrumb-current">Médecine Générale</span>
+        </div>
+    </div>
+         
+    <div class="container">
+        <aside class="sidebar">
+            <ul>
+                <li><a href="#" data-specialite="medecine-generale" class="active">Médecine Générale</a></li>
+                <li><a href="#" data-specialite="pediatrie">Pédiatrie</a></li>
+                <li><a href="#" data-specialite="cardiologie">Cardiologie</a></li>
+                <li><a href="#" data-specialite="imagerie">Imagerie Médicale</a></li>
+                <li><a href="#" data-specialite="pneumologie">Pneumologie</a></li>
+                <li><a href="#" data-specialite="gastro">Gastro-Entérologie</a></li>
+                <li><a href="#" data-specialite="chirurgie-generale">Chirurgie Générale</a></li>
+                <li><a href="#" data-specialite="chirurgie-orthopedique">Chirurgie Orthopédique</a></li>
+                <li><a href="#" data-specialite="urologie">Urologie</a></li>
+                <li><a href="#" data-specialite="neurologie">Neurologie</a></li>
+                <li><a href="#" data-specialite="endocrinologie">Endocrinologie</a></li>
+                <li><a href="#" data-specialite="dermatologie">Dermatologie</a></li>
+                <li><a href="#" data-specialite="urgences">Urgences</a></li>
+            </ul>
+        </aside>
+
+        <main class="main-content">
+            <div class="hero-section">
+                <div class="hero-image" id="image-container">
+                    <img src="https://images.pexels.com/photos/4021775/pexels-photo-4021775.jpeg" alt="Médecine Générale" data-specialite="medecine-generale" class="active">
+                    <img src="https://images.pexels.com/photos/8844882/pexels-photo-8844882.jpeg" alt="Pédiatrie" data-specialite="pediatrie">
+                    <img src="https://images.pexels.com/photos/7659564/pexels-photo-7659564.jpeg" alt="Cardiologie" data-specialite="cardiologie">
+                    <img src="https://images.pexels.com/photos/7089020/pexels-photo-7089020.jpeg" alt="Imagerie Médicale" data-specialite="imagerie">
+                    <img src="https://images.pexels.com/photos/4386466/pexels-photo-4386466.jpeg" alt="Pneumologie" data-specialite="pneumologie">
+                    <img src="https://images.pexels.com/photos/7659573/pexels-photo-7659573.jpeg" alt="Gastro-Entérologie" data-specialite="gastro">
+                    <img src="https://images.pexels.com/photos/4225880/pexels-photo-4225880.jpeg" alt="Chirurgie Générale" data-specialite="chirurgie-generale">
+                    <img src="https://images.pexels.com/photos/8460157/pexels-photo-8460157.jpeg" alt="Chirurgie Orthopédique" data-specialite="chirurgie-orthopedique">
+                    <img src="https://images.pexels.com/photos/7579831/pexels-photo-7579831.jpeg" alt="Urologie" data-specialite="urologie">
+                    <img src="https://images.pexels.com/photos/8379624/pexels-photo-8379624.jpeg" alt="Neurologie" data-specialite="neurologie">
+                    <img src="https://images.pexels.com/photos/6823568/pexels-photo-6823568.jpeg" alt="Endocrinologie" data-specialite="endocrinologie">
+                    <img src="https://images.pexels.com/photos/5069432/pexels-photo-5069432.jpeg" alt="Dermatologie" data-specialite="dermatologie">
+                    <img src="https://images.pexels.com/photos/6279300/pexels-photo-6279300.jpeg" alt="Urgences" data-specialite="urgences">
+                </div>
+
+                <div class="info-box" id="info-container"></div>
+            </div>
+
+            <h2 class="service-title" id="service-title">La Médecine Générale</h2>
+            <div class="service-description" id="service-description"></div>
+
+            <div class="appointment-section">
+                <h2>Prise de Rendez-vous</h2>
+                <form id="appointment-form">
+                    <div class="form-group">
+                        <label for="name">Votre Nom</label>
+                        <input type="text" id="name" name="name" placeholder="Votre nom" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Votre Email</label>
+                        <input type="email" id="email" name="email" placeholder="Votre email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Votre Téléphone</label>
+                        <input type="tel" id="phone" name="phone" placeholder="Votre téléphone" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="specialty">Spécialité</label>
+                        <select id="specialty" name="specialty" required>
+                            <option value="medecine-generale">Médecine Générale</option>
+                            <option value="pediatrie">Pédiatrie</option>
+                            <option value="cardiologie">Cardiologie</option>
+                            <option value="imagerie">Imagerie Médicale</option>
+                            <option value="pneumologie">Pneumologie</option>
+                            <option value="gastro">Gastro-Entérologie</option>
+                            <option value="chirurgie-generale">Chirurgie Générale</option>
+                            <option value="chirurgie-orthopedique">Chirurgie Orthopédique</option>
+                            <option value="urologie">Urologie</option>
+                            <option value="neurologie">Neurologie</option>
+                            <option value="endocrinologie">Endocrinologie</option>
+                            <option value="dermatologie">Dermatologie</option>
+                            <option value="urgences">Urgences</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="date">Date Souhaitée</label>
+                        <input type="date" id="date" name="date" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Votre Message</label>
+                        <textarea id="message" name="message" placeholder="Décrivez brièvement le motif de votre consultation"></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Prendre Rendez-vous</button>
+                </form>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        const specialitesData = {
+            'medecine-generale': {
+                title: 'Médecine Générale',
+                infos: [
+                    {
+                        title: 'Consultations Générales',
+                        subtitle: 'Soins Primaires',
+                        content: 'Notre service de médecine générale offre des consultations complètes pour tous types de pathologies. Nos médecins généralistes assurent le suivi médical de toute la famille.'
+                    },
+                    {
+                        title: 'Prévention & Suivi',
+                        subtitle: 'Santé Globale',
+                        content: 'Nous proposons des bilans de santé réguliers, des vaccinations, et un accompagnement personnalisé pour la prévention des maladies chroniques et le maintien d\'une bonne santé.'
+                    }
+                ],
+                description: [
+                    'La médecine générale constitue le premier niveau de soins et le point d\'entrée dans le système de santé. Nos médecins généralistes sont formés pour diagnostiquer et traiter une large gamme de problèmes de santé.',
+                    'Ils assurent la coordination des soins avec les autres spécialistes, le suivi des maladies chroniques, la prévention et l\'éducation à la santé. Notre équipe est disponible pour vous accompagner tout au long de votre parcours de santé.'
+                ]
+            },
+            'pediatrie': {
+                title: 'Pédiatrie',
+                infos: [
+                    {
+                        title: 'Soins Pédiatriques',
+                        subtitle: 'De 0 à 18 ans',
+                        content: 'Notre service de pédiatrie prend en charge les enfants de la naissance à l\'adolescence. Nous assurons le suivi de croissance, les vaccinations et le traitement des pathologies infantiles.'
+                    },
+                    {
+                        title: 'Développement de l\'Enfant',
+                        subtitle: 'Suivi Personnalisé',
+                        content: 'Nous surveillons le développement psychomoteur et offrons des conseils nutritionnels adaptés. Notre équipe accompagne les parents dans toutes les étapes de la croissance de leur enfant.'
+                    }
+                ],
+                description: [
+                    'La pédiatrie est la spécialité médicale consacrée aux soins des nourrissons, des enfants et des adolescents. Notre équipe de pédiatres qualifiés offre des soins complets adaptés à chaque âge.',
+                    'Nous effectuons des bilans de santé réguliers, surveillons la croissance et le développement, administrons les vaccinations selon le calendrier vaccinal, et traitons les maladies courantes de l\'enfance avec expertise et bienveillance.'
+                ]
+            },
+            'cardiologie': {
+                title: 'Cardiologie',
+                infos: [
+                    {
+                        title: 'Santé Cardiovasculaire',
+                        subtitle: 'Diagnostic Avancé',
+                        content: 'Notre service de cardiologie dispose d\'équipements de pointe pour le diagnostic et le traitement des maladies cardiaques. ECG, échographie cardiaque et tests d\'effort sont disponibles.'
+                    },
+                    {
+                        title: 'Prévention Cardiaque',
+                        subtitle: 'Suivi Spécialisé',
+                        content: 'Nous proposons des programmes de prévention des maladies cardiovasculaires, le suivi de l\'hypertension artérielle, et la prise en charge des facteurs de risque.'
+                    }
+                ],
+                description: [
+                    'La cardiologie traite les maladies du cœur et des vaisseaux sanguins. Notre équipe de cardiologues expérimentés utilise des technologies de diagnostic avancées pour détecter et traiter les pathologies cardiovasculaires.',
+                    'Nous prenons en charge l\'hypertension, les troubles du rythme cardiaque, l\'insuffisance cardiaque, les maladies coronariennes et proposons des programmes de réadaptation cardiaque personnalisés pour améliorer votre qualité de vie.'
+                ]
+            },
+            'imagerie': {
+                title: 'Imagerie Médicale',
+                infos: [
+                    {
+                        title: 'Radiologie Moderne',
+                        subtitle: 'Technologies Avancées',
+                        content: 'Notre plateau technique dispose d\'équipements radiologiques de dernière génération : radiographie numérique, échographie, scanner et IRM pour des diagnostics précis.'
+                    },
+                    {
+                        title: 'Examens Spécialisés',
+                        subtitle: 'Rapidité & Précision',
+                        content: 'Nous réalisons tous types d\'examens d\'imagerie médicale avec des résultats rapides. Nos radiologues experts analysent les images pour un diagnostic fiable.'
+                    }
+                ],
+                description: [
+                    'L\'imagerie médicale est essentielle pour le diagnostic de nombreuses pathologies. Notre service d\'imagerie offre une gamme complète d\'examens utilisant les technologies les plus récentes.',
+                    'De la radiographie standard à l\'IRM, en passant par l\'échographie et le scanner, nos équipements performants et nos radiologues qualifiés garantissent des examens de qualité avec des délais de rendez-vous optimisés et des résultats rapides.'
+                ]
+            },
+            'pneumologie': {
+                title: 'Pneumologie',
+                infos: [
+                    {
+                        title: 'Santé Respiratoire',
+                        subtitle: 'Soins Pulmonaires',
+                        content: 'Notre service de pneumologie traite toutes les affections respiratoires : asthme, BPCO, infections pulmonaires, apnée du sommeil. Nous disposons d\'un laboratoire d\'exploration fonctionnelle.'
+                    },
+                    {
+                        title: 'Sevrage Tabagique',
+                        subtitle: 'Accompagnement',
+                        content: 'Nous proposons des programmes d\'aide au sevrage tabagique avec un suivi personnalisé et des thérapies adaptées pour vous aider à arrêter de fumer durablement.'
+                    }
+                ],
+                description: [
+                    'La pneumologie se concentre sur les maladies de l\'appareil respiratoire. Notre équipe de pneumologues prend en charge les pathologies pulmonaires aiguës et chroniques avec expertise.',
+                    'Nous traitons l\'asthme, la bronchite chronique, l\'emphysème, les infections respiratoires, les troubles du sommeil liés à la respiration, et proposons des explorations fonctionnelles respiratoires complètes pour un diagnostic précis.'
+                ]
+            },
+            'gastro': {
+                title: 'Gastro-Entérologie',
+                infos: [
+                    {
+                        title: 'Système Digestif',
+                        subtitle: 'Diagnostic & Traitement',
+                        content: 'Notre service traite les pathologies de l\'appareil digestif : troubles gastriques, problèmes intestinaux, maladies du foie et du pancréas. Endoscopies digestives disponibles.'
+                    },
+                    {
+                        title: 'Consultations Spécialisées',
+                        subtitle: 'Prise en Charge Complète',
+                        content: 'Nous offrons un suivi pour les maladies chroniques digestives, des conseils nutritionnels et des examens endoscopiques (gastroscopie, coloscopie) dans des conditions optimales.'
+                    }
+                ],
+                description: [
+                    'La gastro-entérologie concerne le diagnostic et le traitement des maladies du système digestif. Nos gastro-entérologues prennent en charge l\'ensemble des pathologies digestives.',
+                    'Du reflux gastro-œsophagien aux maladies inflammatoires chroniques de l\'intestin, en passant par les troubles fonctionnels digestifs et les pathologies hépatiques, nous proposons des examens endoscopiques et des traitements adaptés à chaque patient.'
+                ]
+            },
+            'chirurgie-generale': {
+                title: 'Chirurgie Générale',
+                infos: [
+                    {
+                        title: 'Interventions Chirurgicales',
+                        subtitle: 'Expertise Technique',
+                        content: 'Notre service de chirurgie générale réalise des interventions variées : chirurgie digestive, pariétale, vasculaire. Bloc opératoire équipé aux normes les plus récentes.'
+                    },
+                    {
+                        title: 'Chirurgie Ambulatoire',
+                        subtitle: 'Récupération Rapide',
+                        content: 'Nous privilégions la chirurgie ambulatoire quand cela est possible, permettant une sortie le jour même avec un suivi post-opératoire rigoureux et personnalisé.'
+                    }
+                ],
+                description: [
+                    'La chirurgie générale englobe les interventions chirurgicales sur l\'abdomen, le système digestif, les parois abdominales et certaines glandes. Notre équipe de chirurgiens expérimentés utilise des techniques modernes.',
+                    'Nous pratiquons la chirurgie conventionnelle et mini-invasive (cœlioscopie) pour réduire les suites opératoires. Du traitement des hernies aux interventions digestives complexes, nous assurons une prise en charge complète avec des standards de sécurité maximaux.'
+                ]
+            },
+            'chirurgie-orthopedique': {
+                title: 'Chirurgie Orthopédique',
+                infos: [
+                    {
+                        title: 'Système Locomoteur',
+                        subtitle: 'Traumatologie',
+                        content: 'Notre service d\'orthopédie traite les pathologies osseuses, articulaires et musculaires. Prise en charge des fractures, entorses, luxations et traumatismes sportifs.'
+                    },
+                    {
+                        title: 'Chirurgie de Prothèse',
+                        subtitle: 'Techniques Avancées',
+                        content: 'Nous réalisons des poses de prothèses articulaires (hanche, genou), des arthroscopies et des chirurgies reconstructrices avec des techniques mini-invasives.'
+                    }
+                ],
+                description: [
+                    'L\'orthopédie et la traumatologie traitent les affections du système musculo-squelettique. Notre équipe d\'orthopédistes prend en charge les pathologies osseuses, articulaires, ligamentaires et tendineuses.',
+                    'Des traumatismes aigus aux pathologies dégénératives comme l\'arthrose, nous proposons des traitements conservateurs et chirurgicaux adaptés. Nos chirurgiens maîtrisent les techniques les plus récentes pour une récupération optimale.'
+                ]
+            },
+            'urologie': {
+                title: 'Urologie',
+                infos: [
+                    {
+                        title: 'Système Urinaire',
+                        subtitle: 'Hommes & Femmes',
+                        content: 'Notre service d\'urologie traite les pathologies des voies urinaires et de l\'appareil génital masculin. Consultations pour infections, calculs rénaux, troubles de la prostate.'
+                    },
+                    {
+                        title: 'Urologie Moderne',
+                        subtitle: 'Techniques Mini-invasives',
+                        content: 'Nous proposons des interventions endoscopiques et des traitements innovants pour les pathologies urologiques avec un maximum d\'efficacité et de confort pour le patient.'
+                    }
+                ],
+                description: [
+                    'L\'urologie est la spécialité chirurgicale qui traite les affections de l\'appareil urinaire chez la femme et l\'homme, ainsi que de l\'appareil génital masculin. Nos urologues sont formés aux techniques les plus récentes.',
+                    'Nous prenons en charge les infections urinaires récidivantes, les calculs rénaux, les troubles de la prostate, l\'incontinence urinaire et les pathologies tumorales urologiques avec des approches thérapeutiques personnalisées et des technologies de pointe.'
+                ]
+            },
+            'neurologie': {
+                title: 'Neurologie',
+                infos: [
+                    {
+                        title: 'Système Nerveux',
+                        subtitle: 'Diagnostic Neurologique',
+                        content: 'Notre service de neurologie prend en charge les maladies du système nerveux : migraines, épilepsie, AVC, maladies neurodégénératives, troubles du sommeil.'
+                    },
+                    {
+                        title: 'Examens Spécialisés',
+                        subtitle: 'Technologies Avancées',
+                        content: 'Nous réalisons des électroencéphalogrammes (EEG), électromyographies (EMG) et autres examens neurologiques pour un diagnostic précis et un suivi adapté.'
+                    }
+                ],
+                description: [
+                    'La neurologie traite les maladies du système nerveux central et périphérique. Notre équipe de neurologues diagnostique et prend en charge les pathologies neurologiques avec expertise et sensibilité.',
+                    'De la migraine aux maladies neurodégénératives comme la maladie de Parkinson ou d\'Alzheimer, en passant par l\'épilepsie, les AVC et la sclérose en plaques, nous offrons un suivi neurologique complet avec des examens spécialisés et des traitements de pointe.'
+                ]
+            },
+            'endocrinologie': {
+                title: 'Endocrinologie',
+                infos: [
+                    {
+                        title: 'Système Hormonal',
+                        subtitle: 'Équilibre Métabolique',
+                        content: 'Notre service d\'endocrinologie traite les troubles hormonaux et métaboliques : diabète, troubles thyroïdiens, obésité, troubles de la croissance.'
+                    },
+                    {
+                        title: 'Gestion du Diabète',
+                        subtitle: 'Suivi Personnalisé',
+                        content: 'Nous proposons une prise en charge complète du diabète avec éducation thérapeutique, adaptation des traitements et prévention des complications.'
+                    }
+                ],
+                description: [
+                    'L\'endocrinologie est la spécialité médicale qui étudie les hormones et leurs effets sur l\'organisme. Nos endocrinologues traitent les déséquilibres hormonaux et les maladies métaboliques.',
+                    'Diabète de type 1 et 2, dysfonctionnements thyroïdiens, troubles de la croissance, problèmes de fertilité, ostéoporose : nous assurons un diagnostic précis et un suivi régulier avec des bilans biologiques et des traitements adaptés pour rétablir l\'équilibre hormonal.'
+                ]
+            },
+            'dermatologie': {
+                title: 'Dermatologie',
+                infos: [
+                    {
+                        title: 'Santé de la Peau',
+                        subtitle: 'Diagnostic Dermatologique',
+                        content: 'Notre service de dermatologie traite toutes les affections cutanées : acné, eczéma, psoriasis, infections, verrues, grains de beauté suspects.'
+                    },
+                    {
+                        title: 'Dermatologie Esthétique',
+                        subtitle: 'Soins Spécialisés',
+                        content: 'Nous proposons également des consultations de dermatologie esthétique, le dépistage et le traitement des cancers de la peau, et des conseils cosmétiques personnalisés.'
+                    }
+                ],
+                description: [
+                    'La dermatologie traite les maladies de la peau, des ongles et des cheveux. Notre équipe de dermatologues prend en charge l\'ensemble des pathologies dermatologiques avec des techniques diagnostiques et thérapeutiques modernes.',
+                    'Du traitement de l\'acné aux cancers cutanés, en passant par les maladies inflammatoires comme l\'eczéma ou le psoriasis, nous offrons des consultations complètes avec examen dermatoscopique, biopsies si nécessaire et traitements adaptés à chaque type de peau.'
+                ]
+            },
+            'urgences': {
+                title: 'Urgences',
+                infos: [
+                    {
+                        title: 'Service 24h/24',
+                        subtitle: 'Disponibilité Permanente',
+                        content: 'Notre service d\'urgences est ouvert 24 heures sur 24, 7 jours sur 7. Équipe médicale et paramédicale disponible en permanence pour toute urgence médicale ou traumatique.'
+                    },
+                    {
+                        title: 'Prise en Charge Rapide',
+                        subtitle: 'Tri & Traitement',
+                        content: 'Système de tri performant pour une prise en charge adaptée à la gravité. Équipements de réanimation, salle de déchocage et liaison directe avec le bloc opératoire.'
+                    }
+                ],
+                description: [
+                    'Le service des urgences assure la prise en charge des patients nécessitant des soins médicaux immédiats. Notre équipe pluridisciplinaire est formée à la gestion des situations d\'urgence vitale et non vitale.',
+                    'Traumatismes, douleurs aiguës, difficultés respiratoires, malaises, accidents domestiques : nous évaluons rapidement la gravité de votre état et mettons en œuvre les traitements appropriés. En cas de besoin, nous orientons vers les services spécialisés de l\'établissement.'
+                ]
+            }
+        };
+
+        let currentSpecialite = 'medecine-generale';
+        let currentInfoIndex = 0;
+        let autoSwapInterval = null;
+
+        function createInfoContent(info) {
+            return `
+                <h3>${info.title}</h3>
+                <div class="section-title">${info.subtitle}</div>
+                <p>${info.content}</p>
+            `;
+        }
+
+        function updateContent(specialite, immediate = false) {
+            const data = specialitesData[specialite];
+            if (!data) return;
+
+            document.getElementById('page-title').textContent = data.title;
+            document.getElementById('breadcrumb-title').textContent = data.title;
+            document.getElementById('breadcrumb-current').textContent = data.title;
+            document.getElementById('service-title').textContent = data.title;
+            document.getElementById('specialty').value = specialite;
+
+            const descriptionHTML = data.description.map(p => `<p>${p}</p>`).join('');
+            document.getElementById('service-description').innerHTML = descriptionHTML;
+
+            const imageContainer = document.getElementById('image-container');
+            const currentImage = imageContainer.querySelector('img.active');
+            const newImage = imageContainer.querySelector(`img[data-specialite="${specialite}"]`);
+
+            if (currentImage && newImage && currentImage !== newImage) {
+                currentImage.classList.remove('active');
+                currentImage.classList.add('slide-out');
+                setTimeout(() => {
+                    currentImage.classList.remove('slide-out');
+                }, 500);
+
+                setTimeout(() => {
+                    newImage.classList.add('active');
+                }, 100);
+            }
+
+            const infoContainer = document.getElementById('info-container');
+            infoContainer.innerHTML = '';
+
+            data.infos.forEach((info, index) => {
+                const div = document.createElement('div');
+                div.className = 'info-content';
+                if (index === 0) div.classList.add('active');
+                div.innerHTML = createInfoContent(info);
+                infoContainer.appendChild(div);
+            });
+
+            currentInfoIndex = 0;
+            startAutoSwap();
+        }
+
+        function swapInfo() {
+            const data = specialitesData[currentSpecialite];
+            if (!data || data.infos.length <= 1) return;
+
+            const infoContents = document.querySelectorAll('.info-content');
+            const currentContent = infoContents[currentInfoIndex];
+            const nextIndex = (currentInfoIndex + 1) % data.infos.length;
+            const nextContent = infoContents[nextIndex];
+
+            currentContent.classList.remove('active');
+            currentContent.classList.add('slide-out-left');
+
+            nextContent.classList.add('slide-in-right');
+
+            setTimeout(() => {
+                nextContent.classList.remove('slide-in-right');
+                nextContent.classList.add('active');
+            }, 50);
+
+            setTimeout(() => {
+                currentContent.classList.remove('slide-out-left');
+            }, 600);
+
+            currentInfoIndex = nextIndex;
+        }
+
+        function startAutoSwap() {
+            stopAutoSwap();
+            autoSwapInterval = setInterval(swapInfo, 4000);
+        }
+
+        function stopAutoSwap() {
+            if (autoSwapInterval) {
+                clearInterval(autoSwapInterval);
+                autoSwapInterval = null;
+            }
+        }
+
+        document.querySelectorAll('.sidebar a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+
+                document.querySelectorAll('.sidebar a').forEach(l => l.classList.remove('active'));
+                this.classList.add('active');
+
+                const specialite = this.getAttribute('data-specialite');
+                currentSpecialite = specialite;
+                updateContent(specialite);
+            });
+        });
+
+        const infoBox = document.getElementById('info-container');
+        infoBox.addEventListener('mouseenter', stopAutoSwap);
+        infoBox.addEventListener('mouseleave', startAutoSwap);
+
+        document.getElementById('appointment-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Votre demande de rendez-vous a été envoyée avec succès. Nous vous contacterons dans les plus brefs délais.');
+            this.reset();
+        });
+
+        updateContent('medecine-generale', true);
+    </script>
+
+
+ <div>{% include 'footer.html' %}</div>
+
+ </body>
+</html>

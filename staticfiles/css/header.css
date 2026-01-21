@@ -1,0 +1,209 @@
+/* Header styles */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+        }
+
+        /* Header styles */
+        header {
+            background-color: #76b82a;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .logo img {
+            height: 50px;
+            width: auto;
+        }
+
+        .logo span {
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .navigation {
+            display: flex;
+            gap: 0;
+            align-items: center;
+        }
+
+        .navigation a {
+            color: white;
+            text-decoration: none;
+            padding: 15px 20px;
+            display: block;
+            transition: background-color 0.3s ease;
+            position: relative;
+        }
+
+        .navigation a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Dropdown Container */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown > a {
+            padding: 15px 20px;
+            cursor: pointer;
+        }
+
+        .dropdown > a::after {
+            content: '▼';
+            margin-left: 8px;
+            font-size: 11px;
+        }
+
+        /* Dropdown Menu */
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: white;
+            min-width: 350px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+            padding: 15px;
+            z-index: 1;
+            top: 100%;
+            left: 0;
+            border-radius: 4px;
+            margin-top: 0;
+            animation: slideDown 0.3s ease;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Show dropdown on hover */
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown-content a {
+            color: #333;
+            padding: 12px 15px;
+            text-decoration: none;
+            display: block;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid #e0e0e0;
+            font-size: 14px;
+        }
+
+        .dropdown-content a:last-child {
+            border-bottom: none;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f9f9f9;
+            color: #76b82a;
+            padding-left: 20px;
+            border-bottom: 2px solid #76b82a;
+        }
+
+        .dropdown-content a:active,
+        .dropdown-content a.active {
+            background-color: #e8f5e9;
+            color: #76b82a;
+            font-weight: bold;
+        }
+
+        /* Service categories */
+        .service-category {
+            display: flex;
+            margin-bottom: 15px;
+        }
+
+        .service-category:last-child {
+            margin-bottom: 0;
+        }
+
+        .category-title {
+            font-weight: bold;
+            color: #76b82a;
+            margin-bottom: 8px;
+            padding-bottom: 5px;
+            border-bottom: 2px solid #76b82a;
+            font-size: 13px;
+            width: 100%;
+        }
+
+        .category-services {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5px;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+
+        .category-services a {
+            border-bottom: 1px solid #e0e0e0 !important;
+            padding: 8px 10px !important;
+            font-size: 13px;
+        }
+
+        .category-services a:last-child,
+        .category-services a:nth-last-child(2) {
+            border-bottom: 1px solid #e0e0e0 !important;
+        }
+
+        .button {
+            background-color: #ffcc00;
+            color: #003366;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: bold;
+            margin-left: auto;
+        }
+
+        .button:hover {
+            background-color: #e0b800;
+        }
+
+        .phone-contact {
+            background-color: rgba(0, 0, 0, 0.2);
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: bold;
+        }
+
+        @media (max-width: 768px) {
+            .dropdown-content {
+                min-width: 280px;
+            }
+
+            .category-services {
+                grid-template-columns: 1fr;
+            }
+        }

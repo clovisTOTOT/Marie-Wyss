@@ -1,0 +1,690 @@
+
+<!DOCTYPE html>
+{% load static %}
+
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hôpital Marie Wyss</title>
+    <link rel="icon" href="{% static 'images/switch.png' %}" type="image/png">
+    <link rel="stylesheet" href="{% static 'css/header.css' %}">
+    <link rel="stylesheet" href="{% static 'css/footer.css' %}">
+</head>
+<body>
+<div>{% include 'header.html' %}</div>
+
+
+
+
+
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f5f5;
+        }
+
+        /* Header avec image de fond */
+        .specialists-page-header {
+            background: linear-gradient(rgba(40, 50, 60, 0.7), rgba(40, 50, 60, 0.7)),
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 300"><rect fill="%23556" width="1200" height="300"/></svg>');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 80px 20px;
+            position: relative;
+        }
+
+        .specialists-page-header h1 {
+            font-size: 34px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        /* Container principal */
+        .specialists-page-container {
+            max-width: 1000px;
+            margin: -50px auto 60px;
+            background: white;
+            padding: 50px 35px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Grille des spécialistes */
+        .specialists-page-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        /* Carte spécialiste */
+        .specialist-page-card {
+            background: white;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .specialist-page-card:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Image du spécialiste */
+        .specialist-page-image {
+            width: 100%;
+            height: 180px;
+            background: linear-gradient(135deg, #b8d9e8 0%, #8dc4d8 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Illustration du médecin */
+        .page-doctor-illustration {
+            width: 90px;
+            height: 130px;
+            position: relative;
+        }
+
+        .page-doctor-head {
+            width: 45px;
+            height: 55px;
+            background: #c0c0c0;
+            border-radius: 50% 50% 45% 45%;
+            position: absolute;
+            top: 12px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+        }
+
+        .page-doctor-hair {
+            width: 50px;
+            height: 38px;
+            background: #5a4a3a;
+            border-radius: 50% 50% 0 0;
+            position: absolute;
+            top: 7px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 3;
+        }
+
+        .page-doctor-hair::before {
+            content: '';
+            width: 20px;
+            height: 26px;
+            background: #5a4a3a;
+            border-radius: 0 0 50% 0;
+            position: absolute;
+            bottom: 0;
+            left: -3px;
+        }
+
+        .page-doctor-hair::after {
+            content: '';
+            width: 20px;
+            height: 26px;
+            background: #5a4a3a;
+            border-radius: 0 0 0 50%;
+            position: absolute;
+            bottom: 0;
+            right: -3px;
+        }
+
+        .page-doctor-body {
+            width: 75px;
+            height: 65px;
+            background: white;
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            clip-path: polygon(25% 0%, 75% 0%, 100% 100%, 0% 100%);
+            z-index: 1;
+        }
+
+        .page-doctor-collar {
+            width: 32px;
+            height: 42px;
+            background: #5dbdce;
+            position: absolute;
+            top: 65px;
+            left: 50%;
+            transform: translateX(-50%);
+            clip-path: polygon(35% 0%, 65% 0%, 100% 100%, 0% 100%);
+        }
+
+        .page-doctor-badge {
+            width: 16px;
+            height: 16px;
+            background: #4caf50;
+            border-radius: 50%;
+            position: absolute;
+            bottom: 18px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .page-doctor-stethoscope {
+            position: absolute;
+            bottom: 16px;
+            right: 12px;
+            z-index: 4;
+        }
+
+        .page-stethoscope-tube {
+            width: 2px;
+            height: 22px;
+            background: #333;
+            position: relative;
+            left: 4px;
+        }
+
+        .page-stethoscope-head {
+            width: 9px;
+            height: 9px;
+            background: #333;
+            border-radius: 50%;
+        }
+
+        /* Variantes pour médecins hommes */
+        .specialist-page-card.male .page-doctor-head {
+            background: #d0d0d0;
+        }
+
+        .specialist-page-card.male .page-doctor-hair {
+            height: 22px;
+            background: #3a3a3a;
+        }
+
+        .specialist-page-card.male .page-doctor-hair::before,
+        .specialist-page-card.male .page-doctor-hair::after {
+            display: none;
+        }
+
+        /* Overlay avec icône œil au survol */
+        .specialist-page-card {
+            position: relative;
+        }
+
+        .eye-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 180px;
+            background: rgba(91, 169, 196, 0.95);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 10;
+        }
+
+        .specialist-page-card:hover .eye-overlay {
+            opacity: 1;
+        }
+
+        .eye-display {
+            width: 70px;
+            height: 70px;
+            background: rgba(255, 255, 255, 0.25);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .eye-symbol {
+            width: 50px;
+            height: 30px;
+            background: white;
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .eye-pupil {
+            width: 20px;
+            height: 20px;
+            background: #2c5f7f;
+            border-radius: 50%;
+        }
+
+        /* Info du spécialiste */
+        .specialist-page-info {
+            padding: 15px 12px;
+            text-align: left;
+        }
+
+        .specialist-page-info h3 {
+            font-size: 12px;
+            font-weight: 700;
+            color: #4caf50;
+            margin-bottom: 3px;
+            text-transform: uppercase;
+            line-height: 1.3;
+        }
+
+        .specialist-page-info p {
+            font-size: 11px;
+            color: #666;
+            font-weight: 400;
+            line-height: 1.3;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .specialists-page-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .specialists-page-header {
+                padding: 60px 20px;
+            }
+
+            .specialists-page-header h1 {
+                font-size: 28px;
+            }
+
+            .specialists-page-container {
+                margin: -40px 20px 40px;
+                padding: 40px 25px;
+            }
+
+            .specialists-page-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+
+            .specialist-page-image {
+                height: 200px;
+            }
+
+            .page-doctor-illustration {
+                width: 110px;
+                height: 150px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .specialists-page-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .specialists-page-container {
+                padding: 30px 20px;
+            }
+        }
+
+        /* Footer d'informations de contact */
+        .contact-footer {
+            background: linear-gradient(135deg, #0099ff 0%, #0077cc 100%);
+            color: white;
+            padding: 50px 30px;
+            margin-top: 0;
+        }
+
+        .contact-footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 50px;
+            align-items: start;
+        }
+
+        .contact-item {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .contact-icon {
+            width: 70px;
+            height: 70px;
+            background: rgba(76, 184, 172, 0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            font-size: 32px;
+        }
+
+        .contact-text {
+            font-size: 16px;
+            line-height: 1.6;
+            font-weight: 400;
+        }
+
+        .contact-text strong {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        @media (max-width: 768px) {
+            .contact-footer-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .contact-footer {
+                padding: 40px 20px;
+            }
+
+            .contact-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 28px;
+            }
+
+            .contact-text {
+                font-size: 15px;
+            }
+        }
+    </style>
+</head>
+
+    <!-- Header -->
+    <div class="specialists-page-header">
+        <h1>Nos médecins spécialistes</h1>
+    </div>
+
+    <!-- Container principal -->
+    <div class="specialists-page-container">
+        <div class="specialists-page-grid">
+            <!-- Spécialiste 1 -->
+            <a class="specialist-page-card" href="{% url 'docteur1' %}">
+                <div class="specialist-page-image">
+                    <div class="page-doctor-illustration">
+                        <div class="page-doctor-hair"></div>
+                        <div class="page-doctor-head"></div>
+                        <div class="page-doctor-collar"></div>
+                        <div class="page-doctor-body"></div>
+                        <div class="page-doctor-badge">+</div>
+                        <div class="page-doctor-stethoscope">
+                            <div class="page-stethoscope-head"></div>
+                            <div class="page-stethoscope-tube"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="eye-overlay">
+                    <div class="eye-display">
+                        <div class="eye-symbol">
+                            <div class="eye-pupil"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="specialist-page-info">
+                    <h3>Dr Tekel Yanick Gaelle</h3>
+                    <p>Médecin nutritionniste</p>
+                </div>
+            </a>
+
+            <!-- Spécialiste 2 -->
+            <a class="specialist-page-card" href="{% url 'docteur2' %}">
+                <div class="specialist-page-image">
+                    <div class="page-doctor-illustration">
+                        <div class="page-doctor-hair"></div>
+                        <div class="page-doctor-head"></div>
+                        <div class="page-doctor-collar"></div>
+                        <div class="page-doctor-body"></div>
+                        <div class="page-doctor-badge">+</div>
+                        <div class="page-doctor-stethoscope">
+                            <div class="page-stethoscope-head"></div>
+                            <div class="page-stethoscope-tube"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="eye-overlay">
+                    <div class="eye-display">
+                        <div class="eye-symbol">
+                            <div class="eye-pupil"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="specialist-page-info">
+                    <h3>Dr Moteyo Gaëlle Épse Happi</h3>
+                    <p>Chirurgien dentaire</p>
+                </div>
+            </a>
+
+            <!-- Spécialiste 3 -->
+            <a class="specialist-page-card" href="{% url 'docteur3' %}">
+                <div class="specialist-page-image">
+                    <div class="page-doctor-illustration">
+                        <div class="page-doctor-hair"></div>
+                        <div class="page-doctor-head"></div>
+                        <div class="page-doctor-collar"></div>
+                        <div class="page-doctor-body"></div>
+                        <div class="page-doctor-badge">+</div>
+                        <div class="page-doctor-stethoscope">
+                            <div class="page-stethoscope-head"></div>
+                            <div class="page-stethoscope-tube"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="eye-overlay">
+                    <div class="eye-display">
+                        <div class="eye-symbol">
+                            <div class="eye-pupil"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="specialist-page-info">
+                    <h3>Dr Nga Ntouni Nadia</h3>
+                    <p>Ophtalmologue</p>
+                </div>
+            </a>
+
+            <!-- Spécialiste 4 -->
+            <a class="specialist-page-card" href="{% url 'docteur4' %}">
+                <div class="specialist-page-image">
+                    <div class="page-doctor-illustration">
+                        <div class="page-doctor-hair"></div>
+                        <div class="page-doctor-head"></div>
+                        <div class="page-doctor-collar"></div>
+                        <div class="page-doctor-body"></div>
+                        <div class="page-doctor-badge">+</div>
+                        <div class="page-doctor-stethoscope">
+                            <div class="page-stethoscope-head"></div>
+                            <div class="page-stethoscope-tube"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="eye-overlay">
+                    <div class="eye-display">
+                        <div class="eye-symbol">
+                            <div class="eye-pupil"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="specialist-page-info">
+                    <h3>Pr Ama Vicky</h3>
+                    <p>Médecin biologiste</p>
+                </div>
+            </a>
+
+            <!-- Spécialiste 5 -->
+            <a class="specialist-page-card" href="{% url 'docteur1' %}">
+                <div class="specialist-page-image">
+                    <div class="page-doctor-illustration">
+                        <div class="page-doctor-hair"></div>
+                        <div class="page-doctor-head"></div>
+                        <div class="page-doctor-collar"></div>
+                        <div class="page-doctor-body"></div>
+                        <div class="page-doctor-badge">+</div>
+                        <div class="page-doctor-stethoscope">
+                            <div class="page-stethoscope-head"></div>
+                            <div class="page-stethoscope-tube"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="eye-overlay">
+                    <div class="eye-display">
+                        <div class="eye-symbol">
+                            <div class="eye-pupil"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="specialist-page-info">
+                    <h3>Dr Mawo Louise Alida Épouse Mahi</h3>
+                    <p>Endocrinologue</p>
+                </div>
+            </a>
+
+            <!-- Spécialiste 6 -->
+            <a class="specialist-page-card" href="{% url 'docteur2' %}">
+                <div class="specialist-page-image">
+                    <div class="page-doctor-illustration">
+                        <div class="page-doctor-hair"></div>
+                        <div class="page-doctor-head"></div>
+                        <div class="page-doctor-collar"></div>
+                        <div class="page-doctor-body"></div>
+                        <div class="page-doctor-badge">+</div>
+                        <div class="page-doctor-stethoscope">
+                            <div class="page-stethoscope-head"></div>
+                            <div class="page-stethoscope-tube"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="eye-overlay">
+                    <div class="eye-display">
+                        <div class="eye-symbol">
+                            <div class="eye-pupil"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="specialist-page-info">
+                    <h3>Dr Ezangono Ndo Marthe Mireille Épse Bayolo</h3>
+                    <p>Cardiologue</p>
+                </div>
+            </a>
+
+            <!-- Spécialiste 7 - Homme -->
+            <a class="specialist-page-card male" href="{% url 'docteur3' %}">
+                <div class="specialist-page-image">
+                    <div class="page-doctor-illustration">
+                        <div class="page-doctor-hair"></div>
+                        <div class="page-doctor-head"></div>
+                        <div class="page-doctor-collar"></div>
+                        <div class="page-doctor-body"></div>
+                        <div class="page-doctor-badge">+</div>
+                        <div class="page-doctor-stethoscope">
+                            <div class="page-stethoscope-head"></div>
+                            <div class="page-stethoscope-tube"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="eye-overlay">
+                    <div class="eye-display">
+                        <div class="eye-symbol">
+                            <div class="eye-pupil"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="specialist-page-info">
+                    <h3>Dr Otabela Bernard</h3>
+                    <p>Gynécologue obstétricien</p>
+                </div>
+            </a>
+
+            <!-- Spécialiste 8 - Homme -->
+            <a class="specialist-page-card male" href="{% url 'docteur4' %}">
+                <div class="specialist-page-image">
+                    <div class="page-doctor-illustration">
+                        <div class="page-doctor-hair"></div>
+                        <div class="page-doctor-head"></div>
+                        <div class="page-doctor-collar"></div>
+                        <div class="page-doctor-body"></div>
+                        <div class="page-doctor-badge">+</div>
+                        <div class="page-doctor-stethoscope">
+                            <div class="page-stethoscope-head"></div>
+                            <div class="page-stethoscope-tube"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="eye-overlay">
+                    <div class="eye-display">
+                        <div class="eye-symbol">
+                            <div class="eye-pupil"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="specialist-page-info">
+                    <h3>Dr Enama Mbatsogo Bernard</h3>
+                    <p>Gynécologue obstétricien</p>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <!-- Footer de contact -->
+    <div class="contact-footer">
+        <div class="contact-footer-content">
+            <!-- Téléphone -->
+            <div class="contact-item">
+                <div class="contact-icon">📞</div>
+                <div class="contact-text">
+                    <strong>(+237) 678 899 974 / 679 042 384</strong>
+                </div>
+            </div>
+
+            <!-- Adresse -->
+            <div class="contact-item">
+                <div class="contact-icon">📍</div>
+                <div class="contact-text">
+                    <strong>Cameroun Yaoundé Mvan- Tropicana</strong>
+                    Première Entrée à Gauche Vers le Carrefour De l'Amitié
+                </div>
+            </div>
+
+            <!-- Horaires -->
+            <div class="contact-item">
+                <div class="contact-icon">🕐</div>
+                <div class="contact-text">
+                    <strong>Lundi-samedi: 9h00 - 18h00 dimanche: fermée</strong>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+<div>{% include 'footer.html' %}</div>
+</body>
+</html>

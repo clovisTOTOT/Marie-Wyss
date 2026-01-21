@@ -1,0 +1,318 @@
+
+<!DOCTYPE html>
+{% load static %}
+
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hôpital Marie Wyss</title>
+    <link rel="icon" href="{% static 'images/switch.png' %}" type="image/png">
+    <link rel="stylesheet" href="{% static 'css/accueille.css' %}">
+    <script src="{% static 'js/accueille.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'css/footer.css' %}">
+    <link rel="stylesheet" href="{% static 'css/galerie-image.css' %}">
+    <link rel="stylesheet" href="{% static 'css/contacts.css' %}">
+    <link rel="stylesheet" href="{% static 'css/services.css' %}">
+    <script src="{% static 'js/header.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'css/header.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+<div>{% include 'header.html' %} </div>
+
+
+
+
+    <!-- Section En-tête avec titre -->
+    <div class="header-section">
+        <h1>Nous écrire</h1>
+        <div class="blue-dot-container">
+            <div class="blue-line"></div>
+            <div class="blue-dot"></div>
+            <div class="blue-line"></div>
+        </div>
+    </div>
+
+    <!-- Barre de navigation avec fil d'Ariane -->
+    <div class="navigation-bar">
+        <div class="nav-left">
+            <a href="#" class="nav-link">Home</a>
+        </div>
+        
+        <div class="nav-right">
+            <div class="breadcrumb">
+                <span class="breadcrumb-text">You are here:</span>
+                <a href="#" class="breadcrumb-link">Home</a>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Section de saisie de message -->
+
+    <div class="container">
+        <!-- Section Gauche -->
+        <div class="left-section">
+            <h1>Bienvenue à l'Hôpital Marie Wyss de (Shell)Nsimeyong, Yaoundé</h1>
+            
+            
+            <p class="description">
+            l'Hôpital Marie Wyss est une structure de soins pluridisciplinaire qui a ouvert ses portes le 2 Avril 2018. Elle offre de nombreuses prestations telles que : consultations, accouchements, soins dentaires et ophtalmologiques, interventions chirurgicales, hospitalisations, imagerie médicale et analyses biomédicales.
+            </p>
+
+        <div class="contact-image">
+         <img src="{% static 'images/cour hopital marie wyss.jpg' %}" alt="Dr. Medombou Carmelle">
+        </div>
+
+            <div class="phone-info">
+                <strong>Téléphone :</strong> (+237) 655 653 862 / (+237) 655 653 862
+            </div>
+
+            <div class="address-section">
+                <h3>Adresse:</h3>
+                
+                <div class="address-details">
+                    <div class="location-icon">📍</div>
+                    <div class="address-text">
+                        Yaoundé, Quartier Nsimeyong(Shell)
+                    </div>
+                </div>
+
+                <div class="email-section">
+                    <div class="email-icon">✉</div>
+                    <div class="email-content">
+                        <h4>Email</h4>
+                        <p>polycliniqueaarchange@gmail.com</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section Droite -->
+        <div class="right-section">
+            <h2>Nous Écrire</h2>
+            <div class="blue-dot-container">
+            <div class="blue-line"></div>
+            <div class="blue-dot"></div>
+            <div class="blue-line"></div>
+        </div>
+
+            <form>
+                <div class="form-group">
+                    <label>Votre Nom</label>
+                    <input type="text" placeholder="Votre Nom">
+                </div>
+
+                <div class="form-group">
+                    <label>Votre Email</label>
+                    <input type="email" placeholder="Votre Email">
+                </div>
+
+                <div class="form-group">
+                    <label>Spécialité</label>
+                    <select>
+                        <option>Médecine Générale</option>
+                        <option>Dentaire</option>
+                        <option>Ophtalmologie</option>
+                        <option>Chirurgie</option>
+                        <option>Imagerie Médicale</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Votre Message</label>
+                    <textarea placeholder="Votre message"></textarea>
+                </div>
+
+                <button type="submit" class="submit-btn">Envoyer</button>
+            </form>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Section Carte Google Maps Personnalisée -->
+
+    <div class="map-container">
+        <!-- Carte Google Maps intégrée -->
+        <iframe 
+            class="map-iframe"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31878.458724829774!2d9.711658049999999!3d4.0596305!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1061128eaeb15807%3A0x9d0bd5b9e4c44e87!2sBonapriso%2C%20Douala%2C%20Cameroun!5e0!3m2!1sfr!2sfr!4v1234567890123!5m2!1sfr!2sfr"
+            allowfullscreen="" 
+            loading="lazy" 
+            referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+
+        <!-- Contrôles de la carte -->
+        <div class="map-controls">
+            <!-- Bouton plein écran -->
+            <button class="fullscreen-btn" title="Activer le mode plein écran">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/>
+                </svg>
+            </button>
+
+            <!-- Boutons de zoom -->
+            <div class="zoom-controls">
+                <button class="zoom-btn" title="Zoom avant">+</button>
+                <button class="zoom-btn" title="Zoom arrière">−</button>
+            </div>
+        </div>
+
+        <!-- Bouton position actuelle -->
+        <div class="map-controls" style="bottom: 150px; top: auto;">
+            <button class="location-btn" title="Afficher votre position">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M12 8c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4zm8.94 3A8.994 8.994 0 0 0 13 3.06V1h-2v2.06A8.994 8.994 0 0 0 3.06 11H1v2h2.06A8.994 8.994 0 0 0 11 20.94V23h2v-2.06A8.994 8.994 0 0 0 20.94 13H23v-2h-2.06zM12 19c-3.87 0-7-3.13-7-7s3.13-7 7-7 7 3.13 7 7-3.13 7-7 7z"/>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Logo Google -->
+        <div class="google-logo">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 272 92'%3E%3Cpath fill='%234285F4' d='M115.75 47.18c0 12.77-9.99 22.18-22.25 22.18s-22.25-9.41-22.25-22.18C71.25 34.32 81.24 25 93.5 25s22.25 9.32 22.25 22.18zm-9.74 0c0-7.98-5.79-13.44-12.51-13.44S80.99 39.2 80.99 47.18c0 7.9 5.79 13.44 12.51 13.44s12.51-5.55 12.51-13.44z'/%3E%3Cpath fill='%23EA4335' d='M163.75 47.18c0 12.77-9.99 22.18-22.25 22.18s-22.25-9.41-22.25-22.18c0-12.85 9.99-22.18 22.25-22.18s22.25 9.32 22.25 22.18zm-9.74 0c0-7.98-5.79-13.44-12.51-13.44s-12.51 5.46-12.51 13.44c0 7.9 5.79 13.44 12.51 13.44s12.51-5.55 12.51-13.44z'/%3E%3Cpath fill='%23FBBC05' d='M209.75 26.34v39.82c0 16.38-9.66 23.07-21.08 23.07-10.75 0-17.22-7.19-19.66-13.07l8.48-3.53c1.51 3.61 5.21 7.87 11.17 7.87 7.31 0 11.84-4.51 11.84-13v-3.19h-.34c-2.18 2.69-6.38 5.04-11.68 5.04-11.09 0-21.25-9.66-21.25-22.09 0-12.52 10.16-22.26 21.25-22.26 5.29 0 9.49 2.35 11.68 4.96h.34v-3.61h9.25zm-8.56 20.92c0-7.81-5.21-13.52-11.84-13.52-6.72 0-12.35 5.71-12.35 13.52 0 7.73 5.63 13.36 12.35 13.36 6.63 0 11.84-5.63 11.84-13.36z'/%3E%3Cpath fill='%234285F4' d='M225 3v65h-9.5V3h9.5z'/%3E%3Cpath fill='%2334A853' d='M262.02 54.48l7.56 5.04c-2.44 3.61-8.32 9.83-18.48 9.83-12.6 0-22.01-9.74-22.01-22.18 0-13.19 9.49-22.18 20.92-22.18 11.51 0 17.14 9.16 18.98 14.11l1.01 2.52-29.65 12.28c2.27 4.45 5.8 6.72 10.75 6.72 4.96 0 8.4-2.44 10.92-6.14zm-23.27-7.98l19.82-8.23c-1.09-2.77-4.37-4.7-8.23-4.7-4.95 0-11.84 4.37-11.59 12.93z'/%3E%3Cpath fill='%23EA4335' d='M35.29 41.41V32H67c.31 1.64.47 3.58.47 5.68 0 7.06-1.93 15.79-8.15 22.01-6.05 6.3-13.78 9.66-24.02 9.66C16.32 69.35.36 53.89.36 34.91.36 15.93 16.32.47 35.3.47c10.5 0 17.98 4.12 23.6 9.49l-6.64 6.64c-4.03-3.78-9.49-6.72-16.97-6.72-13.86 0-24.7 11.17-24.7 25.03 0 13.86 10.84 25.03 24.7 25.03 8.99 0 14.11-3.61 17.39-6.89 2.66-2.66 4.41-6.46 5.1-11.65l-22.49.01z'/%3E%3C/svg%3E" alt="Google">
+        </div>
+
+        <!-- Informations en bas -->
+        <div class="map-footer">
+            <a href="#" target="_blank">Raccourcis clavier</a>
+            <span>Données cartographiques ©2025</span>
+            <div class="scale-bar">
+                <div class="scale-line"></div>
+                <span>200 m</span>
+            </div>
+            <a href="#" target="_blank">Conditions d'utilisation</a>
+        </div>
+    </div>
+
+    <script>
+        // Fonction plein écran
+        document.querySelector('.fullscreen-btn').addEventListener('click', function() {
+            const container = document.querySelector('.map-container');
+            if (!document.fullscreenElement) {
+                container.requestFullscreen().catch(err => {
+                    console.log('Erreur plein écran:', err);
+                });
+            } else {
+                document.exitFullscreen();
+            }
+        });
+
+        // Simulation des boutons zoom (la vraie fonctionnalité nécessite l'API Google Maps)
+        document.querySelectorAll('.zoom-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                console.log('Zoom:', this.textContent === '+' ? 'avant' : 'arrière');
+                // Nécessite l'API Google Maps pour une vraie fonctionnalité
+            });
+        });
+
+        // Bouton position actuelle
+        document.querySelector('.location-btn').addEventListener('click', function() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function(position) {
+                    console.log('Position:', position.coords.latitude, position.coords.longitude);
+                    // Nécessite l'API Google Maps pour centrer la carte
+                });
+            }
+        });
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+ <div>{% include 'footer.html' %}</div>
+
+ </body>
+</html>

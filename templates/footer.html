@@ -1,0 +1,85 @@
+{% load static %}
+{% load django_browser_reload %}
+<style>
+  /* Slogan: texte en blanc et légèrement décalé vers le bas (inversé) */
+  .slogan {
+    color: #fff !important;
+    margin-top: 14px;
+    text-align: center;
+    display: block;
+  }
+
+  /* Second slogan in the footer should be black (inverted) and bold */
+  .footer-bottom .slogan:last-of-type,
+  .slogan.slogan--black {
+    color: #000 !important;
+    font-weight: 700; /* mettre en gras */
+    margin-top: 30px; /* léger décalage vers le bas */
+    margin-bottom: 10px;
+  }
+</style> 
+<footer class="footer">
+  <div class="footer-top">
+    <div class="footer-left">
+      <h2>Nos spécialités phares</h2>
+      <p class="links">Consultation Prénatale| Médecine Générale | Laboratoire</p>
+    </div>
+
+    <div class="footer-right">
+      <div class="urgence-box">
+        <i class="fas fa-phone-alt"></i>
+        <div>
+          <p>Urgences</p>
+          <h3>(+237) 655 653 862</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="newsletter">
+    <input type="email" placeholder="Enter Your E-mail Address">
+    <button>S'abonner</button>
+  </div>
+
+  <div class="footer-bottom">
+    <div class="logo1">
+      <img src="{% static 'images/logo.png' %}" alt="Polyclinique Merveilles">
+    </div>
+
+    <p class="slogan">
+      Nous travaillons avec diligence pour fournir les meilleurs services médicaux à nos patients
+    </p>
+
+    <div class="footer-info">
+      <div>
+        <i class="far fa-clock"></i>
+        <p><strong>Heures d’Ouverture</strong><br>Tous les jours ouverts<br>De 08H00 à 18H00</p>
+      </div>
+      <div>
+        <i class="fas fa-phone"></i>
+        <p><strong>Téléphone</strong><br>(+237) 655 653 862<br>(+237) 655 653 862</p>
+      </div>
+      <div>
+        <i class="fas fa-map-marker-alt"></i>
+        <p><strong>Localisation</strong><br>Shell Nsimeyong, Yaounde</p>
+      </div>
+      <div>
+        <i class="fas fa-envelope"></i>
+        <p><strong>Email</strong><br>info@Hôpital Marie Wyss.com</p>
+      </div>
+    </div>
+
+    <div class="socials">
+      <a href="#"><i class="fab fa-facebook-f"></i></a>
+      <a href="#"><i class="fab fa-twitter"></i></a>
+      <a href="#"><i class="fab fa-linkedin"></i></a>
+      <a href="#"><i class="fab fa-instagram"></i></a>
+      <a href="#"><i class="fab fa-youtube"></i></a>
+    </div>
+
+    <p class="slogan slogan--black">
+      © 2025 Tiomo Mathias | Ingénieur Logiciel & Community Manager | Tél : (+237) 651 559 600 / 694 162 112
+    </p>
+
+  </div>
+</footer>

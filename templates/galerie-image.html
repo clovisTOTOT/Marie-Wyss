@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hôpital Marie Wyss</title>
+    <link rel="icon" href="{% static 'images/switch.png' %}" type="image/png">
+    <link rel="stylesheet" href="{% static 'css/accueille.css' %}">
+    <script src="{% static 'js/accueille.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'css/footer.css' %}">
+    <link rel="stylesheet" href="{% static 'css/galerie-image.css' %}">
+    <script src="{% static 'js/header.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'css/header.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+<div>{% include 'header.html' %} </div>
+
+
+  <div class="galerie-hero">
+        <div class="galerie-content">
+            <p class="galerie-subtitle">Hôpital Marie Wyss</p>
+            <h1 class="galerie-title">Galerie Image</h1>
+        </div>
+
+        <div class="logo-overlay">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Ccircle cx='60' cy='60' r='55' fill='%230055a5'/%3E%3Ctext x='60' y='70' font-size='36' font-weight='bold' text-anchor='middle' fill='%23fff'%3EPM%3C/text%3E%3C/svg%3E" alt="Logo">
+            <p class="logo-text">Marie<br>Wyss</p>
+        </div>
+    </div>
+
+
+
+
+
+
+
+        <!-- les Images principales -->
+
+        <section class="visite-section">
+        <p class="visite-label">Visite Officielle</p>
+        <h1 class="visite-title">Retour en image sur la visite du</h1>
+        <h2 class="visite-subtitle">Ministre de la Santé du Cameroun</h2>
+
+        <div class="gallery-grid">
+            <!-- Image principale (grande) -->
+            <div class="gallery-item large">
+                <img src="{% static 'images/20251110_124238.jpg' %}" alt="Visite officielle 1">
+            </div>
+
+            <!-- Image haut droite -->
+            <div class="gallery-item medium">
+                <img src="{% static 'images/Hôpital privé Marie wyss lobo2.jpg' %}" alt="Visite officielle 2">
+            </div>
+
+            <!-- Image bas droite -->
+            <div class="gallery-item medium">
+                <img src="{% static 'images/entree hopital Marie Wyss.jpg' %}" alt="Visite officielle 3">
+            </div>
+
+            <!-- Image bas gauche 1 -->
+            <div class="gallery-item small">
+                <img src="{% static 'images/Hôpital privé Marie wyss urgences .jpg' %}" alt="Visite officielle 4">
+            </div>
+
+            <!-- Image bas gauche 2 -->
+            <div class="gallery-item small">
+                <img src="{% static 'images/20251110_124431.jpg' %}" alt="Visite officielle 5">
+            </div>
+
+            <!-- Image bas gauche 3 -->
+            <div class="gallery-item small">
+                <img src="{% static 'images/Hôpital privé Marie wyss urgences .jpg' %}" alt="Visite officielle 6">
+            </div>
+            <div class="gallery-item small">
+                <img src="{% static 'images/Hôpital privé Marie wyss lobo2.jpg' %}" alt="Visite officielle 6">
+            </div>
+            <div class="gallery-item small">
+                <img src="{% static 'images/Hôpital privé Marie wyss branding.jpg' %}" alt="Visite officielle 6">
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+            <!-- section2 -->
+
+
+            <section class="visite-section">
+        <p class="visite-label">Visite Officielle</p>
+        <h1 class="visite-title">Retour en image sur la visite du</h1>
+        <h2 class="visite-subtitle">Gouverneur de la Région du Littoral</h2>
+
+        <div class="gallery-grid">
+            <!-- Image principale (grande) -->
+            <div class="gallery-item large">
+                <img src="{% static 'images/Hôpital Marie wyss cour2.jpg' %}" alt="Visite officielle 1">
+            </div>
+
+            <!-- Image haut droite -->
+            <div class="gallery-item medium">
+                <img src="{% static 'images/Hôpital privé Marie wyss lobo3.jpg' %}" alt="Visite officielle 2">
+            </div>
+
+            <!-- Image bas droite -->
+            <div class="gallery-item medium">
+                <img src="{% static 'images/Hôpital privé MW .jpg' %}" alt="Visite officielle 3">
+            </div>
+
+            <!-- Image bas gauche 1 -->
+            <div class="gallery-item small">
+                <img src="{% static 'images/20251110_124431.jpg' %}" alt="Visite officielle 4">
+            </div>
+
+            <!-- Image bas gauche 2 -->
+            <div class="gallery-item small">
+                <img src="{% static 'images/20251110_124431.jpg' %}" alt="Visite officielle 5">
+            </div>
+
+            <!-- Image bas gauche 3 -->
+            <div class="gallery-item small">
+                <img src="{% static 'images/cour hopital marie wyss.jpg' %}" alt="Visite officielle 6">
+            </div>
+            <div class="gallery-item small">
+                <img src="{% static 'images/plant localisation Marie Wyss.jpg' %}" alt="Visite officielle 6">
+            </div>
+            <div class="gallery-item small">
+                <img src="{% static 'images/entree hopital Marie Wyss.jpg' %}" alt="Visite officielle 6">
+            </div>
+        </div>
+    </section>
+
+ <div>{% include 'footer.html' %}</div>
+
+ </body>
+</html>

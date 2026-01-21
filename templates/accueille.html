@@ -1,0 +1,1837 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hôpital Marie Wyss</title>
+    <link rel="icon" href="{% static 'images/switch.png' %}" type="image/png">
+    <link rel="stylesheet" href="{% static 'css/accueille.css' %}">
+    <script src="{% static 'js/accueille.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'css/footer.css' %}">
+    <script src="{% static 'js/header.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'css/header.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+<div>{% include 'header.html' %} </div>
+
+<style>
+
+</style>
+
+
+    <!-- Hero Section -->
+    <div class="hero-section">
+        <!-- Background Carousel -->
+        <div class="hero-background" id="heroBackground"></div>
+        <div class="hero-overlay"></div>
+
+        <!-- Content -->
+        <div class="hero-content">
+            <!-- Navigation Arrows -->
+            <button class="nav-arrow nav-arrow-left" aria-label="Précédent">
+                <svg class="arrow-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                </svg>
+            </button>
+            <button class="nav-arrow nav-arrow-right" aria-label="Suivant">
+                <svg class="arrow-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+            </button>
+
+            <!-- Center Content -->
+            <div class="center-content">
+                <div class="hero-text">
+                    <p class="tagline">Des soins fiables et de qualité</p>
+                    <h1 class="main-title">Bienvenue au centre Hospitalier privé Marie Wyss</h1>
+                    <p class="subtitle">(Centre Hospitalier privé Marie Wyss de Yaoundé)</p>
+
+                    <div class="cta-buttons">
+                        <button class="btn btn-primary">
+                            Prendre rendez-vous
+                            <svg class="btn-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                            </svg>
+                        </button>
+                        <button class="btn btn-secondary">
+                            À propos de nous
+                            <svg class="btn-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>     
+        </div>
+
+        <!-- Video Button -->
+        <div class="video-button-container">
+            <button class="video-button">
+                <div class="play-icon-container">
+                    <svg class="play-icon" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M8 5v14l11-7z" />
+                    </svg>
+                </div>
+                <span class="video-text">Voir Notre Vidéo</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Bottom Info Cards -->
+        </div>
+     <!-- Bottom Info Cards -->
+            <div class="info-cards-container">
+                <div class="info-cards">
+                 <div>
+                       <!-- Contact Card -->
+                    <div class="info-card">
+                        <div class="card-content">
+                            <div class="card-icon">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
+                                </svg>
+                            </div>
+                            <div class="card-body">
+                                <h3 class="card-title">Vous souhaitez vous rendre au CHHDD?</h3>
+                                <p class="card-text">
+                                    Toutes nos informations de contact et de localisation sont disponibles dans notre page de contact :
+                                </p>
+                                <button class="btn-card">
+                                    Nous contacter
+                                    <svg class="btn-card-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                              <div class="log">
+    <img class="hospital-logo" src="{% static 'images/entree hopital Marie Wyss.jpg' %}" alt="Logo Hôpital Marie Wysse">
+</div>
+                    </div>
+
+
+                    
+
+                    <div>
+
+                                           <!-- Hours Card -->
+                    <div class="info-card hours">
+                        <div class="card-content">
+                            <div class="card-icon">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                            </div>
+                            <div class="card-body">
+                                <h3 class="card-title">Nos horaires</h3>
+                                <div class="card-hours">
+                                    <p>24h / 24</p>
+                                    <p>7j/7</p>
+                                    <p>Urgences 24HR / 7 Jours</p>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                                                                   <div class="log">
+    <img class="hospital-logo" src="{% static 'images/cour hopital marie wyss.jpg' %}" alt="Logo Hôpital Marie Wysse">
+</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <script>
+    const slides = [
+        {
+            image: "{% static 'images/entree hopital Marie Wyss.jpg' %}",
+            tagline: "Des soins fiables et de qualité",
+            title: "Bienvenue au centre Hospitalier privé Marie Wyss",
+            subtitle: "(Centre Hospitalier prive Marie Wyss de Yaoundé)",
+            buttonType: "primary",
+            buttonText: "Prendre rendez-vous"
+        },
+        {
+            image: "{% static 'images/cour hopital marie wyss.jpg' %}",
+            tagline: "Des soins fiables et de qualité",
+            title: "Bienvenue au centre Hospitalier prive Marie Wyss",
+            subtitle: "(Centre Hospitalier prive Marie Wyss )",
+            buttonType: "secondary",
+            buttonText: "À propos de nous"
+        },
+        {
+            image: "{% static 'images/Hôpital Marie wyss cour2.jpg' %}",
+            tagline: "Des soins fiables et de qualité",
+            title: "Bienvenue au urgence",
+            subtitle: "(Centre Hospitalier prive Marie Wyss de Yaoundé)",
+            buttonType: "primary",
+            buttonText: "Prendre rendez-vous"
+        },
+        {
+            image: "{% static 'images/cour hopital marie wyss.jpg' %}",
+            tagline: "Des soins fiables et de qualité",
+            title: "Bienvenue au bloc operatoire ",
+            subtitle: "(Centre Hospitalier de Yaounde)",
+            buttonType: "secondary",
+            buttonText: "À propos de nous"
+        }
+    ];
+
+    let currentIndex = 0;
+    const heroBackground = document.getElementById('heroBackground');
+    const taglineEl = document.querySelector('.tagline');
+    const titleEl = document.querySelector('.main-title');
+    const subtitleEl = document.querySelector('.subtitle');
+    const buttonEl = document.querySelector('.cta-buttons .btn');
+    const navArrowLeft = document.querySelector('.nav-arrow-left');
+    const navArrowRight = document.querySelector('.nav-arrow-right');
+    const heroSection = document.querySelector('.hero-section');
+    let autoPlayInterval;
+
+    function updateSlide() {
+        const slide = slides[currentIndex];
+        heroBackground.style.backgroundImage = `url('${slide.image}')`;
+        taglineEl.textContent = slide.tagline;
+        titleEl.textContent = slide.title;
+        subtitleEl.textContent = slide.subtitle;
+        buttonEl.textContent = slide.buttonText;
+        buttonEl.className = `btn btn-${slide.buttonType}`;
+    }
+
+    function nextImage() {
+        currentIndex = (currentIndex + 1) % slides.length;
+        updateSlide();
+    }
+
+    function prevImage() {
+        currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+        updateSlide();
+    }
+
+    function startAutoPlay() {
+        autoPlayInterval = setInterval(nextImage, 5000);
+    }
+
+    function stopAutoPlay() {
+        clearInterval(autoPlayInterval);
+    }
+
+    navArrowRight.addEventListener('click', nextImage);
+    navArrowLeft.addEventListener('click', prevImage);
+    heroSection.addEventListener('mouseenter', stopAutoPlay);
+    heroSection.addEventListener('mouseleave', startAutoPlay);
+
+    updateSlide();
+    startAutoPlay();
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   <!-- À propos de nous-->
+<div class="certification-container">
+    <div class="certification-image">
+        <img src="{% static 'images/Hôpital Marie wyss  néonatalogie .jpg' %}" alt="Certification en Management des Projets CAPM">
+    </div>
+    <div class="certification-text">
+        <h2>POURQUOI NOUS CHOISIR ?</h2>
+        
+        <div class="info-section">
+            <h3>Pluridisciplinaire et à taille humaine</h3>
+            <p>N°1 en matière de satisfaction patient, l'Hôpital Bethesda de Yaoundé couvre un grand nombre de spécialités médicales et chirurgicales.</p>
+            <a href="#" class="link-arrow">En savoir plus →</a>
+        </div>
+
+        <div class="info-section">
+            <h3>Qualité et sécurité des soins</h3>
+            <p>Lorem ipsum</p>
+            <a href="#" class="link-arrow">En savoir plus →</a>
+        </div>
+
+        <div class="info-section">
+            <h3>Un établissement d'excellence</h3>
+            <p>En plus de la prise en charge médicale, un soin particulier est accordé à la qualité de l'offre hôtelière proposée aux patients et à leurs proches</p>
+            <a href="#" class="link-arrow">En savoir plus →</a>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- les differents services-->
+<div class="services-container">
+    <div class="services-header">
+        <div class="header-text">
+            <p class="services-label">SERVICES</p>
+            <h2 class="services-title">Nous offrons une gamme variée de<br><span class="services-subtitle">soins médicaux personnalisés</span></h2>
+        </div>
+        <button class="service-button">Nos Services</button>
+    </div>
+
+    <div class="services-grid">
+        <!-- Première ligne - 3 colonnes -->
+        <div class="service-item">
+            <div class="service-image-wrapper">
+                <img src="{% static 'images/cour hopital marie wyss.jpg' %}" alt="Imagerie Médicale">
+                <div class="service-overlay">
+                    <p class="service-tag">Service</p>
+                    <h3>consultation gynecologique</h3>
+                    <p class="service-description">Nous disposons des équipements modernes pour des examens d'imagerie médicale performants et sécurisés sur place.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="service-item">
+            <div class="service-image-wrapper">
+                <img src="{% static 'images/Hôpital privé Marie wyss lobo3.jpg' %}" alt="Laboratoire d'analyses">
+                <div class="service-overlay">
+                    <p class="service-tag">Service</p>
+                    <h3>Laboratoire d'analyses</h3>
+                    <p class="service-description">Nous disposons d'un laboratoire d'analyses médicales pour effectuer les examens nécessaires à votre diagnostic.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="service-item">
+            <div class="service-image-wrapper">
+                <img src="{% static 'images/cour hopital marie wyss.jpg' %}" alt="Ambulance médicalisée">
+                <div class="service-overlay">
+                    <p class="service-tag">Service</p>
+                    <h3>Ambulance médicalisée</h3>
+                    <p class="service-description">Nous disposons d'une ambulance médicalisée pour le transport de patients nécessitant une assistance médicale.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Deuxième ligne - 2 colonnes plus larges -->
+        <div class="service-item service-item-wide">
+            <div class="service-image-wrapper">
+                <img src="{% static 'images/cour hopital marie wyss.jpg' %}" alt="Hospitalisation">
+                <div class="service-overlay">
+                    <p class="service-tag">Service</p>
+                    <h3>Hospitalisation</h3>
+                    <p class="service-description">Nos patients ont à leur disposition des chambres d'hospitalisation pour les soins nécessitant une surveillance médicale continue. Nous offrons un environnement confortable et sécurisé à tous nos patients internés.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="service-item service-item-wide">
+            <div class="service-image-wrapper">
+                <img src="{% static 'images/cour hopital marie wyss.jpg' %}" alt="Radiographie Numérisée">
+                <div class="service-overlay">
+                    <p class="service-tag">Service</p>
+                    <h3>Radiographie Numérisée</h3>
+                    <p class="service-description">Nous utilisons la radiographie numérisée pour réaliser des examens radiologiques. Cette technique permet une dose d'irradiation diminuée par rapport à une technique analogique avec une meilleure qualité d'image.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <!-- les consultations et des services d'urgence -->
+<div class="main-container">
+    <div class="search-area">
+        <input type="text" placeholder="Recherche sur un service ou un spécialiste en particulier" class="search-field">
+        <span class="search-button">🔍</span>
+    </div>
+    <div class="information-area">
+        <div class="information-card">
+            <div class="information-icon">⚕️</div>
+            <div>
+                <h2>Consultations Spécialisées</h2>
+                <p>Prenez rendez-vous au 233 412 205</p>
+            </div>
+        </div>
+        <div class="information-card">
+            <div class="information-icon">📞</div>
+            <div>
+                <h2>Numéros d'Urgences</h2>
+                <p>Appelez le +237 674 55 55 30</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Nos missions -->
+
+<div>
+    <!-- Hero Section -->
+    <div class="hero-area">
+        <!-- Image de fond -->
+        <img class="hospital1" src="{% static 'images/cour hopital marie wyss.jpg' %}" alt="Logo Hôpital Marie Wysse">
+        
+        <!-- Overlay sombre -->
+        <div class="hero-overlay"></div>
+        
+        <!-- Contenu -->
+        <div class="hero-content">
+            <p class="hero-subtitle">Notre Mission</p>
+            <h1 class="hero-heading">
+                Fournir d'excellents<br>
+                soins médicaux <span class="highlight-text">à nos<br>patients</span>
+            </h1>
+        </div>
+    </div>
+
+    <!-- Tabs Navigation -->
+    <div class="tabs-container">
+        <div class="tabs-wrapper">
+            <div class="tabs-navigation">
+                <button class="tab-item active">
+                    <svg class="tab-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path>
+                    </svg>
+                    <span>Consultations</span>
+                </button>
+                <button class="tab-item">
+                    <svg class="tab-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                    </svg>
+                    <span>Spécialités</span>
+                </button>
+                <button class="tab-item">
+                    <svg class="tab-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                    </svg>
+                    <span>Imagerie médicale</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Content Section -->
+        <div class="content-area">
+            <div class="content-grid">
+                <!-- Left Column - Text Content -->
+                <div class="text-content">
+                    <h2>Consultations</h2>
+                    <p>
+                        Nous proposons des consultations médicales avec des médecins compétents et
+                        à l'écoute. Que vous ayez besoin d'un bilan de santé, d'un avis médical ou d'une prescription, nous
+                        sommes à votre service pour vous offrir des soins de qualité dans toutes nos spécialités mais aussi
+                        dans :
+                    </p>
+
+                    <div class="services-list">
+                        <div class="service-item">
+                            <svg class="check-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                            <span>Médecine Générale</span>
+                        </div>
+                        <div class="service-item">
+                            <svg class="check-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                            <span>Hospitalisation</span>
+                        </div>
+                        <div class="service-item">
+                            <svg class="check-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                            <span>Chirurgie</span>
+                        </div>
+                        <div class="service-item">
+                            <svg class="check-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                            <span>Gynécologie</span>
+                        </div>
+                        <div class="service-item">
+                            <svg class="check-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                            <span>Pédiatrie</span>
+                        </div>
+                    </div>
+
+                    <button class="cta-button">En Savoir Plus</button>
+                </div>
+
+                <!-- Right Column - Image -->
+                <div class="image-content">
+                    <div class="image-wrapper">
+                        <img src="{% static 'images/cour hopital marie wyss.jpg' %}"
+                             alt="Professionnel de santé consultant un patient">
+                        <div class="play-button-overlay">
+                            <button class="play-button">
+                                <div class="play-icon"></div>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Témoignages des patients -->
+    <div class="testimonials-section">
+        <div class="section-header">
+            <div class="section-title-wrapper">
+                <p class="section-subtitle">Témoignages</p>
+                <h2 class="section-title">
+                    Ce que disent <span class="highlight">Nos Patients</span>
+                </h2>
+            </div>
+            <button class="services-button">Nos Services</button>
+        </div>
+
+        <div class="testimonial-card">
+            <div class="testimonial-image">
+                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=400&fit=crop" 
+                     alt="Simone KETCHA"
+                     class="profile-image">
+            </div>
+
+            <div class="testimonial-content">
+                <div class="quote-icon"></div>
+                <p class="testimonial-text">
+                    Je devais faires des prélèvements pour des examens et malgré ma phobie des injection, l'équipe médicale a réussi à me donner confiance
+                </p>
+                <p class="testimonial-author">Simone KETCHA</p>
+            </div>
+
+            <div class="testimonial-counter">
+                <span class="counter-number">03</span>
+                <div class="counter-divider"></div>
+                <div class="counter-scroll"></div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+             <!-- Nos patenaires 
+
+<div class="partners-section">
+    <h2 class="title">Our Partners</h2>
+    <h2 class="subtitle">Nous collaborons avec un large éventail de Polices d'Assurance</h2>
+    <h2>de Polices d'Assurance</h2>
+    <div class="partners-logos">
+         <img src="{% static 'images/cour hopital marie wyss.jpg' %}" alt="Logo Hôpital Marie Wysse">
+          <img src="{% static 'images/cour hopital marie wyss.jpg' %}" alt="Logo Hôpital Marie Wysse">
+           <img src="{% static 'images/cour hopital marie wyss.jpg' %}" alt="Logo Hôpital Marie Wysse">
+            <img src="{% static 'images/cour hopital marie wyss.jpg' %}" alt="Logo Hôpital Marie Wysse">
+             <img src="{% static 'images/cour hopital marie wyss.jpg' %}" alt="Logo Hôpital Marie Wysse">
+      
+    </div>
+</div>            -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+               
+                <!--  Application du code éthique -->
+
+    <!-- Code Éthique Accordéon -->
+    <div class="wrapper">
+    <div class="container1">
+        <!-- Accordéon 1 -->
+        <div class="accordion" onclick="toggleAccordion(this)">
+            <span>Application du code éthique</span>
+            <div class="plus">+</div>
+        </div>
+        <div class="accordion-content">
+            <p><strong>Le président–directeur général est la personne responsable de l'application du code d'éthique dans notre polyclinique.</strong></p>
+
+            <p><strong>Ce code constitue un guide de référence pour les membres de l'organisation, les usagers et leurs proches afin de favoriser des relations basées sur le respect mutuel. Pour en assurer l'application avec rigueur, la polyclinique merveille des conquêtes a instauré un mécanisme de promotion et de suivi, lequel engage tous les gestionnaires de la polyclinique merveille des conquêtes à diffuser, rendre disponible et appliquer ce code d'éthique auprès de leurs employés.</strong></p>
+
+            <p><strong>Aussi, tout écart au code éthique de la polyclinique merveille des conquêtes peut faire l'objet d'une plainte et entacher la qualité des services offerts, celui-ci étant garant de son application et de sa promotion auprès des usagers et des intervenants.</strong></p>
+
+            <p><strong>Soins en fin de vie et directives médicales anticipées</strong></p>
+
+            <p><strong>Toute personne dont l'état requiert de recevoir des soins de fin de vie ou toute personne dont les pronostics de vie sont engagés ne doivent en aucun cas recevoir des soins ou être gardés à la clinique sans l'accord de la hiérarchie.</strong></p>
+
+            <p><strong>Pour les directives médicales anticipées, nous nous engageons à les respecter les protocoles en place.</strong></p>
+        </div>
+
+        <!-- Accordéon 2 -->
+        <div class="accordion" onclick="toggleAccordion(this)">
+            <span>Respect, Intégrité et Bienveillance</span>
+            <div class="plus">+</div>
+        </div>
+        <div class="accordion-content">
+            <p><strong>Le président–directeur général est la personne responsable de l'application du code d'éthique dans notre polyclinique.</strong></p>
+
+            <p><strong>Ce code constitue un guide de référence pour les membres de l'organisation, les usagers et leurs proches afin de favoriser des relations basées sur le respect mutuel. Pour en assurer l'application avec rigueur, la polyclinique merveille des conquêtes a instauré un mécanisme de promotion et de suivi, lequel engage tous les gestionnaires de la polyclinique merveille des conquêtes à diffuser, rendre disponible et appliquer ce code d'éthique auprès de leurs employés.</strong></p>
+
+            <p><strong>Aussi, tout écart au code éthique de la polyclinique merveille des conquêtes peut faire l'objet d'une plainte et entacher la qualité des services offerts, celui-ci étant garant de son application et de sa promotion auprès des usagers et des intervenants.</strong></p>
+            <p><strong>Soins en fin de vie et directives médicales anticipées</strong></p>
+
+            <p><strong>Toute personne dont l'état requiert de recevoir des soins de fin de vie ou toute personne dont les pronostics de vie sont engagés ne doivent en aucun cas recevoir des soins ou être gardés à la clinique sans l'accord de la hiérarchie.</strong></p>
+
+            <p><strong>Pour les directives médicales anticipées, nous nous engageons à les respecter les protocoles en place.</strong></p>
+        </div>
+
+        <!-- Accordéon 3 -->
+        <div class="accordion" onclick="toggleAccordion(this)">
+            <span>Votre engagement</span>
+            <div class="plus">+</div>
+        </div>
+        <div class="accordion-content">
+            <p><strong>Le président–directeur général est la personne responsable de l'application du code d'éthique dans notre polyclinique.</strong></p>
+
+            <p><strong>Ce code constitue un guide de référence pour les membres de l'organisation, les usagers et leurs proches afin de favoriser des relations basées sur le respect mutuel. Pour en assurer l'application avec rigueur, la polyclinique merveille des conquêtes a instauré un mécanisme de promotion et de suivi, lequel engage tous les gestionnaires de la polyclinique merveille des conquêtes à diffuser, rendre disponible et appliquer ce code d'éthique auprès de leurs employés.</strong></p>
+
+            <p><strong>Aussi, tout écart au code éthique de la polyclinique merveille des conquêtes peut faire l'objet d'une plainte et entacher la qualité des services offerts, celui-ci étant garant de son application et de sa promotion auprès des usagers et des intervenants.</strong></p>  
+            <p><strong>Soins en fin de vie et directives médicales anticipées</strong></p>
+
+            <p><strong>Toute personne dont l'état requiert de recevoir des soins de fin de vie ou toute personne dont les pronostics de vie sont engagés ne doivent en aucun cas recevoir des soins ou être gardés à la clinique sans l'accord de la hiérarchie.</strong></p>
+
+            <p><strong>Pour les directives médicales anticipées, nous nous engageons à les respecter les protocoles en place.</strong></p>
+        </div>
+    </div>
+    </div>
+
+    <script>
+        function toggleAccordion(element) {
+            // Récupère l'élément accordéon cliqué
+            const accordion = element;
+            const content = accordion.nextElementSibling;
+            const plus = accordion.querySelector('.plus');
+
+            // Toggle la classe active sur l'accordéon
+            accordion.classList.toggle('active');
+            
+            // Toggle la classe show sur le contenu
+            content.classList.toggle('show');
+        }
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Notre équipe -->
+ <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f8f9fa;
+            padding: 60px 20px;
+        }
+
+        .team-section {
+            max-width: 1200px;
+            margin: 60px auto; /* espace en haut et en bas pour meilleure visibilité */
+        }
+
+        .team-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .team-header h2 {
+            font-size: 32px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .team-header .underline {
+            width: 60px;
+            height: 3px;
+            background: #00bcd4;
+            margin: 0 auto 25px;
+        }
+
+        .team-header p {
+            font-size: 15px;
+            color: #666;
+            line-height: 1.6;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+            margin-bottom: 45px;
+        }
+
+        .member-card {
+            display: block;
+            background: white;
+            border-radius: 0;
+            overflow: hidden;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .member-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+        }
+
+        .member-card:focus {
+            outline: none;
+            box-shadow: 0 0 0 4px rgba(76,175,80,0.15), 0 8px 20px rgba(0,0,0,0.12);
+        }
+
+        .member-avatar {
+            width: 100%;
+            height: 280px;
+            background: linear-gradient(180deg, #b8d9e8 0%, #a8cfe0 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .avatar {
+            width: 160px;
+            height: 220px;
+            position: relative;
+        }
+
+        /* Tête */
+        .avatar-head {
+            width: 70px;
+            height: 85px;
+            background: #c0c0c0;
+            border-radius: 50% 50% 45% 45%;
+            position: absolute;
+            top: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+        }
+
+        /* Cheveux */
+        .avatar-hair {
+            width: 75px;
+            height: 55px;
+            background: #5a4a3a;
+            border-radius: 50% 50% 0 0;
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 3;
+        }
+
+        .avatar-hair::before {
+            content: '';
+            width: 30px;
+            height: 40px;
+            background: #5a4a3a;
+            border-radius: 0 0 50% 0;
+            position: absolute;
+            bottom: 0;
+            left: -5px;
+        }
+
+        .avatar-hair::after {
+            content: '';
+            width: 30px;
+            height: 40px;
+            background: #5a4a3a;
+            border-radius: 0 0 0 50%;
+            position: absolute;
+            bottom: 0;
+            right: -5px;
+        }
+
+        /* Corps - Blouse blanche */
+        .avatar-body {
+            width: 140px;
+            height: 120px;
+            background: white;
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            clip-path: polygon(20% 0%, 80% 0%, 100% 100%, 0% 100%);
+        }
+
+        /* Col intérieur turquoise */
+        .avatar-collar {
+            width: 50px;
+            height: 60px;
+            background: #5dbdce;
+            position: absolute;
+            top: 95px;
+            left: 50%;
+            transform: translateX(-50%);
+            clip-path: polygon(30% 0%, 70% 0%, 100% 100%, 0% 100%);
+            z-index: 1;
+        }
+
+        /* Stéthoscope */
+        .stethoscope {
+            position: absolute;
+            top: 105px;
+            right: 25px;
+            z-index: 4;
+        }
+
+        .stethoscope-tube {
+            width: 2px;
+            height: 35px;
+            background: #333;
+            position: relative;
+            left: 8px;
+        }
+
+        .stethoscope-head {
+            width: 16px;
+            height: 16px;
+            background: #333;
+            border-radius: 50%;
+            border: 2px solid #333;
+        }
+
+        /* Logo vert sur la blouse */
+        .avatar-badge {
+            width: 30px;
+            height: 30px;
+            background: #4caf50;
+            border-radius: 50%;
+            position: absolute;
+            top: 110px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            color: white;
+        }
+
+        .member-details {
+            padding: 25px 20px;
+        }
+
+        .member-details h3 {
+            font-size: 16px;
+            font-weight: 700;
+            color: #4caf50;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+        }
+
+        .member-details p {
+            font-size: 13px;
+            color: #666;
+            font-weight: 400;
+        }
+
+        .team__view-all {
+            display: inline-block;
+            margin: 0 auto;
+            background: #4caf50;
+            color: white;
+            border: none;
+            padding: 14px 35px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            text-decoration: none;
+            display: block;
+            text-align: center;
+        }
+
+        .team__view-all:hover {
+            background: #45a049;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+            text-decoration: none;
+        }
+
+        @media (max-width: 1024px) {
+            .team-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .team-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+
+            .team-header h2 {
+                font-size: 26px;
+            }
+
+            .member-avatar {
+                height: 250px;
+            }
+
+            .avatar {
+                width: 140px;
+                height: 200px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .team-grid {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+
+            .member-avatar {
+                height: 280px;
+            }
+
+            .avatar {
+                width: 160px;
+                height: 220px;
+            }
+        }
+    </style>
+</head>
+
+    <div class="team-section">
+        <div class="team-header">
+            <h2>Nos Spécialistes</h2>
+            <div class="underline"></div>
+            <p>Des médecins qualifiés et expérimentés qui travaillent à s'assurer que nos patients reçoivent les meilleurs soins possibles.</p>
+        </div>
+
+        <div class="team-grid">
+            <!-- Spécialiste 1 -->
+            <a class="member-card" href="{% url 'docteur1' %}">
+                <div class="member-avatar">
+                    <div class="avatar">
+                        <div class="avatar-hair"></div>
+                        <div class="avatar-head"></div>
+                        <div class="avatar-collar"></div>
+                        <div class="avatar-body"></div>
+                        <div class="avatar-badge">+</div>
+                        <div class="stethoscope">
+                            <div class="stethoscope-head"></div>
+                            <div class="stethoscope-tube"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="member-details">
+                    <h3>Dr Tekel Yanick Gaelle</h3>
+                    <p>Médecin nutritionniste</p>
+                </div>
+            </a>
+
+            <!-- Spécialiste 2 -->
+            <a class="member-card" href="{% url 'docteur2' %}">
+                <div class="member-avatar">
+                    <div class="avatar">
+                        <div class="avatar-hair"></div>
+                        <div class="avatar-head"></div>
+                        <div class="avatar-collar"></div>
+                        <div class="avatar-body"></div>
+                        <div class="avatar-badge">+</div>
+                        <div class="stethoscope">
+                            <div class="stethoscope-head"></div>
+                            <div class="stethoscope-tube"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="member-details">
+                    <h3>Dr Moteyo Gaëlle Épse Happi</h3>
+                    <p>Chirurgien dentaire</p>
+                </div>
+            </a>
+
+            <!-- Spécialiste 3 -->
+            <a class="member-card" href="{% url 'docteur3' %}">
+                <div class="member-avatar">
+                    <div class="avatar">
+                        <div class="avatar-hair"></div>
+                        <div class="avatar-head"></div>
+                        <div class="avatar-collar"></div>
+                        <div class="avatar-body"></div>
+                        <div class="avatar-badge">+</div>
+                        <div class="stethoscope">
+                            <div class="stethoscope-head"></div>
+                            <div class="stethoscope-tube"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="member-details">
+                    <h3>Dr Nga Ntouni Nadia</h3>
+                    <p>Ophtalmologue</p>
+                </div>
+            </a>
+
+            <!-- Spécialiste 4 -->
+            <a class="member-card" href="{% url 'docteur4' %}">
+                <div class="member-avatar">
+                    <div class="avatar">
+                        <div class="avatar-hair"></div>
+                        <div class="avatar-head"></div>
+                        <div class="avatar-collar"></div>
+                        <div class="avatar-body"></div>
+                        <div class="avatar-badge">+</div>
+                        <div class="stethoscope">
+                            <div class="stethoscope-head"></div>
+                            <div class="stethoscope-tube"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="member-details">
+                    <h3>Pr Ama Vicky</h3>
+                    <p>Médecin biologiste</p>
+                </div>
+            </a>
+        </div>
+
+        <a class="team__view-all" href="{% url 'notre_equipe' %}">Voir tous nos médecins</a>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            
+
+    <!-- Nos atouts -->
+    <div class="article-container">
+        <div class="article-grid">
+            <!-- Card 1 -->
+            <div class="article-card">
+                <img src="{% static 'images/cour hopital marie wyss.jpg' %}" 
+                     alt="Campagne de dépistage" 
+                     class="article-image">
+                <div class="article-content">
+                    <div class="article-header">
+                        <div class="article-date blue">
+                            <span class="article-day">24</span>
+                            <span class="article-month">AOÛT</span>
+                        </div>
+                        <div class="article-title-wrapper">
+                            <svg class="article-icon" viewBox="0 0 24 24" fill="none" stroke="#e91e63" stroke-width="2">
+                                <path d="M9 11l3 3L22 4"></path>
+                                <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
+                            </svg>
+                            <h3 class="article-title">Vaste campagne de dépistage gratuite réussie à Douala</h3>
+                        </div>
+                    </div>
+                    <p class="article-description">
+                        Campagne gratuite de dépistage à Douala : 700 personnes bénéficient d'accès gratuit à soins de base et orientation médicale rapide.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="article-card">
+                <img src="{% static 'images/cour hopital marie wyss.jpg' %}" 
+                     alt="Service d'ambulance" 
+                     class="article-image">
+                <div class="article-content">
+                    <div class="article-header">
+                        <div class="article-date green">
+                            <span class="article-day">10</span>
+                            <span class="article-month">MAI</span>
+                        </div>
+                        <div class="article-title-wrapper">
+                            <svg class="article-icon" viewBox="0 0 24 24" fill="none" stroke="#00bcd4" stroke-width="2">
+                                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                            </svg>
+                            <h3 class="article-title">Zoom sur notre service d'ambulance médicalisée</h3>
+                        </div>
+                    </div>
+                    <p class="article-description">
+                        Focus sur notre ambulance médicalisée : équipements, personnel formé, cas d'usage et protocole pour un transport sécurisé et vital...
+                    </p>
+                </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="article-card">
+                <img src="{% static 'images/cour hopital marie wyss.jpg' %}" 
+                     alt="Imagerie médicale" 
+                     class="article-image">
+                <div class="article-content">
+                    <div class="article-header">
+                        <div class="article-date orange">
+                            <span class="article-day">12</span>
+                            <span class="article-month">AVR</span>
+                        </div>
+                        <div class="article-title-wrapper">
+                            <svg class="article-icon" viewBox="0 0 24 24" fill="none" stroke="#4caf50" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <path d="M12 6v6l4 2"></path>
+                            </svg>
+                            <h3 class="article-title">Les avancées de l'imagerie médicale à la polyclinique</h3>
+                        </div>
+                    </div>
+                    <p class="article-description">
+                        Scanner, IRM, Doppler, écho 3D/4D : les technologies de pointe au service d'un diagnostic rapide, fiable et sans douleur...
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+<style>
+
+
+
+
+
+    
+</style>
+
+
+
+ <div>{% include 'footer.html' %}</div>
+
+ </body>
+</html>
