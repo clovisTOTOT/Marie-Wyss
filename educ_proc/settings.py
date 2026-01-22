@@ -30,7 +30,11 @@ SECRET_KEY = 'django-insecure-@%qepujhm9bc+-49)t4t^0qtnf9l-$ek=x-!te+iymo_vigp6$
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+#ALLOWED_HOSTS = []
+
+# educ_proc/settings.py
+
+ALLOWED_HOSTS = ['marie-wyss-2.onrender.com', 'localhost', '127.0.0.1']
 
 
 # Application definition
