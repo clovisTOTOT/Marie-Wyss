@@ -19,6 +19,143 @@
 
 <style>
 
+
+
+    /* Navigation Arrows */
+.nav-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.3);
+    border: none;
+    color: rgba(255, 255, 255, 0.9);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 20;
+    padding: clamp(10px, 2.5vw, 16px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    width: clamp(44px, 10vw, 60px);
+    height: clamp(44px, 10vw, 60px);
+    min-width: 44px;
+    min-height: 44px;
+}
+
+.nav-arrow:hover {
+    background: #0066cc;
+    color: rgba(255, 255, 255, 1);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.nav-arrow:active {
+    transform: translateY(-50%) scale(0.95);
+}
+
+.nav-arrow:focus-visible {
+    outline: 2px solid white;
+    outline-offset: 2px;
+}
+
+.nav-arrow-left {
+    left: clamp(12px, 4vw, 40px);
+}
+
+.nav-arrow-right {
+    right: clamp(30px, 8vw, 80px);
+ 
+}
+
+.arrow-icon {
+    width: clamp(20px, 4vw, 28px);
+    height: clamp(20px, 4vw, 28px);
+}
+
+    .hero-content {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+        position: relative;
+    }
+
+    .center-content {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex: 1;
+        max-width: calc(100% - clamp(80px, 20vw, 160px));
+        padding: clamp(20px, 5vw, 40px);
+        margin: 0 auto;
+        position: relative;
+        z-index: 10;
+        box-sizing: border-box;
+    }
+
+    .hero-text {
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: clamp(12px, 3vw, 20px);
+        width: 100%;
+    }
+
+    /* Responsive pour tablettes (768px et moins) */
+    @media (max-width: 768px) {
+        .center-content {
+            flex: 1;
+            max-width: 100%;
+            padding: clamp(15px, 4vw, 30px);
+        }
+    }
+
+    /* Responsive pour mobiles (480px et moins) */
+    @media (max-width: 480px) {
+        .center-content {
+            flex: 1;
+            max-width: 100%;
+            padding: clamp(10px, 3vw, 20px);
+        }
+
+        .hero-text {
+            gap: clamp(8px, 2vw, 15px);
+        }
+    }
+
+    .tagline {
+        text-align: center;
+        margin: 0;
+        font-size: clamp(14px, 3vw, 18px);
+        font-weight: 500;
+    }
+
+    .main-title {
+        text-align: center;
+        margin: 0;
+        white-space: normal;
+        font-size: clamp(24px, 6vw, 48px);
+        line-height: 1.3;
+        font-weight: 700;
+    }
+
+    .subtitle {
+        text-align: center;
+        margin: 0;
+        font-size: clamp(12px, 2.5vw, 16px);
+        font-weight: 400;
+    }
+
+    .cta-buttons {
+        display: flex;
+        justify-content: center;
+        gap: clamp(10px, 2vw, 15px);
+        flex-wrap: wrap;
+        padding: 0;
+    }
 </style>
 
 
@@ -27,20 +164,15 @@
         <!-- Background Carousel -->
         <div class="hero-background" id="heroBackground"></div>
         <div class="hero-overlay"></div>
-
-        <!-- Content -->
-        <div class="hero-content">
-            <!-- Navigation Arrows -->
-            <button class="nav-arrow nav-arrow-left" aria-label="Précédent">
+ <button class="nav-arrow nav-arrow-left" aria-label="Précédent">
                 <svg class="arrow-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
                 </svg>
             </button>
-            <button class="nav-arrow nav-arrow-right" aria-label="Suivant">
-                <svg class="arrow-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                </svg>
-            </button>
+        <!-- Content -->
+        <div class="hero-content">
+            <!-- Navigation Arrows -->
+           
 
             <!-- Center Content -->
             <div class="center-content">
@@ -56,29 +188,32 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
                             </svg>
                         </button>
-                        <button class="btn btn-secondary">
-                            À propos de nous
-                            <svg class="btn-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                            </svg>
-                        </button>
+
                     </div>
                 </div>
-            </div>     
+            </div>
+
+     
         </div>
 
-        <!-- Video Button -->
-        <div class="video-button-container">
-            <button class="video-button">
-                <div class="play-icon-container">
-                    <svg class="play-icon" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M8 5v14l11-7z" />
-                    </svg>
-                </div>
-                <span class="video-text">Voir Notre Vidéo</span>
-            </button>
+
+
+                 <button class="nav-arrow nav-arrow-right" aria-label="Suivant">
+                <svg class="arrow-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+            </button>    
         </div>
+
+
+
+         
+   
+  
     </div>
+
+ 
+
 
     <!-- Bottom Info Cards -->
         </div>
@@ -142,25 +277,40 @@
 </div>
                     </div>
                 </div>
-            </div>
+
+
+                                         <!-- Video Button -->
+        <div class="video-button-container">
+            <button class="video-button">
+                <div class="play-icon-container">
+                    <svg class="play-icon" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M8 5v14l11-7z" />
+                    </svg>
+                </div>
+                <span class="video-text">Voir Notre Vidéo</span>
+            </button>
         </div>
 
+            </div>
+
+      
 
         <script>
     const slides = [
         {
-            image: "{% static 'images/entree hopital Marie Wyss.jpg' %}",
+            
+            image: "{% static 'images/cour hopital marie wyss.jpg' %}",
             tagline: "Des soins fiables et de qualité",
-            title: "Bienvenue au centre Hospitalier privé Marie Wyss",
-            subtitle: "(Centre Hospitalier prive Marie Wyss de Yaoundé)",
+            title: "Bienvenue a l'Hôpital privé Marie Wyss  ",
+            subtitle: "(meilleure centre de santé de Yaoundé)",
             buttonType: "primary",
             buttonText: "Prendre rendez-vous"
         },
         {
-            image: "{% static 'images/cour hopital marie wyss.jpg' %}",
+            image: "{% static 'images/entree hopital Marie Wyss.jpg' %}",
             tagline: "Des soins fiables et de qualité",
-            title: "Bienvenue au centre Hospitalier prive Marie Wyss",
-            subtitle: "(Centre Hospitalier prive Marie Wyss )",
+            title: "Notre centre Hospitallier ",
+            subtitle: "(L'entre du centre Hospitalier )",
             buttonType: "secondary",
             buttonText: "À propos de nous"
         },
@@ -168,15 +318,15 @@
             image: "{% static 'images/Hôpital Marie wyss cour2.jpg' %}",
             tagline: "Des soins fiables et de qualité",
             title: "Bienvenue au urgence",
-            subtitle: "(Centre Hospitalier prive Marie Wyss de Yaoundé)",
+            subtitle: "(Nos services d'urgence disponibles 24/7)",
             buttonType: "primary",
             buttonText: "Prendre rendez-vous"
         },
         {
             image: "{% static 'images/cour hopital marie wyss.jpg' %}",
             tagline: "Des soins fiables et de qualité",
-            title: "Bienvenue au bloc operatoire ",
-            subtitle: "(Centre Hospitalier de Yaounde)",
+            title: "Notre bloc operatoire ",
+            subtitle: "(Équipe chirurgicale hautement qualifiée)",
             buttonType: "secondary",
             buttonText: "À propos de nous"
         }
@@ -229,6 +379,16 @@
     updateSlide();
     startAutoPlay();
 </script>
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -961,6 +1121,8 @@
 
 
 
+
+
     <!-- Témoignages des patients -->
     <div class="testimonials-section">
         <div class="section-header">
@@ -973,28 +1135,112 @@
             <button class="services-button">Nos Services</button>
         </div>
 
-        <div class="testimonial-card">
-            <div class="testimonial-image">
-                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=400&fit=crop" 
-                     alt="Simone KETCHA"
-                     class="profile-image">
+        <div class="testimonials-carousel">
+            <!-- Témoignage 1 -->
+            <div class="testimonial-card">
+                <div class="testimonial-image">
+                    <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=400&fit=crop" 
+                         alt="Simone KETCHA"
+                         class="profile-image">
+                </div>
+
+                <div class="testimonial-content">
+                    <div class="quote-icon"></div>
+                    <p class="testimonial-text">
+                        Je devais faires des prélèvements pour des examens et malgré ma phobie des injection, l'équipe médicale a réussi à me donner confiance
+                    </p>
+                    <p class="testimonial-author">Simone KETCHA</p>
+                </div>
+
+                <div class="testimonial-counter">
+                    <span class="counter-number">01</span>
+                    <div class="counter-divider"></div>
+                    <div class="counter-scroll"></div>
+                </div>
             </div>
 
-            <div class="testimonial-content">
-                <div class="quote-icon"></div>
-                <p class="testimonial-text">
-                    Je devais faires des prélèvements pour des examens et malgré ma phobie des injection, l'équipe médicale a réussi à me donner confiance
-                </p>
-                <p class="testimonial-author">Simone KETCHA</p>
+            <!-- Témoignage 2 -->
+            <div class="testimonial-card">
+                <div class="testimonial-image">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop" 
+                         alt="Jean DUPONT"
+                         class="profile-image">
+                </div>
+
+                <div class="testimonial-content">
+                    <div class="quote-icon"></div>
+                    <p class="testimonial-text">
+                        L'équipe médicale très professionnelle et à l'écoute. Les installations modernes et propres. Un excellent suivi post-traitement.
+                    </p>
+                    <p class="testimonial-author">Jean DUPONT</p>
+                </div>
+
+                <div class="testimonial-counter">
+                    <span class="counter-number">02</span>
+                    <div class="counter-divider"></div>
+                    <div class="counter-scroll"></div>
+                </div>
             </div>
 
-            <div class="testimonial-counter">
-                <span class="counter-number">03</span>
-                <div class="counter-divider"></div>
-                <div class="counter-scroll"></div>
+            <!-- Témoignage 3 -->
+            <div class="testimonial-card">
+                <div class="testimonial-image">
+                    <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=400&fit=crop" 
+                         alt="Marie SCHMIDT"
+                         class="profile-image">
+                </div>
+
+                <div class="testimonial-content">
+                    <div class="quote-icon"></div>
+                    <p class="testimonial-text">
+                        Services remarquables, médecins compétents et attentionnés. Je recommande vivement ce centre hospitalier à tous mes proches.
+                    </p>
+                    <p class="testimonial-author">Marie SCHMIDT</p>
+                </div>
+
+                <div class="testimonial-counter">
+                    <span class="counter-number">03</span>
+                    <div class="counter-divider"></div>
+                    <div class="counter-scroll"></div>
+                </div>
             </div>
         </div>
     </div>
+
+    <script>
+        let testimonialIndex = 0;
+        const testimonialCards = document.querySelectorAll('.testimonials-carousel .testimonial-card');
+        let testimonialInterval;
+
+        function showTestimonial(index) {
+            testimonialCards.forEach((card, i) => {
+                card.classList.remove('active');
+                if (i === index) {
+                    card.classList.add('active');
+                }
+            });
+        }
+
+        function nextTestimonial() {
+            testimonialIndex = (testimonialIndex + 1) % testimonialCards.length;
+            showTestimonial(testimonialIndex);
+        }
+
+        function startTestimonialAutoPlay() {
+            testimonialInterval = setInterval(nextTestimonial, 6000);
+        }
+
+        function stopTestimonialAutoPlay() {
+            clearInterval(testimonialInterval);
+        }
+
+        showTestimonial(0);
+        startTestimonialAutoPlay();
+
+        // Pause au survol
+        document.querySelector('.testimonials-carousel').addEventListener('mouseenter', stopTestimonialAutoPlay);
+        document.querySelector('.testimonials-carousel').addEventListener('mouseleave', startTestimonialAutoPlay);
+    </script>
 
 
 
@@ -1312,66 +1558,48 @@
 
 
 
-
-
-
-
-
-
-
     <!-- Notre équipe -->
- <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #f8f9fa;
-            padding: 60px 20px;
-        }
-
+    <style>
         .team-section {
-            max-width: 1200px;
-            margin: 60px auto; /* espace en haut et en bas pour meilleure visibilité */
+            max-inline-size: 1200px;
+            margin: 60px auto;
+            padding: 0 clamp(15px, 5vw, 40px);
         }
 
         .team-header {
             text-align: center;
-            margin-bottom: 50px;
+            margin-block-end: 50px;
         }
 
         .team-header h2 {
-            font-size: 32px;
+            font-size: clamp(24px, 6vw, 32px);
             font-weight: 700;
             color: #1a1a1a;
-            margin-bottom: 15px;
+            margin-block-end: 15px;
             text-transform: uppercase;
             letter-spacing: 1px;
         }
 
         .team-header .underline {
-            width: 60px;
-            height: 3px;
+            inline-size: 60px;
+            block-size: 3px;
             background: #00bcd4;
             margin: 0 auto 25px;
         }
 
         .team-header p {
-            font-size: 15px;
+            font-size: clamp(13px, 3vw, 15px);
             color: #666;
             line-height: 1.6;
-            max-width: 600px;
+            max-inline-size: 600px;
             margin: 0 auto;
         }
 
         .team-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 25px;
-            margin-bottom: 45px;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: clamp(15px, 4vw, 25px);
+            margin-block-end: 45px;
         }
 
         .member-card {
@@ -1397,8 +1625,8 @@
         }
 
         .member-avatar {
-            width: 100%;
-            height: 280px;
+            inline-size: 100%;
+            block-size: clamp(250px, 60vw, 280px);
             background: linear-gradient(180deg, #b8d9e8 0%, #a8cfe0 100%);
             display: flex;
             align-items: center;
@@ -1407,160 +1635,155 @@
         }
 
         .avatar {
-            width: 160px;
-            height: 220px;
+            inline-size: clamp(140px, 35vw, 160px);
+            block-size: clamp(180px, 50vw, 220px);
             position: relative;
         }
 
-        /* Tête */
         .avatar-head {
-            width: 70px;
-            height: 85px;
+            inline-size: clamp(60px, 15vw, 70px);
+            block-size: clamp(75px, 20vw, 85px);
             background: #c0c0c0;
             border-radius: 50% 50% 45% 45%;
             position: absolute;
-            top: 15px;
-            left: 50%;
+            inset-block-start: 15px;
+            inset-inline-start: 50%;
             transform: translateX(-50%);
             z-index: 2;
         }
 
-        /* Cheveux */
         .avatar-hair {
-            width: 75px;
-            height: 55px;
+            inline-size: clamp(65px, 17vw, 75px);
+            block-size: clamp(45px, 12vw, 55px);
             background: #5a4a3a;
             border-radius: 50% 50% 0 0;
             position: absolute;
-            top: 10px;
-            left: 50%;
+            inset-block-start: 10px;
+            inset-inline-start: 50%;
             transform: translateX(-50%);
             z-index: 3;
         }
 
         .avatar-hair::before {
             content: '';
-            width: 30px;
-            height: 40px;
+            inline-size: 30px;
+            block-size: 40px;
             background: #5a4a3a;
             border-radius: 0 0 50% 0;
             position: absolute;
-            bottom: 0;
-            left: -5px;
+            inset-block-end: 0;
+            inset-inline-start: -5px;
         }
 
         .avatar-hair::after {
             content: '';
-            width: 30px;
-            height: 40px;
+            inline-size: 30px;
+            block-size: 40px;
             background: #5a4a3a;
             border-radius: 0 0 0 50%;
             position: absolute;
-            bottom: 0;
-            right: -5px;
+            inset-block-end: 0;
+            inset-inline-end: -5px;
         }
 
-        /* Corps - Blouse blanche */
         .avatar-body {
-            width: 140px;
-            height: 120px;
+            inline-size: clamp(120px, 30vw, 140px);
+            block-size: clamp(100px, 28vw, 120px);
             background: white;
             position: absolute;
-            bottom: 0;
-            left: 50%;
+            inset-block-end: 0;
+            inset-inline-start: 50%;
             transform: translateX(-50%);
             clip-path: polygon(20% 0%, 80% 0%, 100% 100%, 0% 100%);
         }
 
-        /* Col intérieur turquoise */
         .avatar-collar {
-            width: 50px;
-            height: 60px;
+            inline-size: clamp(40px, 10vw, 50px);
+            block-size: clamp(50px, 14vw, 60px);
             background: #5dbdce;
             position: absolute;
-            top: 95px;
-            left: 50%;
+            inset-block-start: 95px;
+            inset-inline-start: 50%;
             transform: translateX(-50%);
             clip-path: polygon(30% 0%, 70% 0%, 100% 100%, 0% 100%);
             z-index: 1;
         }
 
-        /* Stéthoscope */
         .stethoscope {
             position: absolute;
-            top: 105px;
-            right: 25px;
+            inset-block-start: 105px;
+            inset-inline-end: clamp(15px, 4vw, 25px);
             z-index: 4;
         }
 
         .stethoscope-tube {
-            width: 2px;
-            height: 35px;
+            inline-size: 2px;
+            block-size: clamp(25px, 7vw, 35px);
             background: #333;
             position: relative;
-            left: 8px;
+            inset-inline-start: 8px;
         }
 
         .stethoscope-head {
-            width: 16px;
-            height: 16px;
+            inline-size: clamp(12px, 3vw, 16px);
+            block-size: clamp(12px, 3vw, 16px);
             background: #333;
             border-radius: 50%;
             border: 2px solid #333;
         }
 
-        /* Logo vert sur la blouse */
         .avatar-badge {
-            width: 30px;
-            height: 30px;
+            inline-size: clamp(24px, 6vw, 30px);
+            block-size: clamp(24px, 6vw, 30px);
             background: #4caf50;
             border-radius: 50%;
             position: absolute;
-            top: 110px;
-            left: 50%;
+            inset-block-start: 110px;
+            inset-inline-start: 50%;
             transform: translateX(-50%);
             z-index: 5;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 18px;
+            font-size: clamp(14px, 3vw, 18px);
             color: white;
         }
 
         .member-details {
-            padding: 25px 20px;
+            padding: clamp(15px, 4vw, 25px);
         }
 
         .member-details h3 {
-            font-size: 16px;
+            font-size: clamp(13px, 2.5vw, 16px);
             font-weight: 700;
             color: #4caf50;
-            margin-bottom: 5px;
+            margin-block-end: 5px;
             text-transform: uppercase;
         }
 
         .member-details p {
-            font-size: 13px;
+            font-size: clamp(11px, 2vw, 13px);
             color: #666;
             font-weight: 400;
         }
 
         .team__view-all {
-            display: inline-block;
+            display: block;
             margin: 0 auto;
             background: #4caf50;
             color: white;
             border: none;
-            padding: 14px 35px;
-            font-size: 14px;
+            padding: clamp(10px, 2vw, 14px) clamp(20px, 5vw, 35px);
+            font-size: clamp(12px, 2vw, 14px);
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
             text-transform: uppercase;
             letter-spacing: 0.5px;
             text-decoration: none;
-            display: block;
             text-align: center;
+            max-width: 100%;
+            width: fit-content;
         }
 
         .team__view-all:hover {
@@ -1570,7 +1793,7 @@
             text-decoration: none;
         }
 
-        @media (max-width: 1024px) {
+        @media (max-width: 1200px) {
             .team-grid {
                 grid-template-columns: repeat(3, 1fr);
             }
@@ -1579,41 +1802,40 @@
         @media (max-width: 768px) {
             .team-grid {
                 grid-template-columns: repeat(2, 1fr);
-                gap: 20px;
+                gap: clamp(12px, 3vw, 20px);
             }
 
-            .team-header h2 {
-                font-size: 26px;
+            .team-section {
+                margin: 40px auto;
             }
 
-            .member-avatar {
-                height: 250px;
-            }
-
-            .avatar {
-                width: 140px;
-                height: 200px;
+            .team-header {
+                margin-block-end: 30px;
             }
         }
 
         @media (max-width: 480px) {
             .team-grid {
                 grid-template-columns: 1fr;
-                gap: 25px;
+                gap: clamp(15px, 5vw, 25px);
             }
 
-            .member-avatar {
-                height: 280px;
+            .team-section {
+                margin: 30px auto;
+                padding: 0 clamp(10px, 3vw, 20px);
             }
 
-            .avatar {
-                width: 160px;
-                height: 220px;
+            .team-header {
+                margin-block-end: 25px;
+            }
+
+            .team-header h2 {
+                margin-block-end: 10px;
             }
         }
     </style>
-</head>
 
+    <!-- Notre équipe -->
     <div class="team-section">
         <div class="team-header">
             <h2>Nos Spécialistes</h2>
