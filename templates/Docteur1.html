@@ -42,46 +42,52 @@
             background-position: center;
             color: white;
             text-align: center;
-            padding: 70px 20px;            
-            min-height: 250px;            
-            width: 2000px;
-            margin: 0 auto;
-            margin-left: -270px; /* décale l'en-tête vers la gauche */
+            padding: clamp(40px, 8vw, 70px) clamp(15px, 5vw, 40px);            
+            min-height: auto;            
+            width: 100%;
+            margin: 0;
             position: relative;
         }
 
         .doctor-header h1 {
-            font-size: 32px;
+            font-size: clamp(24px, 6vw, 40px);
             font-weight: 600;
             letter-spacing: 0.5px;
+            max-width: 100%;
+            word-wrap: break-word;
         }
 
         /* Container principal */
         .doctor-container {
-            max-width: 1250px;
-            margin: -30px auto 0;
+            max-width: 100%;
+            width: 100%;
+            margin: clamp(-20px, -3vw, -30px) auto 0;
             background: white;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
             position: relative;
             z-index: 10;
+            overflow: hidden;
         }
 
         /* Section principale */
         .doctor-main {
             display: flex;
-            padding: 50px 40px;
-            gap: 40px;
+            padding: clamp(30px, 5vw, 50px) clamp(20px, 4vw, 40px);
+            gap: clamp(20px, 5vw, 40px);
             background: white;
         }
 
         /* Image du médecin */
         .doctor-profile {
             flex-shrink: 0;
+            display: flex;
+            justify-content: center;
+            width: auto;
         }
 
         .doctor-portrait {
-            width: 130px;
-            height: 180px;
+            width: clamp(100px, 20vw, 130px);
+            height: clamp(140px, 28vw, 180px);
             background: linear-gradient(135deg, #b8d9e8 0%, #8dc4d8 100%);
             border-radius: 4px;
             display: flex;
@@ -236,7 +242,7 @@
 
         .info-label {
             font-weight: 600;
-            font-size: 14px;
+            font-size: clamp(12px, 2.5vw, 14px);
             color: #333;
             margin-bottom: 3px;
         }
@@ -244,21 +250,21 @@
         .info-number {
             color: #00bcd4;
             font-weight: 600;
-            font-size: 14px;
+            font-size: clamp(12px, 2.5vw, 14px);
         }
 
         .info-value {
             color: #333;
-            font-size: 14px;
+            font-size: clamp(12px, 2.5vw, 14px);
         }
 
         .info-specialty {
-            font-size: 14px;
+            font-size: clamp(12px, 2.5vw, 14px);
             color: #333;
         }
 
         .schedule-item {
-            font-size: 14px;
+            font-size: clamp(12px, 2.5vw, 14px);
             margin-bottom: 3px;
         }
 
@@ -278,15 +284,17 @@
 
         .bio-title {
             font-weight: 600;
-            font-size: 14px;
+            font-size: clamp(12px, 2.5vw, 14px);
             color: #333;
             margin-bottom: 8px;
         }
 
         .bio-text {
-            font-size: 13px;
+            font-size: clamp(11px, 2.2vw, 13px);
             color: #666;
             line-height: 1.7;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
         }
 
         /* Bouton rendez-vous */
@@ -295,11 +303,11 @@
             background: #4caf50;
             color: white;
             border: none;
-            padding: 13px 40px;
-            font-size: 14px;
+            padding: clamp(10px, 2vw, 13px) clamp(25px, 5vw, 40px);
+            font-size: clamp(12px, 2.5vw, 14px);
             font-weight: 600;
             cursor: pointer;
-            margin: 40px auto;
+            margin: clamp(25px, 5vw, 40px) auto;
             border-radius: 3px;
             transition: all 0.3s ease;
             text-transform: capitalize;
@@ -316,90 +324,204 @@
             background: linear-gradient(135deg, #0099ff 0%, #0077cc 100%);
             color: white;
             position: relative;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 160%;
-            padding: 35px 30px;
+            width: 100%;
+            padding: clamp(25px, 5vw, 35px) clamp(15px, 4vw, 30px);
             display: flex;
             justify-content: space-around;
-            gap: 30px;
+            gap: clamp(15px, 5vw, 30px);
+            flex-wrap: wrap;
         }
 
         .footer-item {
             text-align: center;
             flex: 1;
+            min-width: 200px;
             max-width: 300px;
         }
 
         .footer-icon {
-            width: 55px;
-            height: 55px;
+            width: clamp(45px, 10vw, 55px);
+            height: clamp(45px, 10vw, 55px);
             background: rgba(255, 255, 255, 0.25);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 12px;
-            font-size: 26px;
+            margin: 0 auto clamp(8px, 2vw, 12px);
+            font-size: clamp(18px, 5vw, 26px);
         }
 
         .footer-text {
-            font-size: 13px;
+            font-size: clamp(11px, 2.2vw, 13px);
             line-height: 1.6;
         }
 
         .footer-text strong {
             display: block;
             margin-bottom: 4px;
-            font-size: 14px;
+            font-size: clamp(12px, 2.5vw, 14px);
             font-weight: 600;
+        }
+
+        @media (max-width: 1024px) {
+            .doctor-info {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .doctor-main {
+                gap: 30px;
+            }
         }
 
         @media (max-width: 768px) {
             .doctor-main {
                 flex-direction: column;
-                padding: 30px 20px;
+                padding: clamp(20px, 4vw, 30px);
             }
 
             .doctor-info {
                 grid-template-columns: 1fr;
-                gap: 20px;
+                gap: 15px;
+            }
+
+            .doctor-profile {
+                width: 100%;
+                justify-content: center;
             }
 
             .doctor-portrait {
-                margin: 0 auto;
+                width: 100px;
+                height: 140px;
             }
 
             .doctor-footer {
                 flex-direction: column;
-                padding: 30px 20px;
-                gap: 30px;
+                padding: clamp(20px, 4vw, 30px);
+                gap: clamp(15px, 3vw, 30px);
             }
 
             .footer-item {
                 max-width: 100%;
+                min-width: 100%;
             }
 
             .doctor-header h1 {
                 font-size: 24px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .doctor-header {
-                padding: 40px 15px;
-            }
-
-            .doctor-main {
-                padding: 25px 15px;
             }
 
             .appointment-btn {
                 width: 90%;
             }
         }
+
+        @media (max-width: 600px) {
+            .doctor-main {
+                padding: clamp(15px, 3vw, 25px);
+                gap: 20px;
+            }
+
+            .doctor-header {
+                padding: clamp(30px, 5vw, 50px) clamp(12px, 3vw, 20px);
+            }
+
+            .schedule-day {
+                display: block;
+                width: 100%;
+                margin-bottom: 3px;
+            }
+
+            .schedule-time {
+                display: block;
+            }
+
+            .appointment-btn {
+                width: 85%;
+                padding: 10px 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .doctor-header {
+                padding: clamp(25px, 4vw, 40px) clamp(10px, 3vw, 15px);
+            }
+
+            .doctor-header h1 {
+                font-size: 20px;
+                letter-spacing: 0px;
+            }
+
+            .doctor-main {
+                padding: clamp(12px, 2.5vw, 20px);
+                gap: 15px;
+            }
+
+            .doctor-portrait {
+                width: 85px;
+                height: 120px;
+            }
+
+            .doctor-info-left {
+                gap: 15px;
+            }
+
+            .appointment-btn {
+                width: 100%;
+                padding: 10px 15px;
+                font-size: 12px;
+            }
+
+            .doctor-footer {
+                padding: clamp(15px, 3vw, 25px);
+                gap: clamp(12px, 2vw, 20px);
+            }
+
+            .footer-item {
+                margin: 5px auto;
+            }
+
+            .schedule-day {
+                font-size: 12px;
+            }
+
+            .schedule-time {
+                font-size: 12px;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .doctor-header h1 {
+                font-size: 18px;
+                word-break: break-word;
+            }
+
+            .doctor-portrait {
+                width: 75px;
+                height: 100px;
+            }
+
+            .appointment-btn {
+                width: 100%;
+                padding: 8px 12px;
+                font-size: 11px;
+            }
+
+            .footer-icon {
+                width: 40px;
+                height: 40px;
+                font-size: 16px;
+            }
+
+            .footer-text strong {
+                font-size: 11px;
+            }
+
+            .footer-text {
+                font-size: 10px;
+            }
+        }
     </style>
-</head>
+
 
     <!-- Header -->
     <div class="doctor-header">

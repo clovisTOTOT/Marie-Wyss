@@ -82,7 +82,8 @@
                     <div class="doctor-name">Dr Mahamat Bello</div>
                     <div class="doctor-title">Medical Director</div>
                 </div>
-                <img src="{% static 'app/images/study.jpg' %}" alt="Dr Mahamat Bello" class="doctor-image">
+                 <img src="https://images.pexels.com/photos/1181519/pexels-photo-1181519.jpeg?auto=compress&cs=tinysrgb&w=400">
+                <!--<img src="{% static 'images/Hôpital Marie wyss  néonatalogie .jpg' %}" alt="Dr Mahamat Bello" class="doctor-image">-->
             </div>
 
             <div class="content-section">
@@ -288,42 +289,130 @@
 
 
 
-          <!-- temoignages des patients -->
 
-            
-    <div class="testimonials-section">
-        <div class="section-header">
-            <div class="section-title-wrapper">
-                <p class="section-subtitle">Témoignages</p>
-                <h2 class="section-title">
+    <!-- Témoignages des patients -->
+    <div class="testimonials">
+        <div class="testimonials__header">
+            <div class="testimonials__title-wrapper">
+                <p class="testimonials__subtitle">Témoignages</p>
+                <h2 class="testimonials__title">
                     Ce que disent <span class="highlight">Nos Patients</span>
                 </h2>
             </div>
-            <button class="services-button">Nos Services</button>
+            <button class="testimonials__btn">Nos Services</button>
         </div>
 
-        <div class="testimonial-card">
-            <div class="testimonial-image">
-                <img src="https://images.pexels.com/photos/1181519/pexels-photo-1181519.jpeg?auto=compress&cs=tinysrgb&w=400"
-                     alt="Simone KETCHA"
-                     class="profile-image">
+        <div class="testimonials__list">
+            <!-- Témoignage 1 -->
+            <div class="testimonials__card">
+                <div class="testimonials__image">
+                    <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=400&fit=crop" 
+                         alt="Simone KETCHA"
+                         class="testimonials__profile">
+                </div>
+
+                <div class="testimonials__content">
+                    <div class="testimonials__quote"></div>
+                    <p class="testimonials__text">
+                        Je devais faires des prélèvements pour des examens et malgré ma phobie des injection, l'équipe médicale a réussi à me donner confiance
+                    </p>
+                    <p class="testimonials__author">Simone KETCHA</p>
+                </div>
+
+                <div class="testimonials__badge">
+                    <span class="testimonials__badge-number">01</span>
+                    <div class="testimonials__badge-divider"></div>
+                    <div class="testimonials__badge-scroll"></div>
+                </div>
             </div>
 
-            <div class="testimonial-content">
-                <div class="quote-icon"></div>
-                <p class="testimonial-text">
-                    Je devais faires des prélèvements pour des examens et malgré ma phobie des injection, l'équipe médicale a réussi à me donner confiance
-                </p>
-                <p class="testimonial-author">Simone KETCHA</p>
+            <!-- Témoignage 2 -->
+            <div class="testimonials__card">
+                <div class="testimonials__image">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop" 
+                         alt="Jean DUPONT"
+                         class="testimonials__profile">
+                </div>
+
+                <div class="testimonials__content">
+                    <div class="testimonials__quote"></div>
+                    <p class="testimonials__text">
+                        L'équipe médicale très professionnelle et à l'écoute. Les installations modernes et propres. Un excellent suivi post-traitement.
+                    </p>
+                    <p class="testimonials__author">Jean DUPONT</p>
+                </div>
+
+                <div class="testimonials__badge">
+                    <span class="testimonials__badge-number">02</span>
+                    <div class="testimonials__badge-divider"></div>
+                    <div class="testimonials__badge-scroll"></div>
+                </div>
             </div>
 
-            <div class="testimonial-counter">
-                <span class="counter-number">03</span>
-                <div class="counter-divider"></div>
-                <div class="counter-scroll"></div>
+            <!-- Témoignage 3 -->
+            <div class="testimonials__card">
+                <div class="testimonials__image">
+                    <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=400&fit=crop" 
+                         alt="Marie SCHMIDT"
+                         class="testimonials__profile">
+                </div>
+
+                <div class="testimonials__content">
+                    <div class="testimonials__quote"></div>
+                    <p class="testimonials__text">
+                        Services remarquables, médecins compétents et attentionnés. Je recommande vivement ce centre hospitalier à tous mes proches.
+                    </p>
+                    <p class="testimonials__author">Marie SCHMIDT</p>
+                </div>
+
+                <div class="testimonials__badge">
+                    <span class="testimonials__badge-number">03</span>
+                    <div class="testimonials__badge-divider"></div>
+                    <div class="testimonials__badge-scroll"></div>
+                </div>
             </div>
         </div>
     </div>
+
+    <script>
+        let testimonialIndex = 0;
+        const testimonialCards = document.querySelectorAll('.testimonials__list .testimonials__card');
+        let testimonialInterval;
+
+        function showTestimonial(index) {
+            testimonialCards.forEach((card, i) => {
+                card.classList.remove('active');
+                if (i === index) {
+                    card.classList.add('active');
+                }
+            });
+        }
+
+        function nextTestimonial() {
+            testimonialIndex = (testimonialIndex + 1) % testimonialCards.length;
+            showTestimonial(testimonialIndex);
+        }
+
+        function startTestimonialAutoPlay() {
+            testimonialInterval = setInterval(nextTestimonial, 6000);
+        }
+
+        function stopTestimonialAutoPlay() {
+            clearInterval(testimonialInterval);
+        }
+
+        showTestimonial(0);
+        startTestimonialAutoPlay();
+
+        // Pause au survol
+        document.querySelector('.testimonials__list').addEventListener('mouseenter', stopTestimonialAutoPlay);
+        document.querySelector('.testimonials__list').addEventListener('mouseleave', startTestimonialAutoPlay);
+    </script>
+
+<style>
+    
+
+    </style>
 
 
 

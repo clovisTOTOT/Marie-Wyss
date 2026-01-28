@@ -1,952 +1,1000 @@
-{% load static %}
+<style>
+    * {
+        box-sizing: border-box;
+    }
 
-             <style>
- 
+    body {
+        font-family: 'Poppins', sans-serif;
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+    }
 
-        * {
-            box-sizing: border-box;
-        }
+    /* BARRE D'INFORMATION STICKY - MAINTENANT FIXE */
+    .info-bar {
+        background-color: #ffffff;
+        border-bottom: 1px solid #e5e5e5;
+        padding: 15px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        flex-wrap: wrap;
+        width: 100%;
+    }
 
-        body {
-            font-family: 'Poppins', sans-serif;
-            margin: 0;
-            padding: 0;
-        }
+    .info-bar-logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        flex-shrink: 0;
+    }
 
-        /* BARRE D'INFORMATION STICKY - MAINTENANT FIXE */
+    .info-bar-logo svg {
+        flex-shrink: 0;
+        width: 50px;
+        height: 50px;
+    }
+
+    .info-bar-content {
+        display: flex;
+        align-items: center;
+        gap: 30px;
+        flex: 1;
+        justify-content: flex-end;
+        min-width: 0;
+        flex-wrap: wrap;
+    }
+
+    .info-item {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        flex-shrink: 0;
+    }
+
+    .info-icon {
+        width: 40px;
+        height: 40px;
+        background-color: #7bc043;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+    }
+
+    .info-icon svg {
+        width: 20px;
+        height: 20px;
+        stroke: white;
+        fill: none;
+        stroke-width: 2;
+    }
+
+    .info-text {
+        display: flex;
+        flex-direction: column;
+        gap: 3px;
+        min-width: 0;
+    }
+
+    .info-label {
+        font-size: 14px;
+        font-weight: 600;
+        color: #333;
+        white-space: nowrap;
+    }
+
+    .info-value {
+        font-size: 13px;
+        color: #666;
+        font-weight: 400;
+        line-height: 1.4;
+    }
+
+    /* HEADER PRINCIPAL (qui disparaît au scroll) */
+    header {
+        background-color: #7bc043;
+        color: white;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        padding: 25px 20px;
+        gap: 20px;
+        position: fixed;
+        top: 80px;
+        left: 0;
+        right: 0;
+        z-index: 999;
+        transition: transform 0.3s ease, opacity 0.3s ease;
+        width: 100%;
+    }
+
+    header.hidden {
+        transform: translateY(-100%);
+    }
+
+    header.show {
+        transform: translateY(0);
+    }
+
+    .logo {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-size: 18px;
+        font-weight: 600;
+        flex-shrink: 0;
+        white-space: nowrap;
+    }
+
+    .logo img {
+        height: 35px;
+        width: auto;
+    }
+
+    /* MENU HAMBURGER - Caché par défaut sur desktop */
+    .hamburger {
+        display: none;
+        flex-direction: column;
+        cursor: pointer;
+        gap: 5px;
+        padding: 10px;
+        z-index: 1001;
+    }
+
+    .hamburger span {
+        width: 28px;
+        height: 3px;
+        background-color: white;
+        transition: all 0.3s ease;
+        border-radius: 2px;
+    }
+
+    .hamburger.active span:nth-child(1) {
+        transform: rotate(45deg) translate(8px, 8px);
+    }
+
+    .hamburger.active span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .hamburger.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(7px, -7px);
+    }
+
+    .navigation {
+        display: flex;
+        gap: 20px;
+        align-items: center;
+        justify-content: center;
+        flex: 1;
+        min-width: 300px;
+        flex-wrap: wrap;
+    }
+
+    .logo, .contact-info {
+        flex-shrink: 0;
+    }
+
+    .nav-item {
+        color: white;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 600;
+        position: relative;
+        transition: all 0.3s ease;
+        white-space: nowrap;
+    }
+
+    .nav-item:hover {
+        text-decoration: underline;
+    }
+
+    /* SERVICES DROPDOWN */
+    .services-dropdown {
+        position: relative;
+    }
+
+    .services-btn {
+        color: white;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        background: none;
+        border: none;
+        padding: 0;
+        transition: all 0.3s ease;
+        white-space: nowrap;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+
+    .services-btn:hover {
+        text-decoration: underline;
+    }
+
+    /* Flèche dropdown */
+    .services-btn::after {
+        content: '▼';
+        font-size: 10px;
+        transition: transform 0.3s ease;
+    }
+
+    .services-dropdown.active .services-btn::after {
+        transform: rotate(180deg);
+    }
+
+    .dropdown-content {
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        transform: translateX(-50%) translateY(-10px);
+        background-color: #fff;
+        min-width: 600px;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        padding: 30px 30px;
+        border-radius: 4px;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+        z-index: 1000;
+        margin-top: 10px;
+    }
+
+    .services-dropdown:hover .dropdown-content,
+    .services-dropdown.active .dropdown-content {
+        opacity: 1;
+        visibility: visible;
+        transform: translateX(-50%) translateY(0);
+    }
+
+    .dropdown-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+    }
+
+    .service-column {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .service-column h3 {
+        font-size: 15px;
+        font-weight: 600;
+        color: #333;
+        padding-bottom: 8px;
+        border-bottom: 2px solid #7bc043;
+        display: inline-block;
+        margin: 0;
+    }
+
+    .service-list {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .service-item {
+        font-size: 13px;
+        color: #555;
+        font-weight: 400;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        padding: 5px 0;
+    }
+
+    .service-item:hover {
+        color: #7bc043;
+        font-weight: 500;
+    }
+
+    .service-item.active {
+        color: #7bc043;
+        font-weight: 500;
+    }
+
+    .contact-info {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        flex-shrink: 0;
+    }
+
+    .phone-text {
+        text-align: right;
+        white-space: nowrap;
+    }
+
+    .phone-text p {
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.9);
+        margin: 0 0 3px 0;
+    }
+
+    .phone-text strong {
+        display: block;
+        font-size: 16px;
+        color: white;
+        font-weight: 600;
+        margin: 0;
+    }
+
+    .lang-switcher {
+        color: white;
+        cursor: pointer;
+        font-size: 13px;
+        font-weight: 500;
+        padding: 5px 10px;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        border-radius: 4px;
+        transition: all 0.3s ease;
+        white-space: nowrap;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+
+    .lang-switcher:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    /* Drapeau français */
+    .lang-switcher::before {
+        content: '🇫🇷';
+        font-size: 16px;
+    }
+
+    /* CONTENU DE LA PAGE */
+    .page-content {
+        padding: 40px 20px;
+        min-height: 200vh;
+        margin-top: 160px;
+    }
+
+    .page-content h1 {
+        font-size: 28px;
+        color: #333;
+        margin-bottom: 20px;
+    }
+
+    .page-content p {
+        font-size: 15px;
+        color: #666;
+        line-height: 1.8;
+        margin-bottom: 15px;
+    }
+
+    /* ========== MEDIA QUERIES RESPONSIVE ========== */
+
+    /* Extra Large Screens (1400px and up) */
+    @media (min-width: 1400px) {
         .info-bar {
-            background-color: #ffffff;
-            border-bottom: 1px solid #e5e5e5;
-            padding: 15px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-            flex-wrap: wrap;
-            width: 100%;
-        }
-
-        .info-bar-logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            flex-shrink: 0;
-        }
-
-        .info-bar-logo svg {
-            flex-shrink: 0;
-            width: 50px;
-            height: 50px;
+            padding: 20px 40px;
         }
 
         .info-bar-content {
-            display: flex;
-            align-items: center;
-            gap: 30px;
-            flex: 1;
-            justify-content: flex-end;
-            min-width: 0;
-            flex-wrap: wrap;
+            gap: 60px;
         }
 
-        .info-item {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            flex-shrink: 0;
+        header {
+            padding: 25px 50px;
+        }
+
+        .navigation {
+            gap: 36px;
+        }
+
+        .dropdown-content {
+            min-width: 900px;
+            padding: 40px 50px;
+        }
+
+        .dropdown-grid {
+            gap: 80px;
+        }
+
+        .phone-text strong {
+            font-size: 18px;
+        }
+
+        .info-label {
+            font-size: 14px;
+        }
+
+        .info-value {
+            font-size: 13px;
         }
 
         .info-icon {
             width: 40px;
             height: 40px;
-            background-color: #7bc043;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
         }
 
         .info-icon svg {
             width: 20px;
             height: 20px;
-            stroke: white;
-            fill: none;
-            stroke-width: 2;
-        }
-
-        .info-text {
-            display: flex;
-            flex-direction: column;
-            gap: 3px;
-            min-width: 0;
-        }
-
-        .info-label {
-            font-size: 14px;
-            font-weight: 600;
-            color: #333;
-            white-space: nowrap;
-        }
-
-        .info-value {
-            font-size: 13px;
-            color: #666;
-            font-weight: 400;
-            line-height: 1.4;
-        }
-
-        /* HEADER PRINCIPAL (qui disparaît au scroll) */
-        header {
-            background-color: #7bc043;
-            color: white;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            align-items: center;
-            padding: 25px 20px;
-            gap: 20px;
-            position: relative;
-            z-index: 999;
-            transition: transform 0.3s ease, opacity 0.3s ease;
-            margin-top: 80px;
-            width: 100%;
-        }
-
-        header.hidden {
-            transform: translateY(-100%);
-            opacity: 0;
-            pointer-events: none;
         }
 
         .logo {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-size: 18px;
-            font-weight: 600;
-            flex-shrink: 0;
-            white-space: nowrap;
+            font-size: 20px;
         }
 
-        .logo img {
-            height: 35px;
-            width: auto;
+        .nav-item, .services-btn {
+            font-size: 15px;
+        }
+    }
+
+    /* Large Screens (1024px to 1399px) */
+    @media (max-width: 1399px) and (min-width: 1024px) {
+        .info-bar {
+            padding: 18px 30px;
         }
 
-        .navigation {
-            display: flex;
-            gap: 20px;
-            align-items: center;
-            justify-content: center;
-            flex: 1;
-            min-width: 300px;
-            flex-wrap: wrap;
-        }
-
-        .logo, .contact-info {
-            flex-shrink: 0;
-        }
-
-        .nav-item {
-            color: white;
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 600;
-            position: relative;
-            transition: all 0.3s ease;
-            white-space: nowrap;
-        }
-
-        .nav-item:hover {
-            text-decoration: underline;
-        }
-
-        /* SERVICES DROPDOWN */
-        .services-dropdown {
-            position: relative;
-        }
-
-        .services-btn {
-            color: white;
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 600;
-            cursor: pointer;
-            background: none;
-            border: none;
-            padding: 0;
-            transition: all 0.3s ease;
-            white-space: nowrap;
-        }
-
-        .services-btn:hover {
-            text-decoration: underline;
-        }
-
-        .dropdown-content {
-            position: absolute;
-            top: 100%;
-            left: 50%;
-            transform: translateX(-50%) translateY(-10px);
-            background-color: #fff;
-            min-width: 600px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-            padding: 30px 30px;
-            border-radius: 4px;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-            z-index: 1000;
-            margin-top: 10px;
-        }
-
-        .services-dropdown:hover .dropdown-content,
-        .services-dropdown.active .dropdown-content {
-            opacity: 1;
-            visibility: visible;
-            transform: translateX(-50%) translateY(0);
-        }
-
-        .dropdown-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
+        .info-bar-content {
             gap: 40px;
         }
 
-        .service-column {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
+        header {
+            padding: 22px 35px;
         }
 
-        .service-column h3 {
-            font-size: 15px;
-            font-weight: 600;
-            color: #333;
-            padding-bottom: 8px;
-            border-bottom: 2px solid #7bc043;
-            display: inline-block;
-            margin: 0;
+        .navigation {
+            gap: 28px;
         }
 
-        .service-list {
-            display: flex;
-            flex-direction: column;
+        .dropdown-content {
+            min-width: 800px;
+            padding: 35px 40px;
+        }
+
+        .dropdown-grid {
+            gap: 60px;
+        }
+
+        .logo {
+            font-size: 18px;
+        }
+
+        .nav-item, .services-btn {
+            font-size: 14px;
+        }
+
+        .phone-text strong {
+            font-size: 16px;
+        }
+
+        .info-label {
+            font-size: 13px;
+        }
+
+        .info-value {
+            font-size: 12px;
+        }
+
+        .info-item {
             gap: 10px;
         }
 
-        .service-item {
-            font-size: 13px;
-            color: #555;
-            font-weight: 400;
+        .info-icon {
+            width: 36px;
+            height: 36px;
+        }
+
+        .info-icon svg {
+            width: 18px;
+            height: 18px;
+        }
+    }
+
+    /* Medium Tablets and Mobile - MENU HAMBURGER */
+    @media (max-width: 1023px) {
+        body {
+            padding-top: 0;
+        }
+
+        /* CACHER LA BARRE D'INFORMATION SUR MOBILE */
+        .info-bar {
+            display: none;
+        }
+
+        /* Afficher le hamburger */
+        .hamburger {
+            display: flex;
+        }
+
+        header {
+            flex-direction: row;
+            justify-content: space-between;
+            padding: 20px 25px;
+            gap: 15px;
+            top: 0;
+            position: fixed;
+        }
+
+        .logo {
+            flex: 1;
+            justify-content: flex-start;
+            font-size: 16px;
+            order: 1;
+        }
+
+        /* Cacher le contact-info dans le header sur mobile */
+        .contact-info {
+            display: none;
+        }
+
+        /* Navigation en sidebar - GAUCHE */
+        .navigation {
+            position: fixed;
+            top: 0;
+            left: -100%;
+            height: 100vh;
+            width: 320px;
+            max-width: 85vw;
+            background-color: white;
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 80px 30px 30px 30px;
+            gap: 0;
+            min-width: auto;
+            transition: left 0.3s ease;
+            box-shadow: 5px 0 15px rgba(0, 0, 0, 0.1);
+            overflow-y: auto;
+            z-index: 1000;
+            order: 3;
+        }
+
+        .navigation.active {
+            left: 0;
+        }
+
+        /* Logo dans la sidebar */
+        .navigation::before {
+            content: 'Hôpital Marie Wyss';
+            position: absolute;
+            top: 20px;
+            left: 30px;
+            font-size: 18px;
+            font-weight: 700;
+            color: #7bc043;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* Bouton X pour fermer */
+        .navigation::after {
+            content: '✕';
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 28px;
+            color: #333;
             cursor: pointer;
-            transition: all 0.3s ease;
-            padding: 5px 0;
+            font-weight: 300;
+        }
+
+        .nav-item {
+            width: 100%;
+            color: #333;
+            font-size: 16px;
+            padding: 18px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .services-dropdown {
+            width: 100%;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .services-btn {
+            color: #333;
+            width: 100%;
+            justify-content: space-between;
+            font-size: 16px;
+            padding: 18px 0;
+        }
+
+        .services-btn::after {
+            margin-left: auto;
+        }
+
+        /* Dropdown dans la sidebar - LISTE SIMPLE */
+        .dropdown-content {
+            position: static;
+            transform: none;
+            min-width: auto;
+            width: 100%;
+            padding: 0;
+            box-shadow: none;
+            margin-top: 0;
+            background-color: transparent;
+            border-radius: 0;
+        }
+
+        .services-dropdown .dropdown-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .services-dropdown.active .dropdown-content {
+            max-height: 600px;
+        }
+
+        .dropdown-grid {
+            grid-template-columns: 1fr;
+            gap: 0;
+        }
+
+        /* SUPPRESSION DES TITRES - JUSTE LA LISTE */
+        .service-column {
+            gap: 0;
+        }
+
+        .service-column h3 {
+            display: none;
+        }
+
+        .service-list {
+            max-height: none;
+            overflow: visible;
+            padding-left: 0;
+            gap: 0;
+        }
+
+        /* Les items de service deviennent des liens normaux */
+        .service-item {
+            font-size: 15px;
+            padding: 16px 0 16px 20px;
+            border-bottom: 1px solid #f0f0f0;
+            color: #333;
+            font-weight: 400;
         }
 
         .service-item:hover {
             color: #7bc043;
-            font-weight: 500;
+            background-color: #f9f9f9;
         }
 
-        .service-item.active {
-            color: #7bc043;
-            font-weight: 500;
-        }
-
-        .contact-info {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            flex-shrink: 0;
-        }
-
-        .phone-text {
-            text-align: right;
-            white-space: nowrap;
-        }
-
-        .phone-text p {
-            font-size: 12px;
-            color: rgba(255, 255, 255, 0.9);
-            margin: 0 0 3px 0;
-        }
-
-        .phone-text strong {
-            display: block;
-            font-size: 16px;
-            color: white;
-            font-weight: 600;
-            margin: 0;
-        }
-
+        /* Lang switcher dans sidebar */
         .lang-switcher {
-            color: white;
-            cursor: pointer;
-            font-size: 13px;
-            font-weight: 500;
-            padding: 5px 10px;
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            width: 100%;
+            display: flex;
+            justify-content: flex-start;
+            color: #333;
+            border: 1px solid #e0e0e0;
+            padding: 12px;
             border-radius: 4px;
+            margin-top: 10px;
+        }
+
+        .lang-switcher::before {
+            content: '🇫🇷';
+        }
+
+        /* Overlay pour fermer le menu */
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            visibility: hidden;
             transition: all 0.3s ease;
-            white-space: nowrap;
+            z-index: 998;
         }
 
-        .lang-switcher:hover {
-            background-color: rgba(255, 255, 255, 0.1);
+        body.menu-open::after {
+            opacity: 1;
+            visibility: visible;
         }
 
-        /* CONTENU DE LA PAGE */
+        body.menu-open {
+            overflow: hidden;
+        }
+
         .page-content {
-            padding: 40px 20px;
-            min-height: 200vh;
-            margin-top: 80px;
+            margin-top: 70px;
+            padding: 30px 15px;
         }
 
         .page-content h1 {
-            font-size: 28px;
-            color: #333;
-            margin-bottom: 20px;
+            font-size: 24px;
         }
 
         .page-content p {
+            font-size: 14px;
+        }
+    }
+
+    /* Small Phones (480px to 767px) */
+    @media (max-width: 767px) and (min-width: 480px) {
+        header {
+            padding: 15px;
+        }
+
+        .logo {
             font-size: 15px;
-            color: #666;
-            line-height: 1.8;
-            margin-bottom: 15px;
         }
 
-        /* ========== MEDIA QUERIES RESPONSIVE ========== */
-
-        /* Extra Large Screens (1400px and up) */
-        @media (min-width: 1400px) {
-            .info-bar {
-                padding: 20px 40px;
-            }
-
-            .info-bar-content {
-                gap: 60px;
-            }
-
-            header {
-                padding: 25px 50px;
-            }
-
-            .navigation {
-                gap: 36px;
-            }
-
-            .dropdown-content {
-                min-width: 900px;
-                padding: 40px 50px;
-            }
-
-            .dropdown-grid {
-                gap: 80px;
-            }
-
-            .phone-text strong {
-                font-size: 18px;
-            }
-
-            .info-label {
-                font-size: 14px;
-            }
-
-            .info-value {
-                font-size: 13px;
-            }
-
-            .info-icon {
-                width: 40px;
-                height: 40px;
-            }
-
-            .info-icon svg {
-                width: 20px;
-                height: 20px;
-            }
-
-            .logo {
-                font-size: 20px;
-            }
-
-            .nav-item, .services-btn {
-                font-size: 15px;
-            }
+        .hamburger span {
+            width: 25px;
         }
 
-        /* Large Screens (1024px to 1399px) */
-        @media (max-width: 1399px) and (min-width: 1024px) {
-            .info-bar {
-                padding: 18px 30px;
-            }
-
-            .info-bar-content {
-                gap: 40px;
-            }
-
-            header {
-                padding: 22px 35px;
-            }
-
-            .navigation {
-                gap: 28px;
-            }
-
-            .dropdown-content {
-                min-width: 800px;
-                padding: 35px 40px;
-            }
-
-            .dropdown-grid {
-                gap: 60px;
-            }
-
-            .logo {
-                font-size: 18px;
-            }
-
-            .nav-item, .services-btn {
-                font-size: 14px;
-            }
-
-            .phone-text strong {
-                font-size: 16px;
-            }
-
-            .info-label {
-                font-size: 13px;
-            }
-
-            .info-value {
-                font-size: 12px;
-            }
-
-            .info-item {
-                gap: 10px;
-            }
-
-            .info-icon {
-                width: 36px;
-                height: 36px;
-            }
-
-            .info-icon svg {
-                width: 18px;
-                height: 18px;
-            }
+        .navigation {
+            width: 280px;
+            padding: 70px 25px 25px 25px;
         }
 
-        /* Medium Tablets (768px to 1023px) */
-        @media (max-width: 1023px) and (min-width: 768px) {
-            body {
-                padding-top: 0;
-            }
-
-            .info-bar {
-                padding: 15px 20px;
-                gap: 15px;
-            }
-
-            .info-bar-logo {
-                order: 1;
-                width: 100%;
-                justify-content: center;
-            }
-
-            .info-bar-content {
-                order: 2;
-                width: 100%;
-                gap: 20px;
-                justify-content: space-around;
-                flex-wrap: wrap;
-            }
-
-            .info-item {
-                flex: 0 1 calc(50% - 10px);
-                justify-content: flex-start;
-                gap: 10px;
-                min-width: 200px;
-            }
-
-            header {
-                flex-direction: column;
-                padding: 20px 25px;
-                gap: 15px;
-                margin-top: 150px;
-            }
-
-            .logo {
-                width: 100%;
-                justify-content: center;
-                font-size: 16px;
-                order: 1;
-            }
-
-            .navigation {
-                width: 100%;
-                flex: 1;
-                order: 2;
-                gap: 15px;
-                min-width: auto;
-            }
-
-            .contact-info {
-                width: 100%;
-                justify-content: center;
-                order: 3;
-            }
-
-            .phone-text {
-                text-align: center;
-            }
-
-            .phone-text p {
-                font-size: 11px;
-            }
-
-            .phone-text strong {
-                font-size: 14px;
-            }
-
-            .dropdown-content {
-                min-width: 90vw;
-                left: 50%;
-                transform: translateX(-50%) translateY(-10px);
-                padding: 25px 20px;
-            }
-
-            .dropdown-grid {
-                grid-template-columns: 1fr;
-                gap: 30px;
-            }
-
-            .nav-item, .services-btn {
-                font-size: 13px;
-            }
-
-            .page-content {
-                margin-top: 0;
-                padding: 30px 15px;
-            }
-
-            .page-content h1 {
-                font-size: 24px;
-            }
-
-            .page-content p {
-                font-size: 14px;
-            }
+        .nav-item,
+        .services-btn {
+            font-size: 15px;
+            padding: 15px 0;
         }
 
-        /* Small Phones (480px to 767px) */
-        @media (max-width: 767px) and (min-width: 480px) {
-            body {
-                padding-top: 0;
-            }
-
-            .info-bar {
-                flex-direction: column;
-                padding: 12px 15px;
-                gap: 12px;
-            }
-
-            .info-bar-logo {
-                width: 100%;
-                justify-content: center;
-            }
-
-            .info-bar-logo svg {
-                width: 45px;
-                height: 45px;
-            }
-
-            .info-bar-content {
-                flex-direction: column;
-                width: 100%;
-                gap: 12px;
-                align-items: stretch;
-            }
-
-            .info-item {
-                flex: 1;
-                width: 100%;
-                justify-content: flex-start;
-            }
-
-            .info-icon {
-                width: 32px;
-                height: 32px;
-            }
-
-            .info-icon svg {
-                width: 16px;
-                height: 16px;
-            }
-
-            .info-label {
-                font-size: 11px;
-            }
-
-            .info-value {
-                font-size: 10px;
-            }
-
-            header {
-                flex-direction: column;
-                padding: 15px;
-                gap: 12px;
-                margin-top: 130px;
-            }
-
-            .logo {
-                width: 100%;
-                justify-content: center;
-                font-size: 15px;
-                order: 1;
-            }
-
-            .navigation {
-                width: 100%;
-                flex: 1;
-                order: 2;
-                gap: 10px;
-                min-width: auto;
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-
-            .contact-info {
-                width: 100%;
-                justify-content: center;
-                order: 3;
-            }
-
-            .phone-text {
-                text-align: center;
-            }
-
-            .phone-text p {
-                font-size: 10px;
-                margin: 0;
-            }
-
-            .phone-text strong {
-                font-size: 13px;
-            }
-
-            .nav-item, .services-btn {
-                font-size: 12px;
-                white-space: normal;
-            }
-
-            .lang-switcher {
-                font-size: 11px;
-                padding: 4px 8px;
-            }
-
-            .dropdown-content {
-                min-width: 95vw;
-                left: 50%;
-                transform: translateX(-50%) translateY(-10px);
-                padding: 20px 15px;
-                position: fixed;
-                top: auto;
-                bottom: auto;
-            }
-
-            .dropdown-grid {
-                grid-template-columns: 1fr;
-                gap: 25px;
-            }
-
-            .service-column h3 {
-                font-size: 14px;
-            }
-
-            .service-item {
-                font-size: 12px;
-            }
-
-            .page-content {
-                margin-top: 0;
-                padding: 20px 12px;
-            }
-
-            .page-content h1 {
-                font-size: 22px;
-            }
-
-            .page-content p {
-                font-size: 13px;
-            }
+        .service-item {
+            font-size: 14px;
+            padding: 14px 0 14px 20px;
         }
 
-        /* Extra Small Phones (less than 480px) */
-        @media (max-width: 479px) {
-            body {
-                padding-top: 0;
-            }
-
-            .info-bar {
-                flex-direction: column;
-                padding: 10px;
-                gap: 10px;
-            }
-
-            .info-bar-logo {
-                width: 100%;
-                justify-content: center;
-            }
-
-            .info-bar-logo svg {
-                width: 40px;
-                height: 40px;
-            }
-
-            .info-bar-content {
-                flex-direction: column;
-                width: 100%;
-                gap: 10px;
-                align-items: stretch;
-            }
-
-            .info-item {
-                flex: 1;
-                width: 100%;
-                justify-content: flex-start;
-                gap: 8px;
-            }
-
-            .info-icon {
-                width: 28px;
-                height: 28px;
-            }
-
-            .info-icon svg {
-                width: 14px;
-                height: 14px;
-            }
-
-            .info-label {
-                font-size: 10px;
-            }
-
-            .info-value {
-                font-size: 9px;
-                line-height: 1.3;
-            }
-
-            header {
-                flex-direction: column;
-                padding: 12px;
-                gap: 10px;
-                margin-top: 120px;
-            }
-
-            .logo {
-                width: 100%;
-                justify-content: center;
-                font-size: 13px;
-                order: 1;
-            }
-
-            .logo img {
-                height: 30px;
-            }
-
-            .navigation {
-                width: 100%;
-                flex: 1;
-                order: 2;
-                gap: 8px;
-                min-width: auto;
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-
-            .contact-info {
-                width: 100%;
-                justify-content: center;
-                order: 3;
-                gap: 10px;
-            }
-
-            .phone-text {
-                text-align: center;
-            }
-
-            .phone-text p {
-                font-size: 9px;
-                margin: 0;
-            }
-
-            .phone-text strong {
-                font-size: 12px;
-            }
-
-            .nav-item, .services-btn {
-                font-size: 11px;
-                white-space: normal;
-            }
-
-            .lang-switcher {
-                font-size: 10px;
-                padding: 3px 6px;
-            }
-
-            .dropdown-content {
-                min-width: 98vw;
-                left: 50%;
-                transform: translateX(-50%) translateY(-10px);
-                padding: 15px 10px;
-                position: fixed;
-            }
-
-            .dropdown-grid {
-                grid-template-columns: 1fr;
-                gap: 20px;
-            }
-
-            .service-column h3 {
-                font-size: 13px;
-            }
-
-            .service-item {
-                font-size: 11px;
-            }
-
-            .page-content {
-                margin-top: 0;
-                padding: 15px 10px;
-            }
-
-            .page-content h1 {
-                font-size: 18px;
-            }
-
-            .page-content p {
-                font-size: 12px;
-            }
+        .page-content {
+            padding: 20px 12px;
         }
-    </style>
-</head>
 
-    <!-- BARRE D'INFORMATION FIXE -->
-    <div class="info-bar">
-        <div class="info-bar-logo">
-            <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="30" cy="30" r="28" fill="#7bc043"/>
-                <path d="M30 15v30M15 30h30" stroke="white" stroke-width="4" stroke-linecap="round"/>
-            </svg>
+        .page-content h1 {
+            font-size: 22px;
+        }
+
+        .page-content p {
+            font-size: 13px;
+        }
+    }
+
+    /* Extra Small Phones (less than 480px) */
+    @media (max-width: 479px) {
+        header {
+            padding: 12px;
+        }
+
+        .logo {
+            font-size: 13px;
+        }
+
+        .logo img {
+            height: 30px;
+        }
+
+        .hamburger span {
+            width: 22px;
+            height: 2.5px;
+        }
+
+        .navigation {
+            width: 260px;
+            padding: 60px 20px 20px 20px;
+        }
+
+        .nav-item,
+        .services-btn {
+            font-size: 14px;
+            padding: 15px 0;
+        }
+
+        .service-item {
+            font-size: 13px;
+            padding: 13px 0 13px 15px;
+        }
+
+        .lang-switcher {
+            font-size: 13px;
+            padding: 10px;
+        }
+
+        .page-content {
+            padding: 15px 10px;
+        }
+
+        .page-content h1 {
+            font-size: 18px;
+        }
+
+        .page-content p {
+            font-size: 12px;
+        }
+    }
+</style>
+
+<!-- BARRE D'INFORMATION FIXE -->
+<div class="info-bar">
+    <div class="info-bar-logo">
+        <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="30" cy="30" r="28" fill="#7bc043"/>
+            <path d="M30 15v30M15 30h30" stroke="white" stroke-width="4" stroke-linecap="round"/>
+        </svg>
+    </div>
+
+    <div class="info-bar-content">
+        <div class="info-item">
+            <div class="info-icon">
+                <svg viewBox="0 0 24 24">
+                    <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>
+                    <circle cx="12" cy="9" r="2.5"/>
+                </svg>
+            </div>
+            <div class="info-text">
+                <span class="info-label">Localisation</span>
+                <span class="info-value">Yaoundé-Cameroun,Quartier Nsimeyong (Shell)</span>
+            </div>
         </div>
 
-        <div class="info-bar-content">
-            <div class="info-item">
-                <div class="info-icon">
-                    <svg viewBox="0 0 24 24">
-                        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>
-                        <circle cx="12" cy="9" r="2.5"/>
-                    </svg>
-                </div>
-                <div class="info-text">
-                    <span class="info-label">Localisation</span>
-                    <span class="info-value">Yaoundé-Cameroun,Quartier Nsimeyong (Shell)</span>
-                </div>
+        <div class="info-item">
+            <div class="info-icon">
+                <svg viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="10"/>
+                    <path d="M12 6v6l4 2"/>
+                </svg>
             </div>
-
-            <div class="info-item">
-                <div class="info-icon">
-                    <svg viewBox="0 0 24 24">
-                        <circle cx="12" cy="12" r="10"/>
-                        <path d="M12 6v6l4 2"/>
-                    </svg>
-                </div>
-                <div class="info-text">
-                    <span class="info-label">Heures d'Ouverture</span>
-                    <span class="info-value">Tous les jours 24h/24</span>
-                </div>
+            <div class="info-text">
+                <span class="info-label">Heures d'Ouverture</span>
+                <span class="info-value">Tous les jours 24h/24</span>
             </div>
+        </div>
 
-            <div class="info-item">
-                <div class="info-icon">
-                    <svg viewBox="0 0 24 24">
-                        <path d="M3 7l9 6 9-6M3 7v10a2 2 0 002 2h14a2 2 0 002-2V7M3 7l9-4 9 4"/>
-                    </svg>
-                </div>
-                <div class="info-text">
-                    <span class="info-label">Contact</span>
-                    <span class="info-value">info@polycliniquemerveilles.com</span>
-                </div>
+        <div class="info-item">
+            <div class="info-icon">
+                <svg viewBox="0 0 24 24">
+                    <path d="M3 7l9 6 9-6M3 7v10a2 2 0 002 2h14a2 2 0 002-2V7M3 7l9-4 9 4"/>
+                </svg>
+            </div>
+            <div class="info-text">
+                <span class="info-label">Contact</span>
+                <span class="info-value">info@polycliniquemerveilles.com</span>
             </div>
         </div>
     </div>
+</div>
 
-    <!-- HEADER PRINCIPAL -->
-    <header id="main-header">
-        <div class="logo">
-            <span>Hôpital Marie Wyss</span>
-        </div>
+<!-- HEADER PRINCIPAL -->
+<header id="main-header">
+    <div class="logo">
+        <span>Hôpital Marie Wyss</span>
+    </div>
 
-        <nav class="navigation">
-            <a href="{% url 'index' %}" class="nav-item">Accueil</a>
-            <a href="{% url 'apropos' %}" class="nav-item">À Propos</a>
+    <!-- MENU HAMBURGER -->
+    <div class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
 
-            <!-- SERVICES DROPDOWN -->
-            <div class="services-dropdown">
-                <a href="{% url 'services' %}" class="services-btn">Nos Services</a>
-                <div class="dropdown-content">
-                    <div class="dropdown-grid">
-                        <div class="service-column">
-                            <h3>Gynecologie obstétrique</h3>
-                            <div class="service-list">
-                                <div class="service-item">Consultation prénatale</div>
-                                <div class="service-item">Pédiatrie</div>
-                                <div class="service-item">Laboratoire</div>
-                                <div class="service-item">Chirurgie</div>
-                            </div>
+    <nav class="navigation" id="navigation">
+        <a href="{% url 'index' %}" class="nav-item">Accueil</a>
+        <a href="{% url 'apropos' %}" class="nav-item">À Propos</a>
+
+        <!-- SERVICES DROPDOWN -->
+        <div class="services-dropdown">
+            <div class="services-btn">Nos Services</div>
+            <div class="dropdown-content">
+                <div class="dropdown-grid">
+                    <!-- COLONNE 1 -->
+                    <div class="service-column">
+                        <h3>Gynecologie obstétrique</h3>
+                        <div class="service-list">
+                            <div class="service-item">Consultation prénatale</div>
+                            <div class="service-item">Pédiatrie</div>
+                            <div class="service-item">Laboratoire</div>
+                            <div class="service-item">Chirurgie</div>
                         </div>
+                    </div>
 
-                        <div class="service-column">
-                            <h3>Médecine générale</h3>
-                            <div class="service-list">
-                                <div class="service-item">Vaccination</div>
-                                <div class="service-item">quiné thérapeutique</div>
-                                <div class="service-item"></div>
-                            </div>
+                    <!-- COLONNE 2 -->
+                    <div class="service-column">
+                        <h3>Médecine générale</h3>
+                        <div class="service-list">
+                            <div class="service-item">Vaccination</div>
+                            <div class="service-item">quiné thérapeutique</div>
                         </div>
                     </div>
                 </div>
             </div>
-
-            <a href="{% url 'galerie_image' %}" class="nav-item">Galerie Image</a>
-            <a href="{% url 'actualite' %}" class="nav-item">Actualités</a>
-            <a href="{% url 'contacts' %}" class="nav-item">Contacts</a>
-            <span class="lang-switcher">FR</span>
-        </nav>
-
-        <div class="contact-info">
-            <div class="phone-text">
-                <p>Prenez rendez-vous au</p>
-                <strong>(+237) 655 653 862</strong>
-            </div>
         </div>
-    </header>
 
-    <script>
-        // Gestion du dropdown des services
-        const servicesDropdown = document.querySelector('.services-dropdown');
-        const serviceItems = document.querySelectorAll('.service-item');
-        const servicesBtn = document.querySelector('.services-btn');
+        <a href="{% url 'galerie_image' %}" class="nav-item">Galerie Image</a>
+        <a href="{% url 'actualite' %}" class="nav-item">Actualités</a>
+        <a href="{% url 'contacts' %}" class="nav-item">Contacts</a>
+        <span class="lang-switcher">FR</span>
+    </nav>
 
-        // Desktop: afficher le dropdown au survol
+    <div class="contact-info">
+        <div class="phone-text">
+            <p>Prenez rendez-vous au</p>
+            <strong>(+237) 655 653 862</strong>
+        </div>
+    </div>
+</header>
+
+<script>
+    // Éléments du menu
+    const hamburger = document.getElementById('hamburger');
+    const navigation = document.getElementById('navigation');
+    const servicesDropdown = document.querySelector('.services-dropdown');
+    const serviceItems = document.querySelectorAll('.service-item');
+    const servicesBtn = document.querySelector('.services-btn');
+    const mainHeader = document.getElementById('main-header');
+    const body = document.body;
+
+    // Toggle menu hamburger
+    hamburger.addEventListener('click', (e) => {
+        e.stopPropagation();
+        hamburger.classList.toggle('active');
+        navigation.classList.toggle('active');
+        body.classList.toggle('menu-open');
+    });
+
+    // Fermer avec le bouton X (::after)
+    navigation.addEventListener('click', (e) => {
+        const rect = navigation.getBoundingClientRect();
+        const closeButtonArea = {
+            left: rect.right - 60,
+            right: rect.right - 10,
+            top: rect.top + 10,
+            bottom: rect.top + 50
+        };
+        
+        if (e.clientX >= closeButtonArea.left && 
+            e.clientX <= closeButtonArea.right && 
+            e.clientY >= closeButtonArea.top && 
+            e.clientY <= closeButtonArea.bottom) {
+            hamburger.classList.remove('active');
+            navigation.classList.remove('active');
+            body.classList.remove('menu-open');
+        }
+    });
+
+    // Fermer le menu en cliquant sur l'overlay
+    body.addEventListener('click', (e) => {
+        if (navigation.classList.contains('active') && !navigation.contains(e.target) && !hamburger.contains(e.target)) {
+            hamburger.classList.remove('active');
+            navigation.classList.remove('active');
+            body.classList.remove('menu-open');
+        }
+    });
+
+    // Fermer le menu quand on clique sur un lien simple
+    document.querySelectorAll('.nav-item').forEach(item => {
+        item.addEventListener('click', () => {
+            if (window.innerWidth <= 1023) {
+                hamburger.classList.remove('active');
+                navigation.classList.remove('active');
+                body.classList.remove('menu-open');
+            }
+        });
+    });
+
+    // Gestion du dropdown Services
+    servicesBtn.addEventListener('click', (e) => {
+        if (window.innerWidth <= 1023) {
+            e.preventDefault();
+            servicesDropdown.classList.toggle('active');
+        }
+    });
+
+    // Desktop: hover pour le dropdown
+    if (window.innerWidth > 1023) {
         servicesDropdown.addEventListener('mouseenter', () => {
             servicesDropdown.classList.add('active');
         });
@@ -954,47 +1002,56 @@
         servicesDropdown.addEventListener('mouseleave', () => {
             servicesDropdown.classList.remove('active');
         });
+    }
 
-        // Mobile: toggle dropdown mais permettre la navigation
-        servicesBtn.addEventListener('click', (e) => {
-            if (window.innerWidth <= 768) {
-                // Si le dropdown n'est pas visible, l'afficher
-                if (!servicesDropdown.classList.contains('active')) {
-                    e.preventDefault();
-                    servicesDropdown.classList.add('active');
-                } else {
-                    // Si déjà visible, laisser la navigation se faire normalement
-                    servicesDropdown.classList.remove('active');
-                }
-            }
+    // Fermer le dropdown quand on clique ailleurs (desktop uniquement)
+    document.addEventListener('click', (e) => {
+        if (window.innerWidth > 1023 && !servicesDropdown.contains(e.target)) {
+            servicesDropdown.classList.remove('active');
+        }
+    });
+
+    // Sélection des services
+    serviceItems.forEach(item => {
+        item.addEventListener('click', (e) => {
+            serviceItems.forEach(el => el.classList.remove('active'));
+            item.classList.add('active');
         });
+    });
 
-        // Fermer le dropdown quand on clique ailleurs
-        document.addEventListener('click', (e) => {
-            if (!servicesDropdown.contains(e.target)) {
-                servicesDropdown.classList.remove('active');
-            }
-        }); 
+    // Gestion du header qui apparaît/disparaît au scroll
+    let lastScrollTop = 0;
+    const scrollThreshold = 100;
 
-        // Gestion de la sélection des éléments du dropdown
-        serviceItems.forEach(item => {
-            item.addEventListener('click', (e) => {
-                serviceItems.forEach(el => el.classList.remove('active'));
-                item.classList.add('active');
-            });
-        });
+    window.addEventListener('scroll', () => {
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
 
-        // Gestion du header qui disparaît au scroll
-        const mainHeader = document.getElementById('main-header');
-        const scrollThreshold = 100;
-
-        window.addEventListener('scroll', () => {
-            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-
-            if (scrollTop > scrollThreshold) {
+        if (scrollTop > scrollThreshold) {
+            if (scrollTop > lastScrollTop) {
+                // Scroll vers le bas - cacher
                 mainHeader.classList.add('hidden');
+                mainHeader.classList.remove('show');
             } else {
+                // Scroll vers le haut - montrer
                 mainHeader.classList.remove('hidden');
+                mainHeader.classList.add('show');
             }
-        });
-    </script>
+        } else {
+            // En haut de page - toujours visible
+            mainHeader.classList.remove('hidden');
+            mainHeader.classList.add('show');
+        }
+
+        lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+    });
+
+    // Réajuster au redimensionnement
+    window.addEventListener('resize', () => {
+        if (window.innerWidth > 1023) {
+            hamburger.classList.remove('active');
+            navigation.classList.remove('active');
+            body.classList.remove('menu-open');
+            servicesDropdown.classList.remove('active');
+        }
+    });
+</script>
