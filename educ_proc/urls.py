@@ -26,6 +26,7 @@ urlpatterns = [
     path('', views.home, name='home'),  # Ajoutez cette ligne pour la racine
     path('admin/', admin.site.urls),
     # Direct routes for docteurs (so links like /Docteur2/ work)
+     path('whatsapp/', views.whatsapp, name='whatsapp'),
     path('Docteur1/', views.docteur1_view, name='docteur1'),
     path('Docteur2/', views.docteur2_view, name='docteur2'),
     path('Docteur3/', views.docteur3_view, name='docteur3'),
