@@ -1,0 +1,270 @@
+<!-- templates/whatsapp_button.html -->
+<style>
+    /* BOUTON WHATSAPP FLOTTANT AVEC LOGO AMÉLIORÉ */
+    .whatsapp-float {
+        position: fixed;
+        width: 70px;
+        height: 70px;
+        bottom: 30px;
+        right: 30px;
+        background: linear-gradient(135deg, #25d366 0%, #128C7E 100%);
+        color: #FFF;
+        border-radius: 50%;
+        text-align: center;
+        font-size: 30px;
+        box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+        z-index: 1000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        text-decoration: none;
+        border: 3px solid white;
+        overflow: hidden;
+    }
+
+    .whatsapp-float:hover {
+        transform: scale(1.15) rotate(5deg);
+        box-shadow: 0 6px 25px rgba(37, 211, 102, 0.6);
+        background: linear-gradient(135deg, #128C7E 0%, #25d366 100%);
+    }
+
+    .whatsapp-float:active {
+        transform: scale(0.95) rotate(-5deg);
+    }
+
+    .whatsapp-float svg {
+        width: 40px;
+        height: 40px;
+        fill: white;
+        filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.2));
+        transition: transform 0.3s ease;
+    }
+
+    .whatsapp-float:hover svg {
+        transform: scale(1.1);
+    }
+
+    /* Effet de brillance */
+    .whatsapp-float::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+        transition: left 0.7s ease;
+    }
+
+    .whatsapp-float:hover::before {
+        left: 100%;
+    }
+
+    /* Pour mobile */
+    @media (max-width: 767px) {
+        .whatsapp-float {
+            width: 60px;
+            height: 60px;
+            bottom: 20px;
+            right: 20px;
+            font-size: 25px;
+            border: 2px solid white;
+        }
+        
+        .whatsapp-float svg {
+            width: 35px;
+            height: 35px;
+        }
+        
+        .whatsapp-float:hover {
+            transform: scale(1.1) rotate(5deg);
+        }
+    }
+
+    /* Animation de pulsation */
+    @keyframes pulse {
+        0% {
+            box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+        }
+        50% {
+            box-shadow: 0 0 0 20px rgba(37, 211, 102, 0);
+        }
+        100% {
+            box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+        }
+    }
+
+    .whatsapp-float.pulse {
+        animation: pulse 2s infinite;
+    }
+
+    /* Effet de vague au clic */
+    @keyframes click-wave {
+        0% {
+            box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.8);
+        }
+        70% {
+            box-shadow: 0 0 0 25px rgba(37, 211, 102, 0);
+        }
+        100% {
+            box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+        }
+    }
+
+    .whatsapp-float:active {
+        animation: click-wave 0.5s;
+    }
+
+    /* Badge de notification optionnel */
+    .whatsapp-notification {
+        position: absolute;
+        top: -5px;
+        right: -5px;
+        background: #ff4757;
+        color: white;
+        font-size: 12px;
+        font-weight: bold;
+        width: 22px;
+        height: 22px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        animation: bounce 2s infinite;
+        box-shadow: 0 2px 5px rgba(255, 71, 87, 0.4);
+        border: 2px solid white;
+    }
+
+    @keyframes bounce {
+        0%, 100% {
+            transform: translateY(0);
+        }
+        50% {
+            transform: translateY(-5px);
+        }
+    }
+
+    /* Optionnel: badge pour indiquer "Nouveau message" */
+    .whatsapp-badge {
+        position: absolute;
+        bottom: 75px;
+        right: 0;
+        background: white;
+        color: #25d366;
+        padding: 8px 15px;
+        border-radius: 20px;
+        font-size: 14px;
+        font-weight: 600;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+        opacity: 0;
+        transform: translateY(10px);
+        transition: all 0.3s ease;
+        white-space: nowrap;
+        pointer-events: none;
+    }
+
+    .whatsapp-badge::after {
+        content: '';
+        position: absolute;
+        bottom: -8px;
+        right: 20px;
+        border-left: 8px solid transparent;
+        border-right: 8px solid transparent;
+        border-top: 8px solid white;
+    }
+
+    .whatsapp-float:hover .whatsapp-badge {
+        opacity: 1;
+        transform: translateY(0);
+    }
+</style>
+
+<a href="https://wa.me/237655653862?text=Bonjour,%20je%20souhaiterais%20prendre%20un%20rendez-vous%20à%20l'Hôpital%20Marie%20Wyss" 
+   class="whatsapp-float pulse" 
+   target="_blank" 
+   rel="noopener noreferrer"
+   title="Contactez-nous sur WhatsApp">
+    
+    <!-- Logo WhatsApp amélioré -->
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <!-- Cercle de fond pour l'icône -->
+        <circle cx="12" cy="12" r="11" fill="#25d366" stroke="white" stroke-width="0.5"/>
+        
+        <!-- Logo WhatsApp simplifié et stylisé -->
+        <path d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.65 1.44 5.22L2 22l4.78-1.44C8.35 21.5 10.15 22 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm4.64 14.82c-.25.71-1.22 1.3-1.99 1.48-.62.15-1.27.22-1.93.22-3.31 0-6.43-1.64-8.57-4.4-2.54-3.37-2.54-7.86 0-11.23C6.57 3.64 9.69 2 13 2c.66 0 1.31.07 1.93.22.77.18 1.74.77 1.99 1.48.25.71.37 1.59.31 2.3-.06.71-.37 1.5-.69 2.12-.28.56-1.18 1.5-1.3 1.64-.12.14-.24.32-.12.64.12.32.55 1.36 1.15 2.2.79 1.12 1.7 1.97 2.87 2.59.32.14.64.1.95-.07.31-.18 1.59-.93 2.02-1.28.43-.35.93-.32 1.64.07.71.39 2.87 1.7 3.36 2.02.49.32.49.19.58.58.09.39.09 2.27-.21 2.88z" 
+              fill="white"/>
+        
+        <!-- Détail supplémentaire pour rendre l'icône plus jolie -->
+        <path d="M12 5c-3.86 0-7 3.14-7 7 0 1.29.35 2.56 1.02 3.66L5 19l3.34-1.02A6.98 6.98 0 0 0 12 19c3.86 0 7-3.14 7-7s-3.14-7-7-7z" 
+              fill="none" 
+              stroke="white" 
+              stroke-width="0.5" 
+              opacity="0.3"/>
+        
+        <!-- Téléphone stylisé -->
+        <path d="M16.5 13.5c-.32-.18-.53-.3-.58-.64-.05-.34.03-.72.23-1.04.2-.32.45-.7.6-1.06.15-.36.27-.83.04-1.19-.23-.36-.72-.5-1.1-.64-.38-.14-.97-.27-1.5-.27-1.5 0-2.83.85-3.5 2.1-.67 1.25-.5 2.65.17 3.75.67 1.1 1.83 1.86 3.17 1.86 1.34 0 2.5-.76 3.17-1.86.1-.16.18-.33.25-.5.07-.17.12-.35.16-.53.04-.18.06-.36.07-.54 0-.36-.1-.7-.28-1z" 
+              fill="white" 
+              opacity="0.9"/>
+    </svg>
+    
+    <!-- Badge de notification (optionnel - décommentez pour l'activer) -->
+    <!--
+    <div class="whatsapp-notification">1</div>
+    -->
+    
+    <!-- Tooltip au survol (optionnel - décommentez pour l'activer) -->
+    <!--
+    <div class="whatsapp-badge">Messagez-nous !</div>
+    -->
+</a>
+
+<script>
+    // Animation supplémentaire au clic
+    document.addEventListener('DOMContentLoaded', function() {
+        const whatsappBtn = document.querySelector('.whatsapp-float');
+        
+        if (whatsappBtn) {
+            // Effet sonore optionnel (décommentez si vous voulez un son)
+            /*
+            whatsappBtn.addEventListener('click', function(e) {
+                // Créer un son de clic
+                const clickSound = new Audio('https://assets.mixkit.co/sfx/preview/mixkit-select-click-1109.mp3');
+                clickSound.volume = 0.3;
+                clickSound.play().catch(() => {
+                    // Ignorer les erreurs si l'audio ne peut pas être joué
+                });
+            });
+            */
+           
+            // Arrêter l'animation de pulsation au survol
+            whatsappBtn.addEventListener('mouseenter', function() {
+                this.classList.remove('pulse');
+            });
+            
+            // Redémarrer l'animation de pulsation quand la souris quitte
+            whatsappBtn.addEventListener('mouseleave', function() {
+                setTimeout(() => {
+                    this.classList.add('pulse');
+                }, 1000);
+            });
+            
+            // Détection de l'appareil mobile pour ajuster l'expérience
+            if ('ontouchstart' in window || navigator.maxTouchPoints) {
+                // Si c'est un appareil tactile, ajuster les effets
+                whatsappBtn.style.cursor = 'pointer';
+                
+                // Ajuster l'animation de pulsation pour mobile
+                const style = document.createElement('style');
+                style.textContent = `
+                    @media (max-width: 767px) {
+                        .whatsapp-float.pulse {
+                            animation: pulse 3s infinite;
+                        }
+                    }
+                `;
+                document.head.appendChild(style);
+            }
+        }
+    });
+</script>

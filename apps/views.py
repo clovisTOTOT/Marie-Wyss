@@ -27,6 +27,9 @@ def teleconsultation(request):
 def contacts(request):
     return render(request, 'contacts.html') 
 
+def whatsapp(request):
+    return render(request, 'whatsapp.html')
+
 def header(request):
     return render(request, 'header.html')
 
