@@ -50,35 +50,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     <!-- Section de saisie de message -->
 
     <div class="container">
@@ -88,7 +59,7 @@
             
             
             <p class="description">
-            l'Hôpital Marie Wyss est une structure de soins pluridisciplinaire qui a ouvert ses portes le 2 Avril 2018. Elle offre de nombreuses prestations telles que : consultations, accouchements, soins dentaires et ophtalmologiques, interventions chirurgicales, hospitalisations, imagerie médicale et analyses biomédicales.
+            l'Hôpital Marie Wyss est une structure de soins pluridisciplinaire qui a ouvert ses portes le XXXXXXXXXXXXXXXX. Elle offre de nombreuses prestations telles que : consultations, accouchements, soins dentaires et ophtalmologiques, interventions chirurgicales, hospitalisations, imagerie médicale et analyses biomédicales.
             </p>
 
         <div class="contact-image">
@@ -96,7 +67,7 @@
         </div>
 
             <div class="phone-info">
-                <strong>Téléphone :</strong> (+237) 655 653 862 / (+237) 655 653 862
+                <strong>Téléphone :</strong> (+237) 696 160 674 / (+237) 696 160 674
             </div>
 
             <div class="address-section">
@@ -119,97 +90,58 @@
             </div>
         </div>
 
-        <!-- Section Droite -->
-        <div class="right-section">
-            <h2>Nous Écrire</h2>
-            <div class="blue-dot-container">
-            <div class="blue-line"></div>
-            <div class="blue-dot"></div>
-            <div class="blue-line"></div>
-        </div>
-
-            <form>
-                <div class="form-group">
-                    <label>Votre Nom</label>
-                    <input type="text" placeholder="Votre Nom">
-                </div>
-
-                <div class="form-group">
-                    <label>Votre Email</label>
-                    <input type="email" placeholder="Votre Email">
-                </div>
-
-                <div class="form-group">
-                    <label>Spécialité</label>
-                    <select>
-                        <option>Médecine Générale</option>
-                        <option>Dentaire</option>
-                        <option>Ophtalmologie</option>
-                        <option>Chirurgie</option>
-                        <option>Imagerie Médicale</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label>Votre Message</label>
-                    <textarea placeholder="Votre message"></textarea>
-                </div>
-
-                <button type="submit" class="submit-btn">Envoyer</button>
-            </form>
-        </div>
+     <!-- Section Droite -->
+<div class="right-section">
+    <h2>Nous Écrire</h2>
+    <div class="blue-dot-container">
+        <div class="blue-line"></div>
+        <div class="blue-dot"></div>
+        <div class="blue-line"></div>
     </div>
 
 
 
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
 
+    <form method="POST" action="{% url 'contacts' %}">
+        {% csrf_token %}
+        
+        <div class="form-group">
+            <label>Votre Nom *</label>
+            <input type="text" name="nom" placeholder="Votre Nom" required>
+        </div>
 
+        <div class="form-group">
+            <label>Votre Email *</label>
+            <input type="email" name="email" placeholder="Votre Email" required>
+        </div>
 
+        <div class="form-group">
+            <label>Spécialité *</label>
+            <select name="specialite" required>
+                <option value="">-- Sélectionner une spécialité --</option>
+                <option value="Médecine Générale">Médecine Générale</option>
+                <option value="Dentaire">Dentaire</option>
+                <option value="Ophtalmologie">Ophtalmologie</option>
+                <option value="Chirurgie">Chirurgie</option>
+                <option value="Imagerie Médicale">Imagerie Médicale</option>
+            </select>
+        </div>
 
+        <div class="form-group">
+            <label>Votre Message *</label>
+            <textarea name="message" placeholder="Votre message" rows="5" required></textarea>
+        </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        <button type="submit" class="submit-btn">Envoyer</button>
+    </form>
+</div>
 
 
 
@@ -299,17 +231,6 @@
             }
         });
     </script>
-
-
-
-
-
-
-
-
-
-
-
 
 {% include 'whatsapp.html' %}
  <div>{% include 'footer.html' %}</div>

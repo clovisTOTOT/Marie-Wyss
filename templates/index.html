@@ -235,7 +235,7 @@
                                 <p class="card-text">
                                     Toutes nos informations de contact et de localisation sont disponibles dans notre page de contact :
                                 </p>
-                                <button class="btn-card">
+                                 <button class="btn-card" onclick="window.location.href='{% url 'contacts' %}'">
                                     Nous contacter
                                     <svg class="btn-card-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
@@ -299,13 +299,13 @@
         <script>
     const slides = [
         {
-            
             image: "{% static 'images/cour hopital marie wyss.jpg' %}",
             tagline: "Des soins fiables et de qualité",
             title: "Bienvenue a l'Hôpital privé Marie Wyss  ",
             subtitle: "(meilleure centre de santé de Yaoundé)",
             buttonType: "primary",
-            buttonText: "Prendre rendez-vous"
+            buttonText: "Prendre rendez-vous",
+            buttonLink: "{% url 'contacts' %}"
         },
         {
             image: "{% static 'images/entree hopital Marie Wyss.jpg' %}",
@@ -313,7 +313,8 @@
             title: "Notre centre Hospitallier ",
             subtitle: "(L'entre du centre Hospitalier )",
             buttonType: "secondary",
-            buttonText: "À propos de nous"
+            buttonText: "À propos de nous",
+            buttonLink: "{% url 'apropos' %}"
         },
         {
             image: "{% static 'images/Hôpital Marie wyss cour2.jpg' %}",
@@ -321,7 +322,8 @@
             title: "Bienvenue au urgence",
             subtitle: "(Nos services d'urgence disponibles 24/7)",
             buttonType: "primary",
-            buttonText: "Prendre rendez-vous"
+            buttonText: "Prendre rendez-vous",
+            buttonLink: "{% url 'contacts' %}"
         },
         {
             image: "{% static 'images/cour hopital marie wyss.jpg' %}",
@@ -329,7 +331,8 @@
             title: "Notre bloc operatoire ",
             subtitle: "(Équipe chirurgicale hautement qualifiée)",
             buttonType: "secondary",
-            buttonText: "À propos de nous"
+            buttonText: "À propos de nous",
+            buttonLink: "{% url 'apropos' %}"
         }
     ];
 
@@ -352,6 +355,7 @@
         subtitleEl.textContent = slide.subtitle;
         buttonEl.textContent = slide.buttonText;
         buttonEl.className = `btn btn-${slide.buttonType}`;
+        buttonEl.onclick = () => window.location.href = slide.buttonLink;
     }
 
     function nextImage() {
@@ -380,7 +384,6 @@
     updateSlide();
     startAutoPlay();
 </script>
-
 
 
 
@@ -614,17 +617,17 @@
 
 <!-- les differents services-->
 <div class="services-container">
-    <div class="services-header">
+       <div class="services-header">
         <div class="header-text">
             <p class="services-label">SERVICES</p>
             <h2 class="services-title">Nous offrons une gamme variée de<br><span class="services-subtitle">soins médicaux personnalisés</span></h2>
         </div>
-        <button class="service-button">Nos Services</button>
+        <button class="service-button" onclick="window.location.href='{% url 'services' %}'">Nos Services</button>
     </div>
 
-    <div class="services-grid">
+        <div class="services-grid">
         <!-- Première ligne - 3 colonnes -->
-        <div class="service-item">
+        <div class="service-item" onclick="window.location.href='{% url 'services' %}'">
             <div class="service-image-wrapper">
                 <img src="{% static 'images/cour hopital marie wyss.jpg' %}" alt="Imagerie Médicale">
                 <div class="service-overlay">
@@ -635,7 +638,7 @@
             </div>
         </div>
         
-        <div class="service-item">
+        <div class="service-item" onclick="window.location.href='{% url 'services' %}'">
             <div class="service-image-wrapper">
                 <img src="{% static 'images/Hôpital privé Marie wyss lobo3.jpg' %}" alt="Laboratoire d'analyses">
                 <div class="service-overlay">
@@ -646,7 +649,7 @@
             </div>
         </div>
         
-        <div class="service-item">
+        <div class="service-item" onclick="window.location.href='{% url 'services' %}'">
             <div class="service-image-wrapper">
                 <img src="{% static 'images/cour hopital marie wyss.jpg' %}" alt="Ambulance médicalisée">
                 <div class="service-overlay">
@@ -658,7 +661,7 @@
         </div>
 
         <!-- Deuxième ligne - 2 colonnes plus larges -->
-        <div class="service-item service-item-wide">
+        <div class="service-item service-item-wide" onclick="window.location.href='{% url 'services' %}'">
             <div class="service-image-wrapper">
                 <img src="{% static 'images/cour hopital marie wyss.jpg' %}" alt="Hospitalisation">
                 <div class="service-overlay">
@@ -669,7 +672,7 @@
             </div>
         </div>
         
-        <div class="service-item service-item-wide">
+        <div class="service-item service-item-wide" onclick="window.location.href='{% url 'services' %}'">
             <div class="service-image-wrapper">
                 <img src="{% static 'images/cour hopital marie wyss.jpg' %}" alt="Radiographie Numérisée">
                 <div class="service-overlay">
@@ -910,13 +913,13 @@
     <!-- Tabs Navigation -->
     <div class="tabs-container">
         <div class="tabs-wrapper">
-            <div class="tabs-navigation">
-                <button class="tab-item active">
-                    <svg class="tab-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path>
-                    </svg>
-                    <span>Consultations</span>
-                </button>
+                  <div class="tabs-navigation">
+                    <button class="tab-item active" onclick="window.location.href='{% url 'contacts' %}'">
+                        <svg class="tab-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path>
+                        </svg>
+                        <span>Consultations</span>
+                    </button>
                 <button class="tab-item">
                     <svg class="tab-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
@@ -1133,7 +1136,7 @@
                     Ce que disent <span class="highlight">Nos Patients</span>
                 </h2>
             </div>
-            <button class="services-button">Nos Services</button>
+            <button class="services-button" onclick="window.location.href='{% url 'services' %}'">Nos Services</button>
         </div>
 
         <div class="testimonials-carousel">

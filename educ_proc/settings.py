@@ -155,13 +155,14 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Email settings
+# Configuration email
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'  # Changez cela en fonction de votre fournisseur
-EMAIL_PORT = 587  # Port pour TLS
-EMAIL_USE_TLS = True  # Utilisez TLS
-EMAIL_HOST_USER = 'dongm@gmail.com'  # Remplacez par votre adresse e-mail
-EMAIL_HOST_PASSWORD = 'Matesvddsbn01'  # Remplacez par votre mot de passe
-DEFAULT_FROM_EMAIL = EMAIL_HOST_USER  # L'adresse e-mail d'envoi par défaut
-
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'hopitalmariewyss544@gmail.com'
+EMAIL_HOST_PASSWORD = 'udhq knoc sevj ezzg'  # Générer depuis Gmail
+DEFAULT_FROM_EMAIL = 'hopitalmariewyss544@gmail.com'
+SERVER_EMAIL = 'hopitalmariewyss544@gmail.com'
 # Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

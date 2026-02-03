@@ -22,510 +22,532 @@
 <div>{% include 'header.html' %} </div>
 
 
-  <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: Arial, sans-serif;
+        background: #f5f5f5;
+        overflow-x: hidden;
+        margin: 0;
+        padding: 0;
+    }
+
+    /* Header avec image de fond */
+    .doctor-header {
+        background: linear-gradient(rgba(70, 80, 90, 0.85), rgba(70, 80, 90, 0.85)),
+                    url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20000 200"><rect fill="%23556" width="2000" height="200"/></svg>');
+        background-size: cover;
+        background-position: center;
+        color: white;
+        text-align: center;
+        padding: clamp(40px, 8vw, 70px) clamp(15px, 5vw, 40px);            
+        min-height: auto;            
+        width: 100%;
+        margin: 0;
+        position: relative;
+        box-sizing: border-box;
+    }
+
+    .doctor-header h1 {
+        font-size: clamp(24px, 6vw, 40px);
+        font-weight: 600;
+        letter-spacing: 0.5px;
+        max-width: 100%;
+        word-wrap: break-word;
+    }
+
+    /* Container principal */
+    .doctor-container {
+        max-width: 100%;
+        width: 100%;
+        margin: clamp(-20px, -3vw, -30px) auto 0;
+        background: white;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        position: relative;
+        z-index: 10;
+        overflow: hidden;
+        box-sizing: border-box;
+    }
+
+    /* Section principale */
+    .doctor-main {
+        display: flex;
+        padding: clamp(30px, 5vw, 50px) clamp(20px, 4vw, 40px);
+        gap: clamp(20px, 5vw, 40px);
+        background: white;
+        box-sizing: border-box;
+    }
+
+    /* Image du médecin */
+    .doctor-profile {
+        flex-shrink: 0;
+        display: flex;
+        justify-content: center;
+        width: auto;
+    }
+
+    .doctor-portrait {
+        width: clamp(100px, 20vw, 130px);
+        height: clamp(140px, 28vw, 180px);
+        background: linear-gradient(135deg, #b8d9e8 0%, #8dc4d8 100%);
+        border-radius: 4px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+    }
+
+    .doctor-illustration {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+    }
+
+    /* Tête */
+    .doctor-head {
+        width: 55px;
+        height: 65px;
+        background: #c0c0c0;
+        border-radius: 50% 50% 45% 45%;
+        position: absolute;
+        top: 30px;
+        z-index: 2;
+    }
+
+    /* Cheveux */
+    .doctor-hair {
+        width: 60px;
+        height: 40px;
+        background: #5a4a3a;
+        border-radius: 50% 50% 0 0;
+        position: absolute;
+        top: 25px;
+        z-index: 3;
+    }
+
+    .doctor-hair::before {
+        content: '';
+        width: 25px;
+        height: 30px;
+        background: #5a4a3a;
+        border-radius: 0 0 50% 0;
+        position: absolute;
+        bottom: 0;
+        left: -5px;
+    }
+
+    .doctor-hair::after {
+        content: '';
+        width: 25px;
+        height: 30px;
+        background: #5a4a3a;
+        border-radius: 0 0 0 50%;
+        position: absolute;
+        bottom: 0;
+        right: -5px;
+    }
+
+    /* Corps - Blouse */
+    .doctor-body {
+        width: 100px;
+        height: 85px;
+        background: white;
+        position: absolute;
+        bottom: 0;
+        clip-path: polygon(25% 0%, 75% 0%, 100% 100%, 0% 100%);
+        z-index: 1;
+    }
+
+    /* Col intérieur */
+    .doctor-collar {
+        width: 40px;
+        height: 50px;
+        background: #5dbdce;
+        position: absolute;
+        top: 92px;
+        left: 50%;
+        transform: translateX(-50%);
+        clip-path: polygon(35% 0%, 65% 0%, 100% 100%, 0% 100%);
+    }
+
+    /* Logo vert */
+    .doctor-badge {
+        width: 22px;
+        height: 22px;
+        background: #4caf50;
+        border-radius: 50%;
+        position: absolute;
+        bottom: 35px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 5;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 16px;
+        font-weight: bold;
+    }
+
+    /* Stéthoscope */
+    .doctor-stethoscope {
+        position: absolute;
+        bottom: 30px;
+        right: 20px;
+        z-index: 4;
+    }
+
+    .stethoscope-tube {
+        width: 2px;
+        height: 30px;
+        background: #333;
+        position: relative;
+        left: 6px;
+    }
+
+    .stethoscope-head {
+        width: 12px;
+        height: 12px;
+        background: #333;
+        border-radius: 50%;
+    }
+
+    /* Détails du médecin */
+    .doctor-info {
+        flex: 1;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 30px 50px;
+    }
+
+    .doctor-info-left {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .doctor-info-right {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .info-item {
+        line-height: 1.6;
+    }
+
+    .info-label {
+        font-weight: 600;
+        font-size: clamp(12px, 2.5vw, 14px);
+        color: #333;
+        margin-bottom: 3px;
+    }
+
+    .info-number {
+        color: #00bcd4;
+        font-weight: 600;
+        font-size: clamp(12px, 2.5vw, 14px);
+    }
+
+    .info-value {
+        color: #333;
+        font-size: clamp(12px, 2.5vw, 14px);
+    }
+
+    .info-specialty {
+        font-size: clamp(12px, 2.5vw, 14px);
+        color: #333;
+    }
+
+    .schedule-item {
+        font-size: clamp(12px, 2.5vw, 14px);
+        margin-bottom: 3px;
+    }
+
+    .schedule-day {
+        color: #333;
+        display: inline-block;
+        width: 75px;
+    }
+
+    .schedule-time {
+        color: #333;
+    }
+
+    .bio-section {
+        margin-top: 0;
+    }
+
+    .bio-title {
+        font-weight: 600;
+        font-size: clamp(12px, 2.5vw, 14px);
+        color: #333;
+        margin-bottom: 8px;
+    }
+
+    .bio-text {
+        font-size: clamp(11px, 2.2vw, 13px);
+        color: #666;
+        line-height: 1.7;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+    }
+
+    /* Bouton rendez-vous */
+    .appointment-btn {
+        display: block;
+        background: #4caf50;
+        color: white;
+        border: none;
+        padding: clamp(10px, 2vw, 13px) clamp(25px, 5vw, 40px);
+        font-size: clamp(12px, 2.5vw, 14px);
+        font-weight: 600;
+        cursor: pointer;
+        margin: clamp(25px, 5vw, 40px) auto;
+        border-radius: 3px;
+        transition: all 0.3s ease;
+        text-transform: capitalize;
+        text-decoration: none;
+        box-sizing: border-box;
+    }
+
+    .appointment-btn:hover {
+        background: #45a049;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+    }
+
+    .appointment-btn:active {
+        transform: translateY(0);
+    }
+
+    /* Footer */
+    .doctor-contact-footer {
+        background: linear-gradient(135deg, #0099ff 0%, #0077cc 100%);
+        color: white;
+        position: relative;
+        width: 10%;
+        max-width: 100vw;
+        padding: clamp(25px, 5vw, 35px) clamp(15px, 4vw, 30px);
+        display: flex;
+        justify-content: space-around;
+        gap: clamp(15px, 5vw, 30px);
+        flex-wrap: wrap;
+        box-sizing: border-box;
+        margin: 0;
+        left: 0;
+        right: 0;
+    }
+
+    .contact-footer-item {
+        text-align: center;
+        flex: 1;
+        min-width: 200px;
+        max-width: 300px;
+        box-sizing: border-box;
+    }
+
+    .contact-footer-icon {
+        width: clamp(45px, 10vw, 55px);
+        height: clamp(45px, 10vw, 55px);
+        background: rgba(255, 255, 255, 0.25);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto clamp(8px, 2vw, 12px);
+        font-size: clamp(18px, 5vw, 26px);
+    }
+
+    .contact-footer-text {
+        font-size: clamp(11px, 2.2vw, 13px);
+        line-height: 1.6;
+    }
+
+    .contact-footer-text strong {
+        display: block;
+        margin-bottom: 4px;
+        font-size: clamp(12px, 2.5vw, 14px);
+        font-weight: 600;
+    }
+
+    @media (max-width: 1024px) {
+        .doctor-info {
+            grid-template-columns: 1fr;
+            gap: 15px;
         }
 
-        body {
-            font-family: Arial, sans-serif;
-            background: #f5f5f5;
-        }
-
-        /* Header avec image de fond */
-        .doctor-header {
-            background: linear-gradient(rgba(70, 80, 90, 0.85), rgba(70, 80, 90, 0.85)),
-                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20000 200"><rect fill="%23556" width="2000" height="200"/></svg>');
-            background-size: cover;
-            background-position: center;
-            color: white;
-            text-align: center;
-            padding: clamp(40px, 8vw, 70px) clamp(15px, 5vw, 40px);            
-            min-height: auto;            
-            width: 100%;
-            margin: 0;
-            position: relative;
-        }
-
-        .doctor-header h1 {
-            font-size: clamp(24px, 6vw, 40px);
-            font-weight: 600;
-            letter-spacing: 0.5px;
-            max-width: 100%;
-            word-wrap: break-word;
-        }
-
-        /* Container principal */
-        .doctor-container {
-            max-width: 100%;
-            width: 100%;
-            margin: clamp(-20px, -3vw, -30px) auto 0;
-            background: white;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            position: relative;
-            z-index: 10;
-            overflow: hidden;
-        }
-
-        /* Section principale */
         .doctor-main {
-            display: flex;
-            padding: clamp(30px, 5vw, 50px) clamp(20px, 4vw, 40px);
-            gap: clamp(20px, 5vw, 40px);
-            background: white;
+            gap: 30px;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .doctor-main {
+            flex-direction: column;
+            padding: clamp(20px, 4vw, 30px);
         }
 
-        /* Image du médecin */
+        .doctor-info {
+            grid-template-columns: 1fr;
+            gap: 15px;
+        }
+
         .doctor-profile {
-            flex-shrink: 0;
-            display: flex;
+            width: 100%;
             justify-content: center;
-            width: auto;
         }
 
         .doctor-portrait {
-            width: clamp(100px, 20vw, 130px);
-            height: clamp(140px, 28vw, 180px);
-            background: linear-gradient(135deg, #b8d9e8 0%, #8dc4d8 100%);
-            border-radius: 4px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
-        }
-
-        .doctor-illustration {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-        }
-
-        /* Tête */
-        .doctor-head {
-            width: 55px;
-            height: 65px;
-            background: #c0c0c0;
-            border-radius: 50% 50% 45% 45%;
-            position: absolute;
-            top: 30px;
-            z-index: 2;
-        }
-
-        /* Cheveux */
-        .doctor-hair {
-            width: 60px;
-            height: 40px;
-            background: #5a4a3a;
-            border-radius: 50% 50% 0 0;
-            position: absolute;
-            top: 25px;
-            z-index: 3;
-        }
-
-        .doctor-hair::before {
-            content: '';
-            width: 25px;
-            height: 30px;
-            background: #5a4a3a;
-            border-radius: 0 0 50% 0;
-            position: absolute;
-            bottom: 0;
-            left: -5px;
-        }
-
-        .doctor-hair::after {
-            content: '';
-            width: 25px;
-            height: 30px;
-            background: #5a4a3a;
-            border-radius: 0 0 0 50%;
-            position: absolute;
-            bottom: 0;
-            right: -5px;
-        }
-
-        /* Corps - Blouse */
-        .doctor-body {
             width: 100px;
-            height: 85px;
-            background: white;
-            position: absolute;
-            bottom: 0;
-            clip-path: polygon(25% 0%, 75% 0%, 100% 100%, 0% 100%);
-            z-index: 1;
+            height: 140px;
         }
 
-        /* Col intérieur */
-        .doctor-collar {
-            width: 40px;
-            height: 50px;
-            background: #5dbdce;
-            position: absolute;
-            top: 92px;
-            left: 50%;
-            transform: translateX(-50%);
-            clip-path: polygon(35% 0%, 65% 0%, 100% 100%, 0% 100%);
-        }
-
-        /* Logo vert */
-        .doctor-badge {
-            width: 22px;
-            height: 22px;
-            background: #4caf50;
-            border-radius: 50%;
-            position: absolute;
-            bottom: 35px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 5;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 16px;
-            font-weight: bold;
-        }
-
-        /* Stéthoscope */
-        .doctor-stethoscope {
-            position: absolute;
-            bottom: 30px;
-            right: 20px;
-            z-index: 4;
-        }
-
-        .stethoscope-tube {
-            width: 2px;
-            height: 30px;
-            background: #333;
-            position: relative;
-            left: 6px;
-        }
-
-        .stethoscope-head {
-            width: 12px;
-            height: 12px;
-            background: #333;
-            border-radius: 50%;
-        }
-
-        /* Détails du médecin */
-        .doctor-info {
-            flex: 1;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px 50px;
-        }
-
-        .doctor-info-left {
-            display: flex;
+        .doctor-contact-footer {
             flex-direction: column;
+            padding: clamp(20px, 4vw, 30px);
+            gap: clamp(15px, 3vw, 30px);
+        }
+
+        .contact-footer-item {
+            max-width: 100%;
+            min-width: 100%;
+        }
+
+        .doctor-header h1 {
+            font-size: 24px;
+        }
+
+        .appointment-btn {
+            width: 90%;
+        }
+    }
+
+    @media (max-width: 600px) {
+        .doctor-main {
+            padding: clamp(15px, 3vw, 25px);
             gap: 20px;
         }
 
-        .doctor-info-right {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .info-item {
-            line-height: 1.6;
-        }
-
-        .info-label {
-            font-weight: 600;
-            font-size: clamp(12px, 2.5vw, 14px);
-            color: #333;
-            margin-bottom: 3px;
-        }
-
-        .info-number {
-            color: #00bcd4;
-            font-weight: 600;
-            font-size: clamp(12px, 2.5vw, 14px);
-        }
-
-        .info-value {
-            color: #333;
-            font-size: clamp(12px, 2.5vw, 14px);
-        }
-
-        .info-specialty {
-            font-size: clamp(12px, 2.5vw, 14px);
-            color: #333;
-        }
-
-        .schedule-item {
-            font-size: clamp(12px, 2.5vw, 14px);
-            margin-bottom: 3px;
+        .doctor-header {
+            padding: clamp(30px, 5vw, 50px) clamp(12px, 3vw, 20px);
         }
 
         .schedule-day {
-            color: #333;
-            display: inline-block;
-            width: 75px;
+            display: block;
+            width: 100%;
+            margin-bottom: 3px;
         }
 
         .schedule-time {
-            color: #333;
+            display: block;
         }
 
-        .bio-section {
-            margin-top: 0;
-        }
-
-        .bio-title {
-            font-weight: 600;
-            font-size: clamp(12px, 2.5vw, 14px);
-            color: #333;
-            margin-bottom: 8px;
-        }
-
-        .bio-text {
-            font-size: clamp(11px, 2.2vw, 13px);
-            color: #666;
-            line-height: 1.7;
-            word-wrap: break-word;
-            overflow-wrap: break-word;
-        }
-
-        /* Bouton rendez-vous */
         .appointment-btn {
-            display: block;
-            background: #4caf50;
-            color: white;
-            border: none;
-            padding: clamp(10px, 2vw, 13px) clamp(25px, 5vw, 40px);
-            font-size: clamp(12px, 2.5vw, 14px);
-            font-weight: 600;
-            cursor: pointer;
-            margin: clamp(25px, 5vw, 40px) auto;
-            border-radius: 3px;
-            transition: all 0.3s ease;
-            text-transform: capitalize;
+            width: 85%;
+            padding: 10px 20px;
         }
 
-        .appointment-btn:hover {
-            background: #45a049;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+        .doctor-contact-footer {
+            padding: clamp(15px, 3vw, 25px);
+        }
+    }
+
+    @media (max-width: 480px) {
+        .doctor-header {
+            padding: clamp(25px, 4vw, 40px) clamp(10px, 3vw, 15px);
         }
 
-        /* Footer */
-        .doctor-footer {
-            background: linear-gradient(135deg, #0099ff 0%, #0077cc 100%);
-            color: white;
-            position: relative;
+        .doctor-header h1 {
+            font-size: 20px;
+            letter-spacing: 0px;
+        }
+
+        .doctor-main {
+            padding: clamp(12px, 2.5vw, 20px);
+            gap: 15px;
+        }
+
+        .doctor-portrait {
+            width: 85px;
+            height: 120px;
+        }
+
+        .doctor-info-left {
+            gap: 15px;
+        }
+
+        .appointment-btn {
             width: 100%;
-            padding: clamp(25px, 5vw, 35px) clamp(15px, 4vw, 30px);
-            display: flex;
-            justify-content: space-around;
-            gap: clamp(15px, 5vw, 30px);
-            flex-wrap: wrap;
+            padding: 10px 15px;
+            font-size: 12px;
         }
 
-        .footer-item {
-            text-align: center;
-            flex: 1;
-            min-width: 200px;
-            max-width: 300px;
+        .doctor-contact-footer {
+            padding: clamp(15px, 3vw, 25px);
+            gap: clamp(12px, 2vw, 20px);
         }
 
-        .footer-icon {
-            width: clamp(45px, 10vw, 55px);
-            height: clamp(45px, 10vw, 55px);
-            background: rgba(255, 255, 255, 0.25);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto clamp(8px, 2vw, 12px);
-            font-size: clamp(18px, 5vw, 26px);
+        .contact-footer-item {
+            margin: 5px auto;
         }
 
-        .footer-text {
-            font-size: clamp(11px, 2.2vw, 13px);
-            line-height: 1.6;
+        .schedule-day {
+            font-size: 12px;
         }
 
-        .footer-text strong {
-            display: block;
-            margin-bottom: 4px;
-            font-size: clamp(12px, 2.5vw, 14px);
-            font-weight: 600;
+        .schedule-time {
+            font-size: 12px;
+        }
+    }
+
+    @media (max-width: 360px) {
+        .doctor-header h1 {
+            font-size: 18px;
+            word-break: break-word;
         }
 
-        @media (max-width: 1024px) {
-            .doctor-info {
-                grid-template-columns: 1fr;
-                gap: 15px;
-            }
-
-            .doctor-main {
-                gap: 30px;
-            }
+        .doctor-portrait {
+            width: 75px;
+            height: 100px;
         }
 
-        @media (max-width: 768px) {
-            .doctor-main {
-                flex-direction: column;
-                padding: clamp(20px, 4vw, 30px);
-            }
-
-            .doctor-info {
-                grid-template-columns: 1fr;
-                gap: 15px;
-            }
-
-            .doctor-profile {
-                width: 100%;
-                justify-content: center;
-            }
-
-            .doctor-portrait {
-                width: 100px;
-                height: 140px;
-            }
-
-            .doctor-footer {
-                flex-direction: column;
-                padding: clamp(20px, 4vw, 30px);
-                gap: clamp(15px, 3vw, 30px);
-            }
-
-            .footer-item {
-                max-width: 100%;
-                min-width: 100%;
-            }
-
-            .doctor-header h1 {
-                font-size: 24px;
-            }
-
-            .appointment-btn {
-                width: 90%;
-            }
+        .appointment-btn {
+            width: 100%;
+            padding: 8px 12px;
+            font-size: 11px;
         }
 
-        @media (max-width: 600px) {
-            .doctor-main {
-                padding: clamp(15px, 3vw, 25px);
-                gap: 20px;
-            }
-
-            .doctor-header {
-                padding: clamp(30px, 5vw, 50px) clamp(12px, 3vw, 20px);
-            }
-
-            .schedule-day {
-                display: block;
-                width: 100%;
-                margin-bottom: 3px;
-            }
-
-            .schedule-time {
-                display: block;
-            }
-
-            .appointment-btn {
-                width: 85%;
-                padding: 10px 20px;
-            }
+        .contact-footer-icon {
+            width: 40px;
+            height: 40px;
+            font-size: 16px;
         }
 
-        @media (max-width: 480px) {
-            .doctor-header {
-                padding: clamp(25px, 4vw, 40px) clamp(10px, 3vw, 15px);
-            }
-
-            .doctor-header h1 {
-                font-size: 20px;
-                letter-spacing: 0px;
-            }
-
-            .doctor-main {
-                padding: clamp(12px, 2.5vw, 20px);
-                gap: 15px;
-            }
-
-            .doctor-portrait {
-                width: 85px;
-                height: 120px;
-            }
-
-            .doctor-info-left {
-                gap: 15px;
-            }
-
-            .appointment-btn {
-                width: 100%;
-                padding: 10px 15px;
-                font-size: 12px;
-            }
-
-            .doctor-footer {
-                padding: clamp(15px, 3vw, 25px);
-                gap: clamp(12px, 2vw, 20px);
-            }
-
-            .footer-item {
-                margin: 5px auto;
-            }
-
-            .schedule-day {
-                font-size: 12px;
-            }
-
-            .schedule-time {
-                font-size: 12px;
-            }
+        .contact-footer-text strong {
+            font-size: 11px;
         }
 
-        @media (max-width: 360px) {
-            .doctor-header h1 {
-                font-size: 18px;
-                word-break: break-word;
-            }
-
-            .doctor-portrait {
-                width: 75px;
-                height: 100px;
-            }
-
-            .appointment-btn {
-                width: 100%;
-                padding: 8px 12px;
-                font-size: 11px;
-            }
-
-            .footer-icon {
-                width: 40px;
-                height: 40px;
-                font-size: 16px;
-            }
-
-            .footer-text strong {
-                font-size: 11px;
-            }
-
-            .footer-text {
-                font-size: 10px;
-            }
+        .contact-footer-text {
+            font-size: 10px;
         }
-    </style>
+    }
+</style>
 
 
     <!-- Header -->
     <div class="doctor-header">
-        <h1>Dr MOTEYO Gaëlle épse HAPPI</h1>
+        <h1>Dr XXXXXXXXXXXXXXXXXXXX</h1>
     </div>
 
     <!-- Container principal -->
@@ -592,9 +614,9 @@
                     <div class="bio-section">
                         <div class="bio-title">Biographie</div>
                         <div class="bio-text">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                            Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-                            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.
+                            XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX 
+                            XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX 
+                            XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
                         </div>
                     </div>
                 </div>
@@ -602,33 +624,35 @@
         </div>
 
         <!-- Bouton rendez-vous -->
-        <button class="appointment-btn">Prendre Rendez-vous</button>
+         <button class="appointment-btn" onclick="window.location.href='{% url 'contacts' %}'">Prendre Rendez-vous</button>
 
-        <!-- Footer -->
-        <div class="doctor-footer">
-            <div class="footer-item">
-                <div class="footer-icon">📞</div>
-                <div class="footer-text">
-                    <strong>(+237) 678 889 874 / 679 042 384</strong>
-                </div>
-            </div>
 
-            <div class="footer-item">
-                <div class="footer-icon">📍</div>
-                <div class="footer-text">
-                    <strong>Cameroun Yaoundé Mvan- Tropicana</strong>
-                    Première Entrée à Gauche Vers le Carrefour De l'An
-                </div>
-            </div>
+    </div>
 
-            <div class="footer-item">
-                <div class="footer-icon">🕐</div>
-                <div class="footer-text">
-                    <strong>Lundi-samedi: 9h00 - 18h00<br>dimanche: fermée</strong>
-                </div>
-            </div>
+<!-- Footer -->
+<div class="doctor-contact-footer">
+    <div class="contact-footer-item">
+        <div class="contact-footer-icon">📞</div>
+        <div class="contact-footer-text">
+            <strong>(+237) 678 889 874 / 679 042 384</strong>
         </div>
     </div>
+
+    <div class="contact-footer-item">
+        <div class="contact-footer-icon">📍</div>
+        <div class="contact-footer-text">
+            <strong>Cameroun Yaoundé Mvan- Tropicana</strong>
+            Première Entrée à Gauche Vers le Carrefour De l'An
+        </div>
+    </div>
+
+    <div class="contact-footer-item">
+        <div class="contact-footer-icon">🕐</div>
+        <div class="contact-footer-text">
+            <strong>Lundi-samedi: 9h00 - 18h00<br>dimanche: fermée</strong>
+        </div>
+    </div>
+</div>
 
 
 {% include 'whatsapp.html' %}
