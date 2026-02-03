@@ -3,6 +3,10 @@ from  django.shortcuts import render
 
 from django.http import HttpResponse
 
+from django.shortcuts import render, redirect
+from django.core.mail import send_mail
+from django.contrib import messages
+from django.views.decorators.http import require_http_methods
 
 def home(request):
 
@@ -24,8 +28,47 @@ def galerie_image(request):
 def teleconsultation(request):
     return render(request, 'teleconsultation.html') 
 
+#def contacts(request):
+   # return render(request, 'contacts.html') 
+
+
 def contacts(request):
-    return render(request, 'contacts.html') 
+    if request.method == 'POST':
+        nom = request.POST.get('nom')
+        email = request.POST.get('email')
+        specialite = request.POST.get('specialite')
+        message_text = request.POST.get('message')
+        
+        try:
+            # Email à l'hôpital
+            send_mail(
+                subject=f"Nouveau message de {nom} - {specialite}",
+                message=f"Nom: {nom}\nEmail: {email}\nSpécialité: {specialite}\n\nMessage:\n{message_text}",
+                from_email='hopitalmariewyss544@gmail.com',
+                recipient_list=['hopitalmariewyss544@gmail.com'],
+                fail_silently=False,
+            )
+            
+            # Email de confirmation au client
+            send_mail(
+                subject="Confirmation de votre message",
+                message=f"Bonjour {nom},\n\nMerci d'avoir contacté l'Hôpital Marie Wyss. Nous avons reçu votre message et vous répondrons dans les plus brefs délais.\n\nCordialement,\nL'équipe de l'Hôpital Marie Wyss",
+                from_email='hopitalmariewyss544@gmail.com',
+                recipient_list=[email],
+                fail_silently=False,
+            )
+            
+            messages.success(request, '✓ Votre message a été envoyé avec succès!')
+            return redirect('contacts')
+            
+        except Exception as e:
+            messages.error(request, f'✗ Erreur: {str(e)}')
+            return redirect('contacts')
+    
+    return render(request, 'contacts.html')
+
+
+
 
 def whatsapp(request):
     return render(request, 'whatsapp.html')
