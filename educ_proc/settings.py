@@ -28,9 +28,15 @@ TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 SECRET_KEY = 'django-insecure-@%qepujhm9bc+-49)t4t^0qtnf9l-$ek=x-!te+iymo_vigp6$'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'marie-wyss-2.onrender.com',
+    'hopitalmariewyssnsimeyong.xyz',
+    'www.hopitalmariewyssnsimeyong.xyz',
+    '127.0.0.1',
+    'localhost'
+]
 
 
 # Application definition
