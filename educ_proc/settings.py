@@ -61,6 +61,10 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
+    'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',  # Ajoute cette ligne ici
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    # ... le reste ...
 ]
 
 ROOT_URLCONF = 'educ_proc.urls'
@@ -137,6 +141,8 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # For production
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),  # For development
 ]
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Media files (if you have uploads)
 MEDIA_URL = '/media/'
